@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Map_Start">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAABAAgAAAAAAAAAAAAAUABA=</HashCode>
+      <FileName>Map_Start.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCore">
+    <Position X="17" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAQAAAAAAAAAAAAAIAAAAAAAAUAQA=</HashCode>
+      <FileName>CCore.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCameraManager">
+    <Position X="20.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCCAAAQAAHAAAAACgAAEAAIgAAAAAIBAAEgAgAUAQg=</HashCode>
+      <FileName>CCameraManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCollisionManager">
+    <Position X="24" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAEAABBQAAAAAAAEAAAAAAAAIBAAAAAAAEAQA=</HashCode>
+      <FileName>CCollisionManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CEventManager">
+    <Position X="18.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAARAAAAEAAAAAAABAAAAAAAAACAEAQw=</HashCode>
+      <FileName>CEventManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CKeyManager">
+    <Position X="20.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAIAgAgAQAAAAgAAAAAAAAIAAAAAAAAEYQA=</HashCode>
+      <FileName>CKeyManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CPathManager">
+    <Position X="22.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQCAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAQA=</HashCode>
+      <FileName>CPathManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRenderManager">
+    <Position X="24" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiAAAAgAAAAAAgBAAEAAgAhABACACIoAIIAAAAIAAQA=</HashCode>
+      <FileName>CRenderManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CResourceManager">
+    <Position X="17" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAGAAAIAAAAAAAAAAAAAIACCAAQABQAAAIAEAAQA=</HashCode>
+      <FileName>CResourceManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSceneManager">
+    <Position X="18.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAACAgAAAAAAAIAAAAAAAAUAwA=</HashCode>
+      <FileName>CSceneManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSoundManager">
+    <Position X="20.5" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAIgAAAAIAAAAACAAAAIAoAAAAAiEIQA=</HashCode>
+      <FileName>CSoundManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CTimeManager">
+    <Position X="22.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAoAAAAAAAAABAAAAQAAAEAAAAAIAABQAAAAEBQA=</HashCode>
+      <FileName>CTimeManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CUIManager">
+    <Position X="24" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAQAAABAAAAAAAAAAAAAAEAUA=</HashCode>
+      <FileName>CUIManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCollider">
+    <Position X="22.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAIBIAAABkAgAAAIAAAAAAMpApwAgAQAAA=</HashCode>
+      <FileName>CCollider.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAnimator">
+    <Position X="18.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAIAIAAAAAAAgAAAAACgAIAgAQAAAAUAAA=</HashCode>
+      <FileName>CAnimator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAnimation">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAQAQAAAABIAAgAAABAAAAAAEABAAAAYAAURBA=</HashCode>
+      <FileName>CAnimation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Logger">
+    <Position X="17" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAGACAAAAAAQAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Logger.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SingleTon&lt;T&gt;">
+    <Position X="18.75" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAEAAAAAAAAAAAAAAAACAAAAAAAAAAAAAABAAACAAA=</HashCode>
+      <FileName>SingleTon.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CGameObject" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QMAAAAACAEAAAAAAAIEAAAhQABIAAACMIAgAQwEURFA=</HashCode>
+      <FileName>CGameObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CTile">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAggIAQACAAAAAAAAAEAAAAgCAAAAAAAAAAAAAUABA=</HashCode>
+      <FileName>CTile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CButtonUI">
+    <Position X="11.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAQAAAAAAAAIIARAAAAIAAEAEABA=</HashCode>
+      <FileName>CButtonUI.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CPanelUI">
+    <Position X="13.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAQAAAAAAAAQIAAAAAAIAAIAAABA=</HashCode>
+      <FileName>CPanelUI.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CUI">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICAAAEAAgAABEwAAAQEAAAAQQAgIBgAABAoBAAYUgBA=</HashCode>
+      <FileName>CUI.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMissile">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAEAAAAAAAgAAAAAAAgAAAAAIAAAAAAAUABA=</HashCode>
+      <FileName>CMissile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster">
+    <Position X="3.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAEBAAAAAAAAAEBAAAAAAAAAIAAAAEAIEABA=</HashCode>
+      <FileName>CMonster.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CPlayer">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAQAEAAACAAAAAAAAAAAAAgAAAAAAAAAAAUABA=</HashCode>
+      <FileName>CPlayer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CScene">
+    <Position X="7" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAgwAAAAAAAgAAAAAQAABAEEAAAAIAgBQAAVRDg=</HashCode>
+      <FileName>CScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CScene_Start">
+    <Position X="6" Y="20.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAIAAAAAAEAAQ=</HashCode>
+      <FileName>CScene_Start.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CScene_Tool">
+    <Position X="9" Y="20.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAACAAIAAgAAAAAAAhgAAEAAYAIAAAAAAMAAA=</HashCode>
+      <FileName>CScene_Tool.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CResource">
+    <Position X="2.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QABEAAAAAAAAAAQAAEAAAASAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>CResource.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CTexture">
+    <Position X="0.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAIAEAAAAgAAAAAAIICAAAAACEACAAAAAAAIgAA=</HashCode>
+      <FileName>CTexture.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSound">
+    <Position X="2.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgigAAAAAAAACAAAAAAAAAAAAQAACAAoAQgAAgAAAA=</HashCode>
+      <FileName>CSound.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CD2DImage">
+    <Position X="5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAABAAAAAAAAAAAgAFQAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>CD2DImage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="tCamEffect">
+    <Position X="18.75" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAgAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CCameraManager.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="tEvent">
+    <Position X="20.5" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAQAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CEventManager.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="tAniFrm">
+    <Position X="17" Y="19.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAIACAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CAnimation.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="iPoint">
+    <Position X="1.5" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>struct.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="fPoint">
+    <Position X="11.75" Y="17.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAIAAAAAAQBAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>struct.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="iVec2" Collapsed="true">
+    <Position X="1.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>struct.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="fVec2" Collapsed="true">
+    <Position X="11.75" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>struct.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="BTN_FUNC" Collapsed="true">
+    <Position X="17" Y="24.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CButtonUI.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="GROUP_GAMEOBJ">
+    <Position X="18.75" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAEAAAAAAAAAABgAAQAAAAAAAAAAAAAAEoA=</HashCode>
+      <FileName>framework.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GROUP_SCENE">
+    <Position X="20.5" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAABAAAAAAAgAAAAAAAAAgAAgA=</HashCode>
+      <FileName>framework.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TYPE_EVENT">
+    <Position X="22.25" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAACAAAAAAAAAAAAAACAAAAgA=</HashCode>
+      <FileName>framework.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CAM_EFFECT">
+    <Position X="17" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAQAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>CCameraManager.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>
