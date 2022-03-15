@@ -50,11 +50,16 @@ void CScene_Start::Enter()
 	pPlayer->SetPos(fPoint(200, 200));
 	AddObject(pPlayer, GROUP_GAMEOBJ::PLAYER);
 
-	// Monster 추가
+	// Monster 추가 
 	CMonster* pMonster = new CMonster;
 	pMonster->SetPos(fPoint(1100, 350));
 	pMonster->SetCenterPos(pMonster->GetPos());
 	AddObject(pMonster, GROUP_GAMEOBJ::MONSTER);
+
+	CMonster* test(pMonster); //TODO::나중에 지울것
+
+	test->SetPos(fPoint(200, 500));
+	AddObject(test, GROUP_GAMEOBJ::MONSTER);
 
 	Map_Start* map = new Map_Start;
 	AddObject(map, GROUP_GAMEOBJ::MAP);

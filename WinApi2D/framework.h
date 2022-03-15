@@ -31,7 +31,6 @@ using namespace std;
 #include "struct.h"
 #include "Logger.h"
 
-
 //========================================
 //## 게임 그룹						##
 //========================================
@@ -60,6 +59,14 @@ enum class GROUP_SCENE
 	SIZE,
 };
 
+enum class GROUP_OBJECT_STATU
+{
+	JUMP,
+	GROUND,
+	DASH,
+	FLY, // 중력을 받지 않고 계속 날라다니는 객체
+};
+
 //========================================
 //## 이벤트 타입					##
 //========================================
@@ -72,6 +79,8 @@ enum class TYPE_EVENT
 
 	SIZE,
 };
+
+
 
 // Core & Manager
 #include "CCore.h"
@@ -97,6 +106,7 @@ enum class TYPE_EVENT
 #define	WINSIZEY	720
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
 
+
 #define DT				CTimeManager::getInst()->GetDT()
 #define fDT				CTimeManager::getInst()->GetfDT()
 
@@ -109,6 +119,11 @@ enum class TYPE_EVENT
 #define CreateObj(pObj, group)	CEventManager::getInst()->EventCreateObject(pObj, group)
 #define DeleteObj(pObj)			CEventManager::getInst()->EventDeleteObject(pObj)
 #define ChangeScn(scene)		CEventManager::getInst()->EventChangeScene(scene)
+
+#define StatuSet(statu) GetRigidBody()->SetStatu((UINT)statu)
+#define StatuGet(statu) GetRigidBody()->GetStatu((UINT)statu)
+#define StatuRemove(statu) GetRigidBody()->RemoveStatu((UINT)statu)
+
 
 //========================================
 //## 전역변수(인스턴스, 윈도우 핸들)	##

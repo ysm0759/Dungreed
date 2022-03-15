@@ -6,9 +6,18 @@
 #include "CCollider.h"
 #include "CAnimator.h"
 #include "CAnimation.h"
+#include "CRigidBody.h"
+
+ 
+
+
+
 
 CPlayer::CPlayer()
 {
+	m_iPlayerStatu = 0;
+	m_fVelocity = 500;
+	m_cDashCount = 2;
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerImg", L"texture\\Animation_Player.bmp");
 	SetName(L"Player");
 	SetScale(fPoint(70.f, 70.f));
@@ -31,6 +40,9 @@ CPlayer::CPlayer()
 	pAni->GetFrame(1).fptOffset = fPoint(0.f, -20.f);
 	pAni = GetAnimator()->FindAnimation(L"RightMove");
 	pAni->GetFrame(1).fptOffset = fPoint(0.f, -20.f);
+
+	CreateRigidBody();
+
 }
 
 CPlayer::~CPlayer()
@@ -65,15 +77,27 @@ void CPlayer::update()
 	{				   
 		pos.y += m_fVelocity * fDT;
 	}
-
-	SetPos(pos);
-
-	if (KeyDown(VK_SPACE))
+	if (Key(VK_RBUTTON))
 	{
-		CreateMissile();
-		GetAnimator()->Play(L"LeftHit");
+		StatuSet(GROUP_OBJECT_STATU::DASH);
+		StatuRemove(GROUP_OBJECT_STATU::GROUND);
+	}
+	SetPos(pos);
+ 	if (KeyDown(VK_SPACE)  
+		&& !StatuGet(GROUP_OBJECT_STATU::JUMP)
+		&& StatuGet(GROUP_OBJECT_STATU::GROUND))
+	{
+		StatuSet(GROUP_OBJECT_STATU::JUMP);
+		StatuRemove(GROUP_OBJECT_STATU::GROUND);
+	}
+	if (KeyDown('Q')) //TODO 바닥 충돌 바닥과 충돌되었다고 가정
+	{
+		StatuRemove(GROUP_OBJECT_STATU::JUMP);
+		StatuSet(GROUP_OBJECT_STATU::GROUND);
 	}
 
+
+	GetRigidBody()->update();
 	GetAnimator()->update();
 }
 
@@ -93,4 +117,16 @@ void CPlayer::CreateMissile()
 	pMissile->SetDir(fVec2(1, 0));
 
 	CreateObj(pMissile, GROUP_GAMEOBJ::MISSILE_PLAYER);
+}
+
+
+void CPlayer::OnCollisionEnter(CCollider* pOther)
+{
+
+	CGameObject* pOtherObj = pOther->GetObj();
+	if (pOtherObj->GetName() == L"Monster") //TODO :: 나중에 타일로 바꿀것
+	{	
+		StatuSet(GROUP_OBJECT_STATU::GROUND);
+		StatuRemove(GROUP_OBJECT_STATU::JUMP);
+	}
 }

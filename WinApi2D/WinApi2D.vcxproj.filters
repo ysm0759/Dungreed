@@ -64,6 +64,9 @@
     <Filter Include="Resouce\CD2DImage">
       <UniqueIdentifier>{7be60d72-5b7b-4f9d-b116-6bc827b05510}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Component\RigidBody">
+      <UniqueIdentifier>{33531023-bfea-41ea-9266-854471eb7bc2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -180,6 +183,9 @@
     <ClInclude Include="CRenderManager.h">
       <Filter>Engine\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CRigidBody.h">
+      <Filter>Engine\Component\RigidBody</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi2D.cpp">
@@ -277,6 +283,9 @@
     </ClCompile>
     <ClCompile Include="CRenderManager.cpp">
       <Filter>Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CRigidBody.cpp">
+      <Filter>Engine\Component\RigidBody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
