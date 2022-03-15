@@ -94,6 +94,7 @@ void CPlayer::update()
 		{
 			m_fDashTime = 0;
 			StatuRemove(GROUP_OBJECT_STATU::DASH);
+			StatuSet(GROUP_OBJECT_STATU::GROUND);
 		}
 	}
 	else //대쉬중이면 이동안됨 
@@ -126,12 +127,11 @@ void CPlayer::update()
 		}
 	}
 
-	if (KeyDown('Q')) //TODO 바닥 충돌 바닥과 충돌되었다고 가정
+	if (KeyDown('Q')) //TODO: 바닥 충돌 바닥과 충돌되었다고 가정 나중에 삭제
 	{
 		StatuRemove(GROUP_OBJECT_STATU::JUMP);
 		StatuSet(GROUP_OBJECT_STATU::GROUND);
 	}
-	StatuSet(GROUP_OBJECT_STATU::GROUND);//TODO :: TEST 지울것
 	SetPos(pos);
 
 	GetRigidBody()->update();
@@ -161,7 +161,7 @@ void CPlayer::OnCollisionEnter(CCollider* pOther)
 {
 
 	CGameObject* pOtherObj = pOther->GetObj();
-	if (pOtherObj->GetName() == L"Monster") //TODO :: 나중에 타일로 바꿀것
+	if (pOtherObj->GetName() == L"Monster") //TODO: 나중에 타일로 바꿀것
 	{
 		StatuSet(GROUP_OBJECT_STATU::GROUND);
 		StatuRemove(GROUP_OBJECT_STATU::JUMP);

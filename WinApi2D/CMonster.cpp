@@ -6,6 +6,7 @@
 
 CMonster* CMonster::Clone()
 {
+	
 	return new CMonster(*this);
 }
 

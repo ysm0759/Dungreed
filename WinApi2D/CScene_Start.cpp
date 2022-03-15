@@ -57,10 +57,13 @@ void CScene_Start::Enter()
 	pMonster->SetCenterPos(pMonster->GetPos());
 	AddObject(pMonster, GROUP_GAMEOBJ::MONSTER);
 
-	CMonster* test(pMonster); //TODO::나중에 지울것
 
-	test->SetPos(fPoint(200, 500));
-	AddObject(test, GROUP_GAMEOBJ::MONSTER);
+	//TODO: 복사생성자 이상함 , 애니메이션 안나옴
+	CGameObject* pOtherMonster = pMonster->Clone();//TODO: 나중에 지울것
+	pOtherMonster->SetPos(fPoint(200, 500));
+	AddObject(pOtherMonster, GROUP_GAMEOBJ::MONSTER);
+
+
 
 	Map_Start* map = new Map_Start;
 	AddObject(map, GROUP_GAMEOBJ::MAP);
