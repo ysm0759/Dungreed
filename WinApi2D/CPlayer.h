@@ -14,7 +14,13 @@ private:
 	CD2DImage* m_pImg;
 	float m_fVelocity;
 	int m_iPlayerStatu;
+	fVec2 m_fDashDir;
 	char m_cDashCount;
+	char m_cMaxDashCount;
+	float m_fCreateDashTime;
+	float m_fDashTime;
+
+
 	void CreateMissile();
 
 public:

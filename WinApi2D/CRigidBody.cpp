@@ -12,7 +12,7 @@ CRigidBody::CRigidBody()
 	m_pOwner = nullptr;
 	m_iObjectStatu = 0;
 	m_fGravity = 0;
-
+	m_fDashDir = {};
 }
 
 CRigidBody::CRigidBody(const CRigidBody& other)
@@ -20,6 +20,7 @@ CRigidBody::CRigidBody(const CRigidBody& other)
 	m_pOwner = nullptr;
 	m_iObjectStatu = other.m_iObjectStatu;
 	m_fGravity = 0;
+	m_fDashDir = other.m_fDashDir;
 }
 
 CRigidBody::~CRigidBody()
@@ -27,10 +28,21 @@ CRigidBody::~CRigidBody()
 
 }
 
+void CRigidBody::SetDashDir(fVec2 dashDir)
+{
+	this->m_fDashDir = dashDir;
+}
+
+void CRigidBody::SetVelocity(float velocity)
+{
+	this->m_fVelocity = velocity;
+}
+
 void CRigidBody::update()
 {
 	Jump();
 	Gravity();
+	Dash(); 
 }
 
 void CRigidBody::Jump()
@@ -46,11 +58,11 @@ void CRigidBody::Jump()
 
 void CRigidBody::Gravity()
 {
-	if (GetStatu((UINT)GROUP_OBJECT_STATU::GROUND)) //바닥이 땅에 붙어 있으면 
+	if (GetStatu((UINT)GROUP_OBJECT_STATU::GROUND)) //	GROUND상태이면 중력을 받지 않음
 	{
 		m_fGravity = 0;
 	}
-	else // 그게 아니면
+	else // 그게 아니면 중력을 받게 됨
 	{
 		fPoint objectPos = m_pOwner->GetPos();
 		objectPos.y += m_fGravity * fDT;
@@ -65,8 +77,17 @@ void CRigidBody::Gravity()
 
 void CRigidBody::Dash()
 {
-	
-	
+	if (GetStatu((UINT)GROUP_OBJECT_STATU::DASH))
+	{
+		//fPoint mouseRenderPos = MousePos();// CCameraManager::getInst()->GetRenderPos(MousePos());
+
+		//fPoint objectRenderPos = CCameraManager::getInst()->GetRenderPos(m_pOwner->GetPos());
+		fPoint objectRealPos = m_pOwner->GetPos();
+		objectRealPos.x += m_fVelocity * m_fDashDir.normalize().x * fDT;
+		objectRealPos.y += m_fVelocity * m_fDashDir.normalize().y * fDT;
+		m_pOwner->SetPos(objectRealPos);
+	}
+
 }
 
 void CRigidBody::SetStatu(UINT bit)	   //해당 비트를 1로 채움

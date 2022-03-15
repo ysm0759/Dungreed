@@ -17,7 +17,7 @@ CScene::~CScene()
     {
         for (int j = 0; j < m_arrObj[i].size(); j++)
         {
-            delete m_arrObj[i][j];
+           // delete m_arrObj[i][j]; //TODO :: ¿¡·¯³²
         }
     }
 }
