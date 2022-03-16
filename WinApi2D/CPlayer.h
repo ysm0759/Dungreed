@@ -3,8 +3,12 @@
 #include "CGameObject.h"
 
 class CD2DImage;
+class CItem;
 
+class Part
+{
 
+};
 
 class CPlayer : public CGameObject
 {
@@ -19,6 +23,7 @@ private:
 	char m_cMaxDashCount;
 	float m_fCreateDashTime;
 	float m_fDashTime;
+	list<CItem*> m_inventory;
 
 
 	void CreateMissile();

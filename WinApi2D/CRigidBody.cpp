@@ -79,9 +79,7 @@ void CRigidBody::Dash()
 {
 	if (GetStatu((UINT)GROUP_OBJECT_STATU::DASH))
 	{
-		//fPoint mouseRenderPos = MousePos();// CCameraManager::getInst()->GetRenderPos(MousePos());
-
-		//fPoint objectRenderPos = CCameraManager::getInst()->GetRenderPos(m_pOwner->GetPos());
+		 // 대쉬 상용할때 카메라 , realpos 주의
 		fPoint objectRealPos = m_pOwner->GetPos();
 		objectRealPos.x += m_fVelocity * m_fDashDir.normalize().x * fDT;
 		objectRealPos.y += m_fVelocity * m_fDashDir.normalize().y * fDT;

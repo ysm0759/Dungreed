@@ -67,6 +67,15 @@
     <Filter Include="Engine\Component\RigidBody">
       <UniqueIdentifier>{33531023-bfea-41ea-9266-854471eb7bc2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Character\Player">
+      <UniqueIdentifier>{bda385a6-2beb-438b-a153-df5b538129ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Character\Monster">
+      <UniqueIdentifier>{765d3afe-6f2c-41ee-8ca8-8ec1fb1ae98b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\item">
+      <UniqueIdentifier>{373e7f90-48bc-460a-bc86-7a080b12d292}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -153,15 +162,6 @@
     <ClInclude Include="CUI.h">
       <Filter>Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="CMissile.h">
-      <Filter>Object\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="CMonster.h">
-      <Filter>Object\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlayer.h">
-      <Filter>Object\Character</Filter>
-    </ClInclude>
     <ClInclude Include="CUIManager.h">
       <Filter>Engine\Manager</Filter>
     </ClInclude>
@@ -185,6 +185,18 @@
     </ClInclude>
     <ClInclude Include="CRigidBody.h">
       <Filter>Engine\Component\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>Object\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>Object\Character\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CMissile.h">
+      <Filter>Object\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CItem.h">
+      <Filter>Object\item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -254,15 +266,6 @@
     <ClCompile Include="CUI.cpp">
       <Filter>Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="CMissile.cpp">
-      <Filter>Object\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="CMonster.cpp">
-      <Filter>Object\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlayer.cpp">
-      <Filter>Object\Character</Filter>
-    </ClCompile>
     <ClCompile Include="CUIManager.cpp">
       <Filter>Engine\Manager</Filter>
     </ClCompile>
@@ -287,6 +290,18 @@
     <ClCompile Include="CRigidBody.cpp">
       <Filter>Engine\Component\RigidBody</Filter>
     </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>Object\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>Object\Character\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CMissile.cpp">
+      <Filter>Object\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CItem.cpp">
+      <Filter>Object\item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinApi2D.rc">
@@ -300,5 +315,8 @@
     <Image Include="WinApi2D.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

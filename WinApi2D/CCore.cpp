@@ -22,7 +22,6 @@ void CCore::update()
 	CTimeManager::getInst()->update();
 	CKeyManager::getInst()->update();
 	CSoundManager::getInst()->update();
-
 	CSceneManager::getInst()->update();
 	CCollisionManager::getInst()->update();
 	CCameraManager::getInst()->update();

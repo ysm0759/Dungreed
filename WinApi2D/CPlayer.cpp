@@ -28,10 +28,10 @@ CPlayer::CPlayer()
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerImg", L"texture\\Animation_Player.bmp");
 
 
+	//Matrix3x2F matrot = D2D1::Matrix3x2F::Rotation(1, D2D1::Point2F(1.f, 1.f));
 	CreateCollider();
 	GetCollider()->SetScale(fPoint(40.f, 40.f));
 	GetCollider()->SetOffsetPos(fPoint(0.f, 10.f));
-
 	CreateAnimator();
 	GetAnimator()->CreateAnimation(L"LeftNone", m_pImg, fPoint(0.f, 0.f), fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.5f, 2);
 	GetAnimator()->CreateAnimation(L"RightNone", m_pImg, fPoint(0.f, 70.f), fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.5f, 2);
@@ -76,27 +76,31 @@ void CPlayer::update()
 	}
 	
 
-	if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::DASH) && m_cDashCount > 0) // 대쉬 진입
+	if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::DASH) && m_cDashCount < 100) // 대쉬 진입 //TODO: 대쉬 삭제해야함
 	{
 
 		fVec2 mousePos = MousePos(); //마우스의 현재 좌표와
 		fPoint objectRenderPos = CCameraManager::getInst()->GetRenderPos(GetPos()); //캐릭터 랜더 위치랑 계산을 해서 
-
 		GetRigidBody()->SetDashDir(fVec2(mousePos.x - objectRenderPos.x , mousePos.y - objectRenderPos.y)); //대쉬 이동 방향을 정해야함
 		GetRigidBody()->SetVelocity(DASHVELOCITY);
 		StatuSet(GROUP_OBJECT_STATU::DASH);
-		//StatuSet(GROUP_OBJECT_STATU::GROUND);
 		m_cDashCount -= 1;
 	}
 	else if (StatuGet(GROUP_OBJECT_STATU::DASH)) //대쉬중
 	{
 		m_fDashTime += fDT;
+		StatuSet(GROUP_OBJECT_STATU::GROUND);
+		if (StatuGet(GROUP_OBJECT_STATU::JUMP)) //점프하고 대쉬를 사용하면 
+		{
+			StatuRemove(GROUP_OBJECT_STATU::JUMP); //점프를 제거 안해주면 RigidBody에 점프함수를 계속 실행하여 이상하게 진행됨
+		}
 		if (m_fDashTime > DASHTIME)
 		{
 			m_fDashTime = 0;
 			StatuRemove(GROUP_OBJECT_STATU::DASH);
 			StatuRemove(GROUP_OBJECT_STATU::GROUND);
 		}
+
 	}
 	else //대쉬중이면 이동안됨 
 	{
@@ -164,7 +168,7 @@ void CPlayer::OnCollisionEnter(CCollider* pOther)
 	CGameObject* pOtherObj = pOther->GetObj();
 	if (pOtherObj->GetName() == L"Monster") //TODO: 나중에 타일로 바꿀것
 	{
-		StatuSet(GROUP_OBJECT_STATU::GROUND);
+    	StatuSet(GROUP_OBJECT_STATU::GROUND);
 		StatuRemove(GROUP_OBJECT_STATU::JUMP);
 	}
 }
