@@ -82,6 +82,9 @@
     <Filter Include="Scene\Scene_Test">
       <UniqueIdentifier>{112782d4-7bdf-4ec2-9e50-801f3befcb4c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\BackGround">
+      <UniqueIdentifier>{baf2f988-f6ce-40b1-893f-81299cebe4a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -180,9 +183,6 @@
     <ClInclude Include="CD2DImage.h">
       <Filter>Resouce\CD2DImage</Filter>
     </ClInclude>
-    <ClInclude Include="Map_Start.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CRenderManager.h">
       <Filter>Engine\Manager</Filter>
     </ClInclude>
@@ -206,6 +206,12 @@
     </ClInclude>
     <ClInclude Include="CSceneTest.h">
       <Filter>Scene\Scene_Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Map_Start.h">
+      <Filter>Object\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="CBackGround.h">
+      <Filter>Object\BackGround</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -287,9 +293,6 @@
     <ClCompile Include="CD2DImage.cpp">
       <Filter>Resouce\CD2DImage</Filter>
     </ClCompile>
-    <ClCompile Include="Map_Start.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CRenderManager.cpp">
       <Filter>Engine\Manager</Filter>
     </ClCompile>
@@ -313,6 +316,12 @@
     </ClCompile>
     <ClCompile Include="CSceneTest.cpp">
       <Filter>Scene\Scene_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="CBackGround.cpp">
+      <Filter>Object\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Map_Start.cpp">
+      <Filter>Object\BackGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

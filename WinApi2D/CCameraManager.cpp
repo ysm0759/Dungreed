@@ -40,24 +40,24 @@ void CCameraManager::update()
 	}
 
 
-	char charTmp[17];
-	wchar_t tmp[17];
-	wchar_t objectInfo[255] = {};
-	
-	_gcvt_s(charTmp, sizeof(charTmp), m_fptCurLookAt.x, 8);
-	mbstowcs_s(NULL, tmp, sizeof(tmp) / 2, charTmp, sizeof(charTmp));
-	
-	wcscat_s(objectInfo, L"Camera.X : ");
-	wcscat_s(objectInfo, tmp);
-	wcscat_s(objectInfo, L"\t");
-	
-	_gcvt_s(charTmp, sizeof(charTmp), m_fptCurLookAt.y, 8);
-	mbstowcs_s(NULL, tmp, sizeof(tmp) / 2, charTmp, sizeof(charTmp));
-	
-	wcscat_s(objectInfo, L"Camera.Y : ");
-	wcscat_s(objectInfo, tmp);
-	
-	Logger::info(objectInfo);
+	//char charTmp[17];
+	//wchar_t tmp[17];
+	//wchar_t objectInfo[255] = {};
+	//
+	//_gcvt_s(charTmp, sizeof(charTmp), m_fptCurLookAt.x, 8);
+	//mbstowcs_s(NULL, tmp, sizeof(tmp) / 2, charTmp, sizeof(charTmp));
+	//
+	//wcscat_s(objectInfo, L"Camera.X : ");
+	//wcscat_s(objectInfo, tmp);
+	//wcscat_s(objectInfo, L"\t");
+	//
+	//_gcvt_s(charTmp, sizeof(charTmp), m_fptCurLookAt.y, 8);
+	//mbstowcs_s(NULL, tmp, sizeof(tmp) / 2, charTmp, sizeof(charTmp));
+	//
+	//wcscat_s(objectInfo, L"Camera.Y : ");
+	//wcscat_s(objectInfo, tmp);
+	//
+	//Logger::info(objectInfo);
 	// 화면 중앙과 카메라 LookAt 좌표 사이의 차이 계산
 	CalDiff();
 }
@@ -180,7 +180,6 @@ void CCameraManager::Scroll(fVec2 vec, float velocity)
 void CCameraManager::CalDiff()
 {
 	m_fAccTime += fDT;
-
 	// 시간이 지나면, 도착한것으로 간주
 	if (m_fTime <= m_fAccTime)
 	{

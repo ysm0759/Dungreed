@@ -39,8 +39,8 @@ enum class GROUP_GAMEOBJ
 {
 	DEFAULT,
 	TILE,
-	MAP,
-	
+	MAP, //나중에 지우던지 하면 됨
+	BACK_GROUND,
 	
 	MONSTER,
 	MISSILE_MONSTER,
@@ -123,6 +123,7 @@ enum class TYPE_EVENT
 //#define	WINSIZEY	720
 static float WINSIZEX = 1280;
 static float WINSIZEY = 720;
+
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
 
 
