@@ -74,6 +74,7 @@ void CPlayer::update()
 			m_fCreateDashTime -= DASHCREATETIME;
 		}
 	}
+	
 
 	if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::DASH) && m_cDashCount > 0) // 대쉬 진입
 	{
@@ -84,7 +85,7 @@ void CPlayer::update()
 		GetRigidBody()->SetDashDir(fVec2(mousePos.x - objectRenderPos.x , mousePos.y - objectRenderPos.y)); //대쉬 이동 방향을 정해야함
 		GetRigidBody()->SetVelocity(DASHVELOCITY);
 		StatuSet(GROUP_OBJECT_STATU::DASH);
-		StatuSet(GROUP_OBJECT_STATU::GROUND);
+		//StatuSet(GROUP_OBJECT_STATU::GROUND);
 		m_cDashCount -= 1;
 	}
 	else if (StatuGet(GROUP_OBJECT_STATU::DASH)) //대쉬중
@@ -94,7 +95,7 @@ void CPlayer::update()
 		{
 			m_fDashTime = 0;
 			StatuRemove(GROUP_OBJECT_STATU::DASH);
-			StatuSet(GROUP_OBJECT_STATU::GROUND);
+			StatuRemove(GROUP_OBJECT_STATU::GROUND);
 		}
 	}
 	else //대쉬중이면 이동안됨 
