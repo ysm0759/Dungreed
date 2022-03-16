@@ -35,5 +35,6 @@ void Map_Start::render()
         pos.y,
         pos.x + scale.x,
         pos.y + scale.y
+        //¤±¤¤¤·¤©
     );
 }

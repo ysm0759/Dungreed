@@ -171,8 +171,9 @@
     <ClInclude Include="CResourceManager.h" />
     <ClInclude Include="CRigidBody.h" />
     <ClInclude Include="CScene.h" />
+    <ClInclude Include="CSceneMain.h" />
     <ClInclude Include="CSceneManager.h" />
-    <ClInclude Include="CScene_Start.h" />
+    <ClInclude Include="CSceneTest.h" />
     <ClInclude Include="CScene_Tool.h" />
     <ClInclude Include="CSound.h" />
     <ClInclude Include="CSoundManager.h" />
@@ -213,8 +214,9 @@
     <ClCompile Include="CResourceManager.cpp" />
     <ClCompile Include="CRigidBody.cpp" />
     <ClCompile Include="CScene.cpp" />
+    <ClCompile Include="CSceneMain.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
-    <ClCompile Include="CScene_Start.cpp" />
+    <ClCompile Include="CSceneTest.cpp" />
     <ClCompile Include="CScene_Tool.cpp" />
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CSoundManager.cpp" />

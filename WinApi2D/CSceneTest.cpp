@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "CScene_Start.h"
+#include "CSceneTest.h"
 
 #include "CGameObject.h"
 #include "CPlayer.h"
@@ -9,22 +9,22 @@
 #include "CSound.h"
 #include "CD2DImage.h"
 
-CScene_Start::CScene_Start()
+CSceneTest::CSceneTest()
 {
 }
 
-CScene_Start::~CScene_Start()
+CSceneTest::~CSceneTest()
 {
 
 }
 
-void CScene_Start::update()
+void CSceneTest::update()
 {
 	CScene::update();
 
 	if (KeyDown(VK_TAB))
 	{
-		ChangeScn(GROUP_SCENE::TOOL);
+		ChangeScn(GROUP_SCENE::MAIN);
 	}
 
 	if (KeyDown('Z'))
@@ -39,7 +39,7 @@ void CScene_Start::update()
 	}
 }
 
-void CScene_Start::Enter()
+void CSceneTest::Enter()
 {
 	// 타일 로딩
 	wstring path = CPathManager::getInst()->GetContentPath();
@@ -58,10 +58,10 @@ void CScene_Start::Enter()
 	AddObject(pMonster, GROUP_GAMEOBJ::MONSTER);
 
 
-	//TODO: 복사생성자 이상함 , 애니메이션 안나옴
-	CGameObject* pOtherMonster = pMonster->Clone();//TODO: 나중에 지울것
-	pOtherMonster->SetPos(fPoint(200, 500));
-	AddObject(pOtherMonster, GROUP_GAMEOBJ::MONSTER);
+	////TODO: 복사생성자 이상함 , 애니메이션 안나옴
+	//CGameObject* pOtherMonster = pMonster->Clone();//TODO: 나중에 지울것
+	//pOtherMonster->SetPos(fPoint(200, 500));
+	//AddObject(pOtherMonster, GROUP_GAMEOBJ::MONSTER);
 
 
 
@@ -69,14 +69,14 @@ void CScene_Start::Enter()
 	AddObject(map, GROUP_GAMEOBJ::MAP);
 
 	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::MONSTER);
-	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::MISSILE_PLAYER, GROUP_GAMEOBJ::MONSTER);
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER_MISSILE, GROUP_GAMEOBJ::MONSTER);
 
 	// Camera Look 지정
-	CCameraManager::getInst()->SetLookAt(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
+	//CCameraManager::getInst()->SetLookAt(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
 	CCameraManager::getInst()->SetTargetObj(pPlayer);
 }
 
-void CScene_Start::Exit()
+void CSceneTest::Exit()
 {
 	DeleteAll();
 

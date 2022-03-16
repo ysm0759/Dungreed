@@ -185,7 +185,7 @@
   <Class Name="CPlayer" Collapsed="true">
     <Position X="14.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAAgAQAEAAACAAAAAAAACAAAghAACIAIAAAAAUABA=</HashCode>
+      <HashCode>AIAAAgAQAEAAACAAAAAAAACAAIghAACIAIAAAAAUABA=</HashCode>
       <FileName>CPlayer.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -196,11 +196,11 @@
       <FileName>CScene.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CScene_Start" Collapsed="true">
+  <Class Name="CSceneTest" Collapsed="true">
     <Position X="2.75" Y="8.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAIAAAAAAEAAQ=</HashCode>
-      <FileName>CScene_Start.h</FileName>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAIAAAAAAEAAAAIAAAAAAEAAA=</HashCode>
+      <FileName>CSceneTest.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CScene_Tool" Collapsed="true">
@@ -297,21 +297,14 @@
   <Enum Name="GROUP_GAMEOBJ" Collapsed="true">
     <Position X="18.75" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABBAAAAEAAAAAAAAAABgAAQAAAAAAAAAAAAAAEoA=</HashCode>
+      <HashCode>AAAABRIAAAEAAACAAAABAAgAAQAAAAAAAAAAAAAAEoA=</HashCode>
       <FileName>framework.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="GROUP_SCENE" Collapsed="true">
     <Position X="22.25" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAABAAAAAAAgAAAAAAAAAgAAgA=</HashCode>
-      <FileName>framework.h</FileName>
-    </TypeIdentifier>
-  </Enum>
-  <Enum Name="GROUP_OBJECT_STATU" Collapsed="true">
-    <Position X="20.5" Y="6" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAgAAAAAAAAAAAAAAAAAAACAAQAAAAAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAAAAAAQAAAACAAAIAggAACAAAAAAgAAgA=</HashCode>
       <FileName>framework.h</FileName>
     </TypeIdentifier>
   </Enum>
@@ -327,6 +320,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAAAAAAAQAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>CCameraManager.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GROUP_OBJECT_STATU" Collapsed="true">
+    <Position X="20.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAgAAAAAAAAAAAAAAAAAAACAAQAAAAAAA=</HashCode>
+      <FileName>framework.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="맑은 고딕" Size="9" />

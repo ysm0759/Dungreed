@@ -71,6 +71,7 @@ void CAnimation::render()
             frm.fptLT.y,
             frm.fptLT.x + frm.fptSlice.x,
             frm.fptLT.y + frm.fptSlice.y
+            //けいしぉ
         );
     }
     else
@@ -85,6 +86,7 @@ void CAnimation::render()
             frm.fptLT.y,
             frm.fptLT.x + frm.fptSlice.x,
             frm.fptLT.y + frm.fptSlice.y
+            //けいしぉ
         );
     }
 

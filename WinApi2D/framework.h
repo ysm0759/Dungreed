@@ -40,10 +40,16 @@ enum class GROUP_GAMEOBJ
 	DEFAULT,
 	TILE,
 	MAP,
-	PLAYER,
+	
+	
 	MONSTER,
-	MISSILE_PLAYER,
 	MISSILE_MONSTER,
+
+	PLAYER_ATTACK,
+	PLAYER_MISSILE,
+	PLAYER_WEAPON_BACK,
+	PLAYER,
+	PLAYER_WEAPON_FRONT,
 
 	UI,		// UI는 모든 게임오브젝트 중 최상단 Layer에 위치
 	SIZE,
@@ -52,12 +58,23 @@ enum class GROUP_GAMEOBJ
 enum class GROUP_SCENE
 {
 	TOOL,
+	MAIN,
+	LOAD,
 	START,
-	STAGE_01,
-	STAGE_02,
+	BILLIZE,
+	BILLIZE_ESC,
+	VILLAGE,
+	STAGE,
 
+
+
+
+
+	TEST,
 	SIZE,
 };
+
+
 
 enum class GROUP_OBJECT_STATU
 {
@@ -102,8 +119,10 @@ enum class TYPE_EVENT
 
 #define WINSTARTX   100
 #define WINSTARTY   100
-#define WINSIZEX	1280
-#define	WINSIZEY	720
+//#define WINSIZEX		1280
+//#define	WINSIZEY	720
+static float WINSIZEX = 1280;
+static float WINSIZEY = 720;
 #define WINSTYLE	WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
 
 
@@ -141,7 +160,7 @@ extern HWND hWnd;
 //ScreenToClient(hWnd, &ptPos);
 //char charTmp[17];
 //wchar_t tmp[17];
-//wchar_t mouseInfo[40] = {};
+//wchar_t mouseInfo[255] = {};
 //
 //_gcvt_s(charTmp, sizeof(charTmp), ptPos.x, 8);
 //mbstowcs_s(NULL, tmp, sizeof(tmp) / 2, charTmp, sizeof(charTmp));
@@ -157,3 +176,24 @@ extern HWND hWnd;
 //wcscat_s(mouseInfo, tmp);
 //
 //Logger::info(mouseInfo);
+
+
+// 좌표 찾기용 
+//char charTmp[17];
+//wchar_t tmp[17];
+//wchar_t objectInfo[255] = {};
+//
+//_gcvt_s(charTmp, sizeof(charTmp), m_fptCurLookAt.x, 8);
+//mbstowcs_s(NULL, tmp, sizeof(tmp) / 2, charTmp, sizeof(charTmp));
+//
+//wcscat_s(objectInfo, L"Camera.X : ");
+//wcscat_s(objectInfo, tmp);
+//wcscat_s(objectInfo, L"\t");
+//
+//_gcvt_s(charTmp, sizeof(charTmp), m_fptCurLookAt.y, 8);
+//mbstowcs_s(NULL, tmp, sizeof(tmp) / 2, charTmp, sizeof(charTmp));
+//
+//wcscat_s(objectInfo, L"Camera.Y : ");
+//wcscat_s(objectInfo, tmp);
+//
+//Logger::info(objectInfo);

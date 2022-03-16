@@ -28,7 +28,7 @@ void CScene_Tool::update()
 
 	if (KeyDown(VK_TAB))
 	{
-		ChangeScn(GROUP_SCENE::START);
+		ChangeScn(GROUP_SCENE::TEST);
 	}
 
 	if (Key('A'))
@@ -53,7 +53,7 @@ void CScene_Tool::update()
 
 void ChangeScene(DWORD_PTR, DWORD_PTR)
 {
-	ChangeScn(GROUP_SCENE::START);
+	ChangeScn(GROUP_SCENE::TEST);
 }
 
 void ButtonClicked(DWORD_PTR, DWORD_PTR)

@@ -76,6 +76,12 @@
     <Filter Include="Object\item">
       <UniqueIdentifier>{373e7f90-48bc-460a-bc86-7a080b12d292}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Scene_Main">
+      <UniqueIdentifier>{320de6a6-4a83-4c0a-8b4a-b46106e62553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Scene_Test">
+      <UniqueIdentifier>{112782d4-7bdf-4ec2-9e50-801f3befcb4c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -113,9 +119,6 @@
     </ClInclude>
     <ClInclude Include="CSceneManager.h">
       <Filter>Engine\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CScene_Start.h">
-      <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="CResource.h">
       <Filter>Resouce</Filter>
@@ -198,6 +201,12 @@
     <ClInclude Include="CItem.h">
       <Filter>Object\item</Filter>
     </ClInclude>
+    <ClInclude Include="CSceneMain.h">
+      <Filter>Scene\Scene_Main</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneTest.h">
+      <Filter>Scene\Scene_Test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi2D.cpp">
@@ -220,9 +229,6 @@
     </ClCompile>
     <ClCompile Include="CSceneManager.cpp">
       <Filter>Engine\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CScene_Start.cpp">
-      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="CResource.cpp">
       <Filter>Resouce</Filter>
@@ -301,6 +307,12 @@
     </ClCompile>
     <ClCompile Include="CItem.cpp">
       <Filter>Object\item</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneMain.cpp">
+      <Filter>Scene\Scene_Main</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneTest.cpp">
+      <Filter>Scene\Scene_Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -102,7 +102,7 @@ void CPlayer::update()
 		}
 
 	}
-	else //대쉬중이면 이동안됨 
+	else //대쉬중이면 조작키 안됨
 	{
 		if (Key(VK_LEFT))
 		{
@@ -130,6 +130,7 @@ void CPlayer::update()
 			StatuSet(GROUP_OBJECT_STATU::JUMP);
 			StatuRemove(GROUP_OBJECT_STATU::GROUND);
 		}
+
 	}
 
 	if (KeyDown('Q')) //TODO: 바닥 충돌 바닥과 충돌되었다고 가정 나중에 삭제
@@ -158,7 +159,7 @@ void CPlayer::CreateMissile()
 	pMissile->SetPos(fpMissilePos);
 	pMissile->SetDir(fVec2(1, 0));
 
-	CreateObj(pMissile, GROUP_GAMEOBJ::MISSILE_PLAYER);
+	CreateObj(pMissile, GROUP_GAMEOBJ::PLAYER_MISSILE);
 }
 
 

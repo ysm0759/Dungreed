@@ -1,8 +1,9 @@
 #include "framework.h"
 #include "CSceneManager.h"
 
-#include "CScene_Start.h"
+#include "CSceneTest.h"
 #include "CScene_Tool.h"
+#include "CSceneMain.h"
 
 CSceneManager::CSceneManager()
 {
@@ -46,13 +47,21 @@ void CSceneManager::render()
 
 void CSceneManager::init()
 {
-	m_arrScene[(size_t)GROUP_SCENE::START] = new CScene_Start;
-	m_arrScene[(size_t)GROUP_SCENE::START]->SetName(L"Start_Scene");
+	//TODO: Scene들 때려넣기
+
+	m_arrScene[(size_t)GROUP_SCENE::TEST] = new CSceneTest;
+	m_arrScene[(size_t)GROUP_SCENE::TEST]->SetName(L"Scene_Test");
+
+	
+	m_arrScene[(size_t)GROUP_SCENE::MAIN] = new CSceneMain;
+	m_arrScene[(size_t)GROUP_SCENE::MAIN]->SetName(L"Scene_Main");
+
+
 
 	m_arrScene[(size_t)GROUP_SCENE::TOOL] = new CScene_Tool;
 	m_arrScene[(size_t)GROUP_SCENE::TOOL]->SetName(L"Tool_Scene");
 
-	m_pCurScene = m_arrScene[(size_t)GROUP_SCENE::START];
+	m_pCurScene = m_arrScene[(size_t)GROUP_SCENE::MAIN];
 	m_pCurScene->Enter();
 }
 

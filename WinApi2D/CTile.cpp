@@ -51,6 +51,7 @@ void CTile::render()
 		iCurRow * fptScale.y,
 		fptScale.x,
 		fptScale.y
+		//¤±¤¤¤·¤©
 	);
 }
 
