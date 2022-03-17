@@ -19,7 +19,8 @@ private:
 	IDWriteFactory* m_pWriteFactory;
 	IWICImagingFactory* m_pImageFactory;
 	ID2D1Bitmap* m_pBitmap;
-
+	ID2D1SolidColorBrush* m_pBrush;
+	
 	IDWriteTextFormat* m_pTextFormat;
 	
 	/*
@@ -48,7 +49,7 @@ public:
 
 	void RenderText(wstring str, float dstX, float dstY, float dstW, float dstH, float fontSize = 12.f, COLORREF color = RGB(0, 0, 0));
 	void RenderRectangle(float dstX, float dstY, float dstW, float dstH, COLORREF color = RGB(0, 0, 0));
-	void RenderFillRectangle(float dstX, float dstY, float dstW, float dstH, COLORREF color = RGB(0, 0, 0));
+	void RenderFillRectangle(float dstX, float dstY, float dstW, float dstH, COLORREF color = RGB(0, 0, 0), float alpha = 1.f);
 	void RenderEllipse(float dstX, float dstY, float dstW, float dstH, COLORREF color = RGB(0, 0, 0));
 	void RenderFillEllipse(float dstX, float dstY, float dstW, float dstH, COLORREF color = RGB(0, 0, 0));
 

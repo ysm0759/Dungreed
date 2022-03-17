@@ -8,18 +8,22 @@ CBackGround::CBackGround()
     m_pImg = nullptr;
     m_fSpeed = 1;
     m_isFix = true;
+    m_isAuto = false;
+    m_isDirLeft = true;
 }
 
-CBackGround::CBackGround(float fSpeed )
+CBackGround::CBackGround(float fSpeed , bool isAuto , bool isDirLeft)
 {
     m_pImg = nullptr;
     m_fSpeed = fSpeed;
     m_isFix = false;
+    m_isAuto = isAuto;
+    m_isDirLeft = isDirLeft;
 }
 
 CBackGround::~CBackGround()
 {
-
+   // delete m_pImg;
 }
 
 void CBackGround::Load(wstring strKey, wstring strPath)
@@ -36,6 +40,12 @@ CBackGround* CBackGround::Clone()
 void CBackGround::update()
 {
 
+    if (true == m_isAuto)
+    {
+        fPoint pos = GetPos();
+        pos.x += m_fSpeed * fDT;
+        SetPos(pos);
+    }
 }
 
 void CBackGround::render()
@@ -61,10 +71,10 @@ void CBackGround::render()
             pos.y + scale.y / 2
         );
     }
-    else //움직이는 배경
+    else //캐릭터가 움직일때 따라 움직이는 배경
     {
         fPoint renderPos = CCameraManager::getInst()->GetRenderPos(pos);
-        renderPos = pos + (renderPos - pos) / 5;    // 배경은 살짝 느리게 이동
+        renderPos = pos + (renderPos - pos) / m_fSpeed;    // 배경은 살짝 느리게 이동
 
         CRenderManager::getInst()->RenderImage(
             m_pImg,

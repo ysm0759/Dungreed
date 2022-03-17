@@ -40,7 +40,7 @@ private:
 public:
 	void init();
 	void update();
-	void render(HDC hDC);
+	void render();
 
 	void SetLookAt(fPoint lookAt);
 	void SetTargetObj(CGameObject* target);

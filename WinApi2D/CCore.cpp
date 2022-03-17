@@ -35,7 +35,7 @@ void CCore::render()
 	CRenderManager::getInst()->RenderFillRectangle(-1, -1, WINSIZEX + 1, WINSIZEY + 1, RGB(255, 255, 255));
 
 	CSceneManager::getInst()->render();
-	//CCameraManager::getInst()->render(m_pMemTex->GetDC());
+	CCameraManager::getInst()->render();
 
 	// 오른쪽 상단에 FPS 표시
 	WCHAR strFPS[6];
@@ -47,7 +47,6 @@ void CCore::render()
 
 void CCore::init()
 {
-	m_hDC = GetDC(hWnd);
 
 	CPathManager::getInst()->init();
 	CTimeManager::getInst()->init();
@@ -60,7 +59,3 @@ void CCore::init()
 	CCollisionManager::getInst()->init();
 }
 
-HDC CCore::GetMainDC()
-{
-	return m_hDC;
-}

@@ -38,12 +38,12 @@ void CSceneMain::Enter()
 	backGround1->SetPos(fPoint(WINSIZEX/2.f, WINSIZEY / 2.f));
 	AddObject(backGround1, GROUP_GAMEOBJ::BACK_GROUND);
 
-	CBackGround* backGround2 = new CBackGround(3);
+	CBackGround* backGround2 = new CBackGround(3,true);
 	backGround2->Load(L"BackGround_Start", L"texture\\Main\\BackGround2.png");
 	backGround2->SetPos(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
 	AddObject(backGround2, GROUP_GAMEOBJ::BACK_GROUND);
 
-	CBackGround* backGround3 = new CBackGround(3);
+	CBackGround* backGround3 = new CBackGround(3,true);
 	backGround3->Load(L"BackGround_Start", L"texture\\Main\\BackGround3.png");
 	backGround3->SetPos(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
 	AddObject(backGround3, GROUP_GAMEOBJ::BACK_GROUND);

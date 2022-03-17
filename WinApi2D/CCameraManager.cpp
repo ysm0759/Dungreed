@@ -12,7 +12,6 @@ CCameraManager::CCameraManager()
 	m_fAccTime = m_fTime;
 	m_fSpeed = 0;
 
-	m_pImg = nullptr;
 }
 
 CCameraManager::~CCameraManager()
@@ -22,7 +21,6 @@ CCameraManager::~CCameraManager()
 
 void CCameraManager::init()
 {
-	m_pImg = CResourceManager::getInst()->CreateTexture(L"CameraTex", WINSIZEX, WINSIZEY);
 }
 
 void CCameraManager::update()
@@ -62,7 +60,7 @@ void CCameraManager::update()
 	CalDiff();
 }
 
-void CCameraManager::render(HDC hDC)
+void CCameraManager::render()
 {
 	if (m_listCamEffect.empty())
 	{
@@ -79,28 +77,18 @@ void CCameraManager::render(HDC hDC)
 	else if (fRatio > 1.f)
 		fRatio = 1.f;
 
-	int iAlpha = 0;
-	if (CAM_EFFECT::FADE_OUT == effect.m_eEffect)
-		iAlpha = (int)(255.f * fRatio);
-	else if (CAM_EFFECT::FADE_IN == effect.m_eEffect)
-		iAlpha = (int)(255.f * (1.f - fRatio));
 
-	BLENDFUNCTION bf = {};
+	CRenderManager::getInst()->RenderFillRectangle(0, 0, WINSIZEX, WINSIZEY, RGB(0, 0, 0), fRatio);
 
-	bf.BlendOp = AC_SRC_OVER;
-	bf.BlendFlags = 0;
-	bf.AlphaFormat = 0;
-	bf.SourceConstantAlpha = iAlpha;
-
-	AlphaBlend(hDC
-		, 0, 0
-		, (int)(m_pImg->GetBmpWidth())
-		, (int)(m_pImg->GetBmpHeight())
-		, m_pImg->GetDC()
-		, 0, 0
-		, (int)(m_pImg->GetBmpWidth())
-		, (int)(m_pImg->GetBmpHeight())
-		, bf);
+	//AlphaBlend(hDC
+	//	, 0, 0
+	//	, (int)(m_pImg->GetBmpWidth())
+	//	, (int)(m_pImg->GetBmpHeight())
+	//	, m_pImg->GetDC()
+	//	, 0, 0
+	//	, (int)(m_pImg->GetBmpWidth())
+	//	, (int)(m_pImg->GetBmpHeight())
+	//	, bf);
 
 	if (effect.fDuration < effect.fCurTime)
 	{

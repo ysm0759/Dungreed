@@ -182,7 +182,7 @@ CD2DImage* CResourceManager::LoadD2DImage(const wstring& strKey, const wstring& 
 	IWICFormatConverter* p_converter;	// 이미지 변환 객체
 
 	// WIC용 Factory 객체를 사용하여 이미지 압축 해제를 위한 객체를 생성
-		if (S_OK != CRenderManager::getInst()->GetImageFactory()->CreateDecoderFromFilename(strFilePath.c_str(), NULL, GENERIC_READ, WICDecodeMetadataCacheOnDemand, &p_decoder))
+	if (S_OK != CRenderManager::getInst()->GetImageFactory()->CreateDecoderFromFilename(strFilePath.c_str(), NULL, GENERIC_READ, WICDecodeMetadataCacheOnDemand, &p_decoder))
 	{
 		assert(nullptr);
 	}
@@ -212,7 +212,7 @@ CD2DImage* CResourceManager::LoadD2DImage(const wstring& strKey, const wstring& 
 	img->SetImage(bitmap);
 	img->SetKey(strKey);
 	img->SetRelativePath(strRelativePath);
-	m_mapD2DImg.insert(make_pair(strFilePath.c_str(), img));
+	m_mapD2DImg.insert(make_pair(strKey.c_str(), img));
 	
 	p_converter->Release();		// 이미지 변환 객체 제거
 	p_frame->Release();			// 그림파일에 있는 이미지를 선택하기 위해 사용한 객체 제거
