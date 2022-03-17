@@ -47,7 +47,6 @@ void CRigidBody::update()
 
 void CRigidBody::Jump()
 {
-
 	if (GetStatu((UINT)GROUP_OBJECT_STATU::JUMP))
 	{
 		fPoint objectPos = m_pOwner->GetPos();

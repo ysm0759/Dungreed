@@ -207,9 +207,6 @@
     <ClInclude Include="CSceneTest.h">
       <Filter>Scene\Scene_Test</Filter>
     </ClInclude>
-    <ClInclude Include="Map_Start.h">
-      <Filter>Object\BackGround</Filter>
-    </ClInclude>
     <ClInclude Include="CBackGround.h">
       <Filter>Object\BackGround</Filter>
     </ClInclude>
@@ -318,9 +315,6 @@
       <Filter>Scene\Scene_Test</Filter>
     </ClCompile>
     <ClCompile Include="CBackGround.cpp">
-      <Filter>Object\BackGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Map_Start.cpp">
       <Filter>Object\BackGround</Filter>
     </ClCompile>
   </ItemGroup>

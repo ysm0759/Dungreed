@@ -97,7 +97,7 @@ void CRenderManager::RenderFrame(CD2DImage* img, float dstX, float dstY, float d
 
 
 
-void CRenderManager::RenderImage(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float angle, fPoint pos)
+void CRenderManager::RenderImage(CD2DImage* img, float dstX, float dstY, float dstW, float dstH,float alpha ,float angle, fPoint pos)
 {
 	D2D1_RECT_F imgRect = { dstX, dstY, dstW, dstH };
 
@@ -205,7 +205,7 @@ void CRenderManager::RenderText(wstring str, float dstX, float dstY, float dstW,
 		D2D1::RectF(dstX, dstY, dstW, dstH), m_pBrush);
 }
 
-void CRenderManager::RenderRectangle(float dstX, float dstY, float dstW, float dstH, COLORREF color)
+void CRenderManager::RenderRectangle(float dstX, float dstY, float dstW, float dstH, COLORREF color, float strokeWidth)
 {
 	D2D1_RECT_F m_imgRect = { dstX, dstY, dstW, dstH };
 
@@ -214,7 +214,7 @@ void CRenderManager::RenderRectangle(float dstX, float dstY, float dstW, float d
 	int blue = (color >> 16) & 0xFF;
 
 	m_pBrush->SetColor(D2D1::ColorF(red / 255.f, green / 255.0f, blue / 255.0f, 1.f));
-	m_pRenderTarget->DrawRectangle(m_imgRect, m_pBrush);
+	m_pRenderTarget->DrawRectangle(m_imgRect, m_pBrush, strokeWidth);
 }
 
 void CRenderManager::RenderFillRectangle(float dstX, float dstY, float dstW, float dstH, COLORREF color, float alpha)
@@ -229,7 +229,7 @@ void CRenderManager::RenderFillRectangle(float dstX, float dstY, float dstW, flo
 	m_pRenderTarget->FillRectangle(m_imgRect, m_pBrush);
 }
 
-void CRenderManager::RenderEllipse(float dstX, float dstY, float dstW, float dstH, COLORREF color)
+void CRenderManager::RenderEllipse(float dstX, float dstY, float dstW, float dstH, COLORREF color, float strokeWidth)
 {
 	D2D1_ELLIPSE m_imgRect = { dstX, dstY, dstW, dstH };
 
@@ -238,8 +238,9 @@ void CRenderManager::RenderEllipse(float dstX, float dstY, float dstW, float dst
 	int blue = (color >> 16) & 0xFF;
 
 	m_pBrush->SetColor(D2D1::ColorF(red / 255.f, green / 255.0f, blue / 255.0f, 1.f));
-	m_pRenderTarget->DrawEllipse(m_imgRect, m_pBrush);
+	m_pRenderTarget->DrawEllipse(m_imgRect, m_pBrush, strokeWidth);
 }
+
 
 void CRenderManager::RenderFillEllipse(float dstX, float dstY, float dstW, float dstH, COLORREF color)
 {
@@ -252,6 +253,8 @@ void CRenderManager::RenderFillEllipse(float dstX, float dstY, float dstW, float
 	m_pBrush->SetColor(D2D1::ColorF(red / 255.f, green / 255.0f, blue / 255.0f, 1.f));
 	m_pRenderTarget->FillEllipse(m_imgRect, m_pBrush);
 }
+
+
 
 ID2D1Bitmap* CRenderManager::GetBitmap()
 {

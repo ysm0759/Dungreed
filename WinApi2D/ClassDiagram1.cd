@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Map_Start" Collapsed="true">
-    <Position X="10" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAAAAAAAABAAgAAAAAAAAAAAAAUABA=</HashCode>
-      <FileName>Map_Start.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="CCore" Collapsed="true">
     <Position X="17" Y="1.5" Width="1.5" />
     <TypeIdentifier>
@@ -52,7 +45,7 @@
   <Class Name="CRenderManager" Collapsed="true">
     <Position X="24" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AiAAAAgAAAAAAgBAAEAAgAhABACACIoAIIAAAAIAAQA=</HashCode>
+      <HashCode>AiAAAAgAAAAAAgBCAEAAgAhABACACIoAIIAAAAIAAQA=</HashCode>
       <FileName>CRenderManager.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -297,7 +290,7 @@
   <Enum Name="GROUP_GAMEOBJ" Collapsed="true">
     <Position X="18.75" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABRIAAAEAAACAAAABAAgAAQAAAAAAAAAAAAAAEoA=</HashCode>
+      <HashCode>AAAABRIAAAEAAACAAAABAAgAAQABAAAAAAAAAAAAEoA=</HashCode>
       <FileName>framework.h</FileName>
     </TypeIdentifier>
   </Enum>

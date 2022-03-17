@@ -5,26 +5,22 @@
 
 CBackGround::CBackGround()
 {
-    m_pImg = nullptr;
-    m_fSpeed = 1;
-    m_isFix = true;
-    m_isAuto = false;
-    m_isDirLeft = true;
+   m_pImg               = nullptr;
+   m_fAutoSpeed         = 0;	    
+   m_fDependOnSpeed     = 0;        
+   m_isFix              = true;		
+   m_isDirLeft          = true;		
+   m_isDependOnPlayer   = false;  
 }
 
-CBackGround::CBackGround(float fSpeed , bool isAuto , bool isDirLeft)
-{
-    m_pImg = nullptr;
-    m_fSpeed = fSpeed;
-    m_isFix = false;
-    m_isAuto = isAuto;
-    m_isDirLeft = isDirLeft;
-}
 
 CBackGround::~CBackGround()
 {
    // delete m_pImg;
 }
+
+
+
 
 void CBackGround::Load(wstring strKey, wstring strPath)
 {
@@ -40,10 +36,15 @@ CBackGround* CBackGround::Clone()
 void CBackGround::update()
 {
 
-    if (true == m_isAuto)
+    if (false == m_isFix)
     {
+
         fPoint pos = GetPos();
-        pos.x += m_fSpeed * fDT;
+        if (true == m_isDirLeft)
+            pos.x -= m_fAutoSpeed * fDT;
+        else
+            pos.x += m_fAutoSpeed * fDT;
+
         SetPos(pos);
     }
 }
@@ -52,6 +53,7 @@ void CBackGround::render()
 {
     if (nullptr == m_pImg)
     {
+        Logger::info(L"BackGound 이미지 없음 !!!!!!!!!!!");
         return;
     }
 
@@ -59,7 +61,21 @@ void CBackGround::render()
     fPoint pos = GetPos();
     fPoint scale = GetScale();
 
-    if (true == m_isFix) // 고정 배경
+
+    if (true == m_isDependOnPlayer) //플레이어 의존 
+    {
+        fPoint renderPos = CCameraManager::getInst()->GetRenderPos(pos);
+        renderPos = pos + (renderPos - pos) / m_fDependOnSpeed;    // 배경은 살짝 느리게 이동
+
+        CRenderManager::getInst()->RenderImage(
+            m_pImg,
+            renderPos.x,
+            renderPos.y,
+            renderPos.x + scale.x,
+            renderPos.y + scale.y
+        );
+    }
+    else // 배경이 움직이면서 플레이어가 움직일때 가속도를 붙게 하고 싶으면 SetAuto() SetDependOnPlayer()
     {
         pos = CCameraManager::getInst()->GetRenderPos(pos);
 
@@ -71,18 +87,42 @@ void CBackGround::render()
             pos.y + scale.y / 2
         );
     }
-    else //캐릭터가 움직일때 따라 움직이는 배경
-    {
-        fPoint renderPos = CCameraManager::getInst()->GetRenderPos(pos);
-        renderPos = pos + (renderPos - pos) / m_fSpeed;    // 배경은 살짝 느리게 이동
 
-        CRenderManager::getInst()->RenderImage(
-            m_pImg,
-            renderPos.x,
-            renderPos.y,
-            renderPos.x + scale.x,
-            renderPos.y + scale.y
-        );
-    }
 
+}
+
+
+
+void CBackGround::SetFix()
+{
+    m_isFix = true;
+    m_isDependOnPlayer = false;
+}
+
+void CBackGround::SetAuto(float autoSpeed)
+{
+    m_isFix = false;
+    m_fAutoSpeed = autoSpeed;
+}
+
+void CBackGround::SetDependOnPlayer(float dependOnSpeed)
+{
+    m_isDependOnPlayer = true;
+    m_fDependOnSpeed = dependOnSpeed;
+}
+
+void CBackGround::SetIndependentOnPlayer()
+{
+    m_isDependOnPlayer = false;
+    m_fDependOnSpeed = 0;
+}
+
+void CBackGround::SetLeft()
+{
+    m_isDirLeft = true;
+}
+
+void CBackGround::SetRight()
+{
+    m_isDirLeft = false;
 }

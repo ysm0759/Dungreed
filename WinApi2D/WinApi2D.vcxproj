@@ -186,7 +186,6 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="CItem.h" />
     <ClInclude Include="Logger.h" />
-    <ClInclude Include="Map_Start.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SingleTon.h" />
     <ClInclude Include="struct.h" />
@@ -228,7 +227,6 @@
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIManager.cpp" />
     <ClCompile Include="CItem.cpp" />
-    <ClCompile Include="Map_Start.cpp" />
     <ClCompile Include="WinApi2D.cpp" />
   </ItemGroup>
   <ItemGroup>
