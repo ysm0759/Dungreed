@@ -2,14 +2,14 @@
 #include "CGameObject.h"
 #include "CCollider.h"
 #include "CAnimator.h"
-#include "CRigidBody.h"
+#include "CStatu.h"
 CGameObject::CGameObject()
 {
 	m_fptPos = {};
 	m_fptScale = {};
 	m_pCollider = nullptr;
 	m_pAnimator = nullptr;
-	m_pRigidBody = nullptr;
+	m_pStatu = nullptr;
 	m_bAlive = true;
 }
 
@@ -32,10 +32,10 @@ CGameObject::CGameObject(const CGameObject& other)
 		m_pAnimator = new CAnimator(*other.m_pAnimator);
 		m_pAnimator->m_pOwner = this;
 	}
-	if (nullptr != other.m_pRigidBody)
+	if (nullptr != other.m_pStatu)
 	{
-		m_pRigidBody = new CRigidBody(*other.m_pRigidBody);
-		m_pRigidBody->m_pOwner = this;
+		m_pStatu = new CStatu(*other.m_pStatu);
+		m_pStatu->m_pOwner = this;
 	}
 
 }
@@ -50,9 +50,9 @@ CGameObject::~CGameObject()
 	{
 		delete m_pAnimator;
 	}
-	if (nullptr != m_pRigidBody)
+	if (nullptr != m_pStatu)
 	{
-		delete m_pRigidBody;
+		delete m_pStatu;
 	}
 }
 
@@ -154,13 +154,13 @@ void CGameObject::CreateAnimator()
 }
 
 
-void CGameObject::CreateRigidBody()
+void CGameObject::CreateStatu()
 {
-	m_pRigidBody = new CRigidBody;
-	m_pRigidBody->m_pOwner = this;
+	m_pStatu = new CStatu;
+	m_pStatu->m_pOwner = this;
 }
 
-CRigidBody* CGameObject::GetRigidBody()
+CStatu* CGameObject::GetStatu()
 {
-	return m_pRigidBody;
+	return m_pStatu;
 }

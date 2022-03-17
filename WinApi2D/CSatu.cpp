@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "CRigidBody.h"
+#include "CStatu.h"
 #include "CGameObject.h"
 
 // 중력
@@ -7,7 +7,7 @@
 #define GRAVITY_MAX 2000		// 맥스 중력값
 #define GRAVITY_VALUE 2000		// 중력 가속도
 
-CRigidBody::CRigidBody()
+CStatu::CStatu()
 {
 	m_pOwner = nullptr;
 	m_iObjectStatu = 0;
@@ -15,7 +15,7 @@ CRigidBody::CRigidBody()
 	m_fDashDir = {};
 }
 
-CRigidBody::CRigidBody(const CRigidBody& other)
+CStatu::CStatu (const CStatu& other)
 {
 	m_pOwner = nullptr;
 	m_iObjectStatu = other.m_iObjectStatu;
@@ -23,29 +23,29 @@ CRigidBody::CRigidBody(const CRigidBody& other)
 	m_fDashDir = other.m_fDashDir;
 }
 
-CRigidBody::~CRigidBody()
+CStatu::~CStatu()
 {
 
 }
 
-void CRigidBody::SetDashDir(fVec2 dashDir)
+void CStatu::SetDashDir(fVec2 dashDir)
 {
 	this->m_fDashDir = dashDir;
 }
 
-void CRigidBody::SetVelocity(float velocity)
+void CStatu::SetForce(float Force)
 {
-	this->m_fVelocity = velocity;
+	this->m_fForce = Force;
 }
 
-void CRigidBody::update()
+void CStatu::update()
 {
 	Jump();
 	Gravity();
 	Dash(); 
 }
 
-void CRigidBody::Jump()
+void CStatu::Jump()
 {
 	if (GetStatu((UINT)GROUP_OBJECT_STATU::JUMP))
 	{
@@ -55,7 +55,7 @@ void CRigidBody::Jump()
 	}
 }
 
-void CRigidBody::Gravity()
+void CStatu::Gravity()
 {
 	if (GetStatu((UINT)GROUP_OBJECT_STATU::GROUND)) //	GROUND상태이면 중력을 받지 않음
 	{
@@ -74,30 +74,30 @@ void CRigidBody::Gravity()
 	}
 }
 
-void CRigidBody::Dash()
+void CStatu::Dash()
 {
-	if (GetStatu((UINT)GROUP_OBJECT_STATU::DASH))
+	if (GetStatu((UINT)GROUP_OBJECT_STATU::FORCE))
 	{
 		 // 대쉬 상용할때 카메라 , realpos 주의
 		fPoint objectRealPos = m_pOwner->GetPos();
-		objectRealPos.x += m_fVelocity * m_fDashDir.normalize().x * fDT;
-		objectRealPos.y += m_fVelocity * m_fDashDir.normalize().y * fDT;
+		objectRealPos.x += m_fForce * m_fDashDir.normalize().x * fDT;
+		objectRealPos.y += m_fForce * m_fDashDir.normalize().y * fDT;
 		m_pOwner->SetPos(objectRealPos);
 	}
 
 }
 
-void CRigidBody::SetStatu(UINT bit)	   //해당 비트를 1로 채움
+void CStatu::SetStatu(UINT bit)	   //해당 비트를 1로 채움
 {
 	m_iObjectStatu |= (1 << bit);
 }
 
-bool CRigidBody::GetStatu(UINT bit)	   //해당 비트가 1이면 true 아니면 false
+bool CStatu::GetStatu(UINT bit)	   //해당 비트가 1이면 true 아니면 false
 {
 	return m_iObjectStatu & (1 << bit);
 }
 
-void CRigidBody::RemoveStatu(UINT bit) //해당 비트 제거
+void CStatu::RemoveStatu(UINT bit) //해당 비트 제거
 {
 	m_iObjectStatu &= ~(1 << bit);
 }

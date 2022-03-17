@@ -80,7 +80,7 @@ enum class GROUP_OBJECT_STATU
 {
 	JUMP,
 	GROUND,
-	DASH,
+	FORCE,
 	FLY, // 중력을 받지 않고 계속 날라다니는 객체
 };
 
@@ -140,9 +140,9 @@ static float WINSIZEY = 720;
 #define DeleteObj(pObj)			CEventManager::getInst()->EventDeleteObject(pObj)
 #define ChangeScn(scene)		CEventManager::getInst()->EventChangeScene(scene)
 
-#define StatuSet(statu) GetRigidBody()->SetStatu((UINT)statu)
-#define StatuGet(statu) GetRigidBody()->GetStatu((UINT)statu)
-#define StatuRemove(statu) GetRigidBody()->RemoveStatu((UINT)statu)
+#define StatuSet(statu) GetStatu()->SetStatu((UINT)statu)
+#define StatuGet(statu) GetStatu()->GetStatu((UINT)statu)
+#define StatuRemove(statu) GetStatu()->RemoveStatu((UINT)statu)
 
 
 //========================================

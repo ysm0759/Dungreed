@@ -6,7 +6,7 @@
 #include "CCollider.h"
 #include "CAnimator.h"
 #include "CAnimation.h"
-#include "CRigidBody.h"
+#include "CStatu.h"
 
 
 
@@ -47,7 +47,7 @@ CPlayer::CPlayer()
 	pAni = GetAnimator()->FindAnimation(L"RightMove");
 	pAni->GetFrame(1).fptOffset = fPoint(0.f, -20.f);
 
-	CreateRigidBody();
+	CreateStatu();
 
 }
 
@@ -76,17 +76,17 @@ void CPlayer::update()
 	}
 	
 
-	if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::DASH) && m_cDashCount < 100) // 대쉬 진입 //TODO: 대쉬 삭제해야함
+	if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::FORCE) && m_cDashCount < 100) // 대쉬 진입 //TODO: 대쉬 삭제해야함
 	{
 
 		fVec2 mousePos = MousePos(); //마우스의 현재 좌표와
 		fPoint objectRenderPos = CCameraManager::getInst()->GetRenderPos(GetPos()); //캐릭터 랜더 위치랑 계산을 해서 
-		GetRigidBody()->SetDashDir(fVec2(mousePos.x - objectRenderPos.x , mousePos.y - objectRenderPos.y)); //대쉬 이동 방향을 정해야함
-		GetRigidBody()->SetVelocity(DASHVELOCITY);
-		StatuSet(GROUP_OBJECT_STATU::DASH);
+		GetStatu()->SetDashDir(fVec2(mousePos.x - objectRenderPos.x , mousePos.y - objectRenderPos.y)); //대쉬 이동 방향을 정해야함
+		GetStatu()->SetForce(DASHVELOCITY);
+		StatuSet(GROUP_OBJECT_STATU::FORCE);
 		m_cDashCount -= 1;
 	}
-	else if (StatuGet(GROUP_OBJECT_STATU::DASH)) //대쉬중
+	else if (StatuGet(GROUP_OBJECT_STATU::FORCE)) //대쉬중
 	{
 		m_fDashTime += fDT;
 		StatuSet(GROUP_OBJECT_STATU::GROUND);
@@ -97,7 +97,7 @@ void CPlayer::update()
 		if (m_fDashTime > DASHTIME)
 		{
 			m_fDashTime = 0;
-			StatuRemove(GROUP_OBJECT_STATU::DASH);
+			StatuRemove(GROUP_OBJECT_STATU::FORCE);
 			StatuRemove(GROUP_OBJECT_STATU::GROUND);
 		}
 
@@ -140,7 +140,7 @@ void CPlayer::update()
 	}
 	SetPos(pos);
 
-	GetRigidBody()->update();
+	GetStatu()->update();
 	GetAnimator()->update();
 }
 

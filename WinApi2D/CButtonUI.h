@@ -1,6 +1,44 @@
 #pragma once
 #include "CUI.h"
 
+
+class CD2DImage;
+
+enum class BUTTONTYPE
+{
+	BUTTON_IN,
+	BUTTON_OUT,
+	BUTTON_CLICK,
+	SIZE,
+};
+
+class ButtonImageType
+{
+
+	CD2DImage* m_pButtonType[(UINT)BUTTONTYPE::SIZE];
+
+public:
+	ButtonImageType()
+	{
+		for (int i = 0; i < (UINT)BUTTONTYPE::SIZE; i++)
+		{
+			m_pButtonType[i] = nullptr;
+		}
+	}
+
+	~ButtonImageType() {};
+
+	void SetButton(BUTTONTYPE TYPE, const wstring& strKey, const wstring& strPath)
+	{
+		m_pButtonType[(UINT)TYPE] = CResourceManager::getInst()->LoadD2DImage(strKey, strPath);
+	}
+
+	CD2DImage* GetButton(BUTTONTYPE TYPE)
+	{
+		return m_pButtonType[(UINT)TYPE];
+	}
+};
+
 // 함수포인터를 위한 타입정의
 typedef void(*BTN_FUNC) (DWORD_PTR, DWORD_PTR);
 

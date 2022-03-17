@@ -17,6 +17,23 @@ CAnimation::~CAnimation()
 {
 }
 
+
+CAnimation::CAnimation(const CAnimation& pOther)
+{
+    m_strName = pOther.m_strName;
+    for (int i = 0; i < pOther.m_vecFrm.size(); i++)
+    {
+        m_vecFrm.push_back(pOther.m_vecFrm[i]);
+    }
+    m_iCurFrm = pOther.m_iCurFrm;
+    m_fAccTime = pOther.m_fAccTime;
+    m_bReverse = pOther.m_bReverse;
+
+    m_pAnimator = nullptr;
+    m_pImg = pOther.m_pImg;
+}
+
+
 void CAnimation::SetName(const wstring& strName)
 {
     m_strName = strName;

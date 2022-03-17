@@ -1,8 +1,7 @@
 #include "framework.h"
 #include "CButtonUI.h"
 
-CButtonUI::CButtonUI()
-	: CUI(false)
+CButtonUI::CButtonUI() : CUI(false)
 {
 	m_pFunc = nullptr;
 	m_pParam1 = 0;

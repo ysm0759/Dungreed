@@ -49,6 +49,11 @@ void CMissile::render()
 		scale.y / 2.f);
 
 	component_render();
+	
+	const map<int, int> a;
+	std::map<int,int>::const_iterator ConstIterT;
+	ConstIterT = a.begin();
+
 }
 
 void CMissile::SetDir(fVec2 vec)

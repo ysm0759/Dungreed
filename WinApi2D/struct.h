@@ -88,3 +88,4 @@ struct fPoint
 
 typedef iPoint iVec2;
 typedef fPoint fVec2;
+

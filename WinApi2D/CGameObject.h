@@ -2,7 +2,7 @@
 
 class CCollider;
 class CAnimator;
-class CRigidBody;
+class CStatu;
 
 class CGameObject
 {
@@ -16,7 +16,7 @@ private:
 	// Component
 	CCollider* m_pCollider;
 	CAnimator* m_pAnimator;
-	CRigidBody* m_pRigidBody;
+	CStatu* m_pStatu;
 
 	bool m_bAlive;
 	void SetDead();
@@ -53,7 +53,7 @@ public:
 	void CreateAnimator();					// 애니메이터 생성
 
 
-	void CreateRigidBody();
-	CRigidBody* GetRigidBody();
+	void CreateStatu();
+	CStatu* GetStatu();
 };
 

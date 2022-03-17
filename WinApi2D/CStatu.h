@@ -2,13 +2,13 @@
 
 
 
-class CRigidBody
+class CStatu
 {
 	friend class CGameObject;
 
 	int m_iObjectStatu;
 	float m_fGravity;
-	float m_fVelocity;
+	float m_fForce;
 	fVec2 m_fDashDir;
 	CGameObject* m_pOwner;		// 충돌체를 가지는 게임오브젝트의 주소
 
@@ -17,12 +17,12 @@ class CRigidBody
 	void Dash();
 
 public:
-	CRigidBody();
-	CRigidBody(const CRigidBody& other);
-	~CRigidBody();
+	CStatu();
+	CStatu(const CStatu& other);
+	~CStatu();
 
 	void SetDashDir(fVec2 dashDir);
-	void SetVelocity(float velocity);
+	void SetForce(float force);
 
 	void update();
 

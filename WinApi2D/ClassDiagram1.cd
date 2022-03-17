@@ -105,11 +105,11 @@
       <FileName>CAnimation.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CRigidBody" Collapsed="true">
+  <Class Name="CStatu" Collapsed="true">
     <Position X="18.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAAACEAkAoAAAAAgAAAAAEQACAAAAgAIAAAAAEBAA=</HashCode>
-      <FileName>CRigidBody.h</FileName>
+      <HashCode>CAAAAAAAAgAoAAIAAgAAAAAEQACAAAAgAIAAICAEBAA=</HashCode>
+      <FileName>CStatu.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Logger" Collapsed="true">
@@ -129,7 +129,7 @@
   <Class Name="CGameObject" Collapsed="true">
     <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QMAAAAACAEAgAAAAAIEAAAhQABIAAACMIAgAQwEURFA=</HashCode>
+      <HashCode>QMRAAAACAEAAAAAAAIEAAAhUABIAAACMIAgAQwEURFA=</HashCode>
       <FileName>CGameObject.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -138,13 +138,6 @@
     <TypeIdentifier>
       <HashCode>AAAggIAQACAAAAAAAAAEAAAAgCAAAAAAAAAAAAAUABA=</HashCode>
       <FileName>CTile.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CButtonUI" Collapsed="true">
-    <Position X="3.25" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAQAAAAAAAAIIARAAAAIAAEAEABA=</HashCode>
-      <FileName>CButtonUI.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CPanelUI" Collapsed="true">
@@ -280,13 +273,6 @@
       <FileName>struct.h</FileName>
     </TypeIdentifier>
   </Typedef>
-  <Typedef Name="BTN_FUNC" Collapsed="true">
-    <Position X="17" Y="7" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CButtonUI.h</FileName>
-    </TypeIdentifier>
-  </Typedef>
   <Enum Name="GROUP_GAMEOBJ" Collapsed="true">
     <Position X="18.75" Y="6" Width="1.5" />
     <TypeIdentifier>
@@ -318,7 +304,7 @@
   <Enum Name="GROUP_OBJECT_STATU" Collapsed="true">
     <Position X="20.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAgAAAAAAAAAAAAAAAAAAACAAQAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAIQAAgAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
       <FileName>framework.h</FileName>
     </TypeIdentifier>
   </Enum>

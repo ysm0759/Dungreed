@@ -64,9 +64,6 @@
     <Filter Include="Resouce\CD2DImage">
       <UniqueIdentifier>{7be60d72-5b7b-4f9d-b116-6bc827b05510}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Component\RigidBody">
-      <UniqueIdentifier>{33531023-bfea-41ea-9266-854471eb7bc2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\Character\Player">
       <UniqueIdentifier>{bda385a6-2beb-438b-a153-df5b538129ed}</UniqueIdentifier>
     </Filter>
@@ -84,6 +81,15 @@
     </Filter>
     <Filter Include="Object\BackGround">
       <UniqueIdentifier>{baf2f988-f6ce-40b1-893f-81299cebe4a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Statu">
+      <UniqueIdentifier>{33531023-bfea-41ea-9266-854471eb7bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\MainButton">
+      <UniqueIdentifier>{c6e13789-55e5-4563-9fe2-a38729689f3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\ParentUI">
+      <UniqueIdentifier>{e7da3e96-d92d-4e13-8fca-6ca6ca3fb0e1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -165,17 +171,8 @@
     <ClInclude Include="CTile.h">
       <Filter>Object\Tile</Filter>
     </ClInclude>
-    <ClInclude Include="CUI.h">
-      <Filter>Object\UI</Filter>
-    </ClInclude>
     <ClInclude Include="CUIManager.h">
       <Filter>Engine\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CPanelUI.h">
-      <Filter>Object\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="CButtonUI.h">
-      <Filter>Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="CSoundManager.h">
       <Filter>Engine\Manager</Filter>
@@ -186,8 +183,8 @@
     <ClInclude Include="CRenderManager.h">
       <Filter>Engine\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="CRigidBody.h">
-      <Filter>Engine\Component\RigidBody</Filter>
+    <ClInclude Include="CStatu.h">
+      <Filter>Engine\Component\Statu</Filter>
     </ClInclude>
     <ClInclude Include="CPlayer.h">
       <Filter>Object\Character\Player</Filter>
@@ -209,6 +206,18 @@
     </ClInclude>
     <ClInclude Include="CBackGround.h">
       <Filter>Object\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="CInOutButton.h">
+      <Filter>Object\UI\MainButton</Filter>
+    </ClInclude>
+    <ClInclude Include="CButtonUI.h">
+      <Filter>Object\UI\ParentUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CPanelUI.h">
+      <Filter>Object\UI\ParentUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>Object\UI\ParentUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -272,17 +281,8 @@
     <ClCompile Include="CTile.cpp">
       <Filter>Object\Tile</Filter>
     </ClCompile>
-    <ClCompile Include="CUI.cpp">
-      <Filter>Object\UI</Filter>
-    </ClCompile>
     <ClCompile Include="CUIManager.cpp">
       <Filter>Engine\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CPanelUI.cpp">
-      <Filter>Object\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="CButtonUI.cpp">
-      <Filter>Object\UI</Filter>
     </ClCompile>
     <ClCompile Include="CSoundManager.cpp">
       <Filter>Engine\Manager</Filter>
@@ -293,8 +293,8 @@
     <ClCompile Include="CRenderManager.cpp">
       <Filter>Engine\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="CRigidBody.cpp">
-      <Filter>Engine\Component\RigidBody</Filter>
+    <ClCompile Include="CSatu.cpp">
+      <Filter>Engine\Component\Statu</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
       <Filter>Object\Character\Player</Filter>
@@ -316,6 +316,18 @@
     </ClCompile>
     <ClCompile Include="CBackGround.cpp">
       <Filter>Object\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="CInOutButton.cpp">
+      <Filter>Object\UI\MainButton</Filter>
+    </ClCompile>
+    <ClCompile Include="CButtonUI.cpp">
+      <Filter>Object\UI\ParentUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanelUI.cpp">
+      <Filter>Object\UI\ParentUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>Object\UI\ParentUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,19 @@ CAnimator::CAnimator()
 	m_pOwner = nullptr;
 }
 
+CAnimator::CAnimator(const CAnimator& pOther)
+{
+	for (map<wstring, CAnimation*>::const_iterator iter = pOther.m_mapAni.begin(); iter != pOther.m_mapAni.end(); iter++)
+	{
+		CAnimation* newAni = new CAnimation(*iter->second);
+		m_mapAni.insert(make_pair(newAni->GetName(), newAni));
+		newAni->m_pAnimator = this;
+	}
+	m_pCurAni = FindAnimation(pOther.m_pCurAni->GetName());
+	m_pOwner = nullptr;
+}
+
+
 CAnimator::~CAnimator()
 {
 	for (map<wstring, CAnimation*>::iterator iter = m_mapAni.begin(); iter != m_mapAni.end(); iter++)

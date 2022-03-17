@@ -27,6 +27,7 @@ private:
 
 public:
 	CAnimation();
+	CAnimation(const CAnimation& pOther);
 	~CAnimation();
 
 	void SetName(const wstring& strName);
