@@ -41,8 +41,6 @@ void CSceneMain::Enter()
 	CSoundManager::getInst()->AddSound(L"MainBGM", L"sound\\MainBGM.mp3", true);
 	CSoundManager::getInst()->Play(L"MainBGM");
 	
-	//CSoundManager::getInst()->AddSound(L"VillageBGM", L"sound\\VillageBGM.mp3", true);
-	//CSoundManager::getInst()->Play(L"VillageBGM");
 
 	CCameraManager::getInst()->SetLookAt(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
 

@@ -54,6 +54,16 @@ tAniFrm& CAnimation::GetFrame(int frmIndex)
     return m_vecFrm[frmIndex];
 }
 
+void CAnimation::SetSize(fPoint size)
+{
+    m_fSize = size;
+}
+
+void CAnimation::SetReverse(bool reverse)
+{
+    m_bReverse = reverse;
+}
+
 void CAnimation::update()
 {
     m_fAccTime += fDT;
@@ -80,10 +90,10 @@ void CAnimation::render()
     {
         CRenderManager::getInst()->RenderRevFrame(
             m_pImg,
-            fptPos.x - frm.fptSlice.x / 2.f,
-            fptPos.y - frm.fptSlice.y / 2.f,
-            fptPos.x + frm.fptSlice.x / 2.f,
-            fptPos.y + frm.fptSlice.y / 2.f,
+            fptPos.x - frm.fptSlice.x / 2.f - m_fSize.x,
+            fptPos.y - frm.fptSlice.y / 2.f - m_fSize.y,
+            fptPos.x + frm.fptSlice.x / 2.f + m_fSize.x,
+            fptPos.y + frm.fptSlice.y / 2.f + m_fSize.y,
             frm.fptLT.x,
             frm.fptLT.y,
             frm.fptLT.x + frm.fptSlice.x,
@@ -95,10 +105,10 @@ void CAnimation::render()
     {
         CRenderManager::getInst()->RenderFrame(
             m_pImg,
-            fptPos.x - frm.fptSlice.x / 2.f,
-            fptPos.y - frm.fptSlice.y / 2.f,
-            fptPos.x + frm.fptSlice.x / 2.f,
-            fptPos.y + frm.fptSlice.y / 2.f,
+            fptPos.x - frm.fptSlice.x / 2.f - m_fSize.x,
+            fptPos.y - frm.fptSlice.y / 2.f - m_fSize.y,
+            fptPos.x + frm.fptSlice.x / 2.f + m_fSize.x,
+            fptPos.y + frm.fptSlice.y / 2.f + m_fSize.y,
             frm.fptLT.x,
             frm.fptLT.y,
             frm.fptLT.x + frm.fptSlice.x,

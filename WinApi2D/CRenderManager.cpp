@@ -77,106 +77,107 @@ void CRenderManager::init()
 	m_pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(0.f, 0.f, 0.f), &m_pBrush);
 }
 
-void CRenderManager::RenderFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY, float srcW, float srcH, float angle, fPoint pos)
-{
-	D2D1_RECT_F imgRect = { dstX, dstY, dstW, dstH };
-	D2D1_RECT_F srcRect = { srcX, srcY, srcW, srcH };
-
-
-	Matrix3x2F matlot = D2D1::Matrix3x2F::Scale(-1.f, 1.f, D2D1_POINT_2F{ (dstX + dstW) / 2.f, (dstY + dstH) / 2.f });
-
-	if (nullptr != img)
-	{
-		Matrix3x2F matrot = D2D1::Matrix3x2F::Rotation(angle, D2D1::Point2F(pos.x, pos.y));
-		Matrix3x2F matlr = matlot * matlot;
-		m_pRenderTarget->SetTransform(matlr);
-		m_pRenderTarget->DrawBitmap(img->GetImage(), imgRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, srcRect);
-	}
-}
-
-
-
-
-void CRenderManager::RenderImage(CD2DImage* img, float dstX, float dstY, float dstW, float dstH,float alpha ,float angle, fPoint pos)
-{
-	D2D1_RECT_F imgRect = { dstX, dstY, dstW, dstH };
-
-	Matrix3x2F matlot = D2D1::Matrix3x2F::Scale(-1.f, 1.f, D2D1_POINT_2F{ (dstX + dstW) / 2.f, (dstY + dstH) / 2.f });
-
-	if (nullptr != img)
-	{
-		Matrix3x2F matrot = D2D1::Matrix3x2F::Rotation(angle, D2D1::Point2F(pos.x, pos.y));
-		Matrix3x2F matlr = matlot * matlot;
-		m_pRenderTarget->SetTransform(matlr);
-		m_pRenderTarget->DrawBitmap(img->GetImage(), imgRect, alpha, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR);
-	}
-}
-
-
-
-void CRenderManager::RenderRevFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY, float srcW, float srcH, float angle, fPoint pos)
-{
-	D2D1_RECT_F imgRect = { dstX, dstY, dstW, dstH };
-	D2D1_RECT_F srcRect = { srcX, srcY, srcW, srcH };
-
-	m_pRenderTarget->SetTransform(D2D1::Matrix3x2F::Scale(-1.f, 1.f,
-		D2D1_POINT_2F{ (dstX + dstW) / 2.f, (dstY + dstH) / 2.f }));
-	Matrix3x2F matlot = D2D1::Matrix3x2F::Scale(-1.f, 1.f, D2D1_POINT_2F{ (dstX + dstW) / 2.f, (dstY + dstH) / 2.f });
-
-	if (nullptr != img)
-	{
-		Matrix3x2F matrot = D2D1::Matrix3x2F::Rotation(angle, D2D1::Point2F(pos.x, pos.y));
-		Matrix3x2F matlr = matlot * matlot;
-		m_pRenderTarget->SetTransform(matlr);
-		m_pRenderTarget->DrawBitmap(img->GetImage(), imgRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, srcRect);
-	}
-
-	m_pRenderTarget->SetTransform(D2D1::Matrix3x2F::Scale(1.f, 1.f,
-		D2D1_POINT_2F{ (dstX + dstW) / 2.f, (dstY + dstH) / 2.f }));
-}
-
-
-
-
-
-//void CRenderManager::RenderImage(CD2DImage* img, float dstX, float dstY, float dstW, float dstH)
-//{
-//	D2D1_RECT_F imgRect = { dstX, dstY, dstW, dstH };
-//	if (nullptr != img)
-//	{
-//		m_pRenderTarget->DrawBitmap(img->GetImage(), imgRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR);
-//	}
-//}
-//
-//void CRenderManager::RenderFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY, float srcW, float srcH)
+//void CRenderManager::RenderFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY, float srcW, float srcH, float angle, fPoint pos)
 //{
 //	D2D1_RECT_F imgRect = { dstX, dstY, dstW, dstH };
 //	D2D1_RECT_F srcRect = { srcX, srcY, srcW, srcH };
 //
+//
+//	Matrix3x2F matlot = D2D1::Matrix3x2F::Scale(-1.f, 1.f, D2D1_POINT_2F{ (dstX + dstW) / 2.f, (dstY + dstH) / 2.f });
+//
 //	if (nullptr != img)
 //	{
+//		Matrix3x2F matrot = D2D1::Matrix3x2F::Rotation(angle, D2D1::Point2F(pos.x, pos.y));
+//		Matrix3x2F matlr = matlot * matlot;
+//		m_pRenderTarget->SetTransform(matlr);
 //		m_pRenderTarget->DrawBitmap(img->GetImage(), imgRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, srcRect);
 //	}
 //}
 //
 //
 //
-//void CRenderManager::RenderRevFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY, float srcW, float srcH)
+//
+//void CRenderManager::RenderImage(CD2DImage* img, float dstX, float dstY, float dstW, float dstH,float alpha ,float angle, fPoint pos)
+//{
+//	D2D1_RECT_F imgRect = { dstX, dstY, dstW, dstH };
+//
+//	Matrix3x2F matlot = D2D1::Matrix3x2F::Scale(-1.f, 1.f, D2D1_POINT_2F{ (dstX + dstW) / 2.f, (dstY + dstH) / 2.f });
+//
+//	if (nullptr != img)
+//	{
+//		Matrix3x2F matrot = D2D1::Matrix3x2F::Rotation(angle, D2D1::Point2F(pos.x, pos.y));
+//		Matrix3x2F matlr = matlot * matlot;
+//		m_pRenderTarget->SetTransform(matlr);
+//		m_pRenderTarget->DrawBitmap(img->GetImage(), imgRect, alpha, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR);
+//	}
+//}
+//
+//
+//
+//void CRenderManager::RenderRevFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY, float srcW, float srcH, float angle, fPoint pos)
 //{
 //	D2D1_RECT_F imgRect = { dstX, dstY, dstW, dstH };
 //	D2D1_RECT_F srcRect = { srcX, srcY, srcW, srcH };
 //
 //	m_pRenderTarget->SetTransform(D2D1::Matrix3x2F::Scale(-1.f, 1.f,
 //		D2D1_POINT_2F{ (dstX + dstW) / 2.f, (dstY + dstH) / 2.f }));
+//	Matrix3x2F matlot = D2D1::Matrix3x2F::Scale(-1.f, 1.f, D2D1_POINT_2F{ (dstX + dstW) / 2.f, (dstY + dstH) / 2.f });
 //
 //	if (nullptr != img)
 //	{
+//		Matrix3x2F matrot = D2D1::Matrix3x2F::Rotation(angle, D2D1::Point2F(pos.x, pos.y));
+//		Matrix3x2F matlr = matlot * matlot;
+//		m_pRenderTarget->SetTransform(matlr);
 //		m_pRenderTarget->DrawBitmap(img->GetImage(), imgRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, srcRect);
 //	}
 //
 //	m_pRenderTarget->SetTransform(D2D1::Matrix3x2F::Scale(1.f, 1.f,
 //		D2D1_POINT_2F{ (dstX + dstW) / 2.f, (dstY + dstH) / 2.f }));
 //}
+
+
+
+
+
+void CRenderManager::RenderImage(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float alpha)
+{
+	D2D1_RECT_F imgRect = { dstX, dstY, dstW, dstH };
+	if (nullptr != img)
+	{
+		m_pRenderTarget->DrawBitmap(img->GetImage(), imgRect, alpha, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR);
+	}
+}
+
+
+void CRenderManager::RenderFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY, float srcW, float srcH)
+{
+	D2D1_RECT_F imgRect = { dstX, dstY, dstW, dstH };
+	D2D1_RECT_F srcRect = { srcX, srcY, srcW, srcH };
+
+	if (nullptr != img)
+	{
+		m_pRenderTarget->DrawBitmap(img->GetImage(), imgRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, srcRect);
+	}
+}
+
+
+
+void CRenderManager::RenderRevFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY, float srcW, float srcH)
+{
+	D2D1_RECT_F imgRect = { dstX, dstY, dstW, dstH };
+	D2D1_RECT_F srcRect = { srcX, srcY, srcW, srcH };
+
+	m_pRenderTarget->SetTransform(D2D1::Matrix3x2F::Scale(-1.f, 1.f,
+		D2D1_POINT_2F{ (dstX + dstW) / 2.f, (dstY + dstH) / 2.f }));
+
+	if (nullptr != img)
+	{
+		m_pRenderTarget->DrawBitmap(img->GetImage(), imgRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, srcRect);
+	}
+
+	m_pRenderTarget->SetTransform(D2D1::Matrix3x2F::Scale(1.f, 1.f,
+		D2D1_POINT_2F{ (dstX + dstW) / 2.f, (dstY + dstH) / 2.f }));
+}
 
 void CRenderManager::RenderText(wstring str, float dstX, float dstY, float dstW, float dstH, float fontSize, COLORREF color)
 {

@@ -79,7 +79,9 @@ CAnimation* CAnimator::FindAnimation(const wstring& strName)
 	return iter->second;
 }
 
-void CAnimator::Play(const wstring& strName)
+void CAnimator::Play(const wstring& strName , fPoint size, bool reverse)
 {
 	m_pCurAni = FindAnimation(strName);
+	m_pCurAni->SetReverse(reverse);
+	m_pCurAni->SetSize(size);
 }

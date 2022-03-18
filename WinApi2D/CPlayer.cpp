@@ -32,19 +32,19 @@ CPlayer::CPlayer()
 	GetCollider()->SetOffsetPos(fPoint(0.f, 10.f));
 
 
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerImg", L"texture\\Player\\PlayerStand.png");
+
 	CreateAnimator();
+	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerImg", L"texture\\Player\\PlayerStand.png");
 	GetAnimator()->CreateAnimation(L"PlayerStand", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 5);
-	GetAnimator()->Play(L"PlayerStand");
 
 	
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerRun", L"texture\\Player\\PlayerRun.png");
 	GetAnimator()->CreateAnimation(L"PlayerRun", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 7);
-	GetAnimator()->Play(L"PlayerRun");
+
 	
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerJump", L"texture\\Player\\PlayerJump.png");
 	GetAnimator()->CreateAnimation(L"PlayerJump", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 1);
-	GetAnimator()->Play(L"PlayerJump");
+
 
 
 
@@ -65,8 +65,17 @@ CPlayer* CPlayer::Clone()
 void CPlayer::update()
 {
 	fPoint pos = GetPos();
-
+	fPoint mousePos = MousePos();
+	fPoint objectRenderPos = CCameraManager::getInst()->GetRenderPos(GetPos()); //캐릭터 랜더 위치랑 계산을 해서 
+	fVec2 playDir = fVec2(mousePos.x - objectRenderPos.x, mousePos.y - objectRenderPos.y); // 마우스와 캐릭터의 방향
+	
+	if (playDir.x < 0)
+		StatuSet((UINT)GROUP_OBJECT_STATU::LEFT);
+	else
+		StatuRemove((UINT)GROUP_OBJECT_STATU::LEFT);
 	//대쉬 초기화
+	GetStatu()->update();
+
 	if (m_cDashCount < m_cMaxDashCount)
 	{
 		m_fCreateDashTime += fDT;
@@ -81,10 +90,7 @@ void CPlayer::update()
 	// 캐릭터 키입력에 따른 상태 변경
 	if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::FORCE) && m_cDashCount < 100) // 대쉬 진입 //TODO: 대쉬 삭제 m_cDashCount > 0해야함
 	{
-
-		fVec2 mousePos = MousePos(); //마우스의 현재 좌표와
-		fPoint objectRenderPos = CCameraManager::getInst()->GetRenderPos(GetPos()); //캐릭터 랜더 위치랑 계산을 해서 
-		GetStatu()->SetDashDir(fVec2(mousePos.x - objectRenderPos.x , mousePos.y - objectRenderPos.y)); //대쉬 이동 방향을 정해야함
+		GetStatu()->SetDashDir(playDir); //대쉬 이동 방향을 정해야함
 		GetStatu()->SetForce(DASHVELOCITY);
 		StatuSet(GROUP_OBJECT_STATU::FORCE);
 		m_cDashCount -= 1;
@@ -142,19 +148,20 @@ void CPlayer::update()
 	// 캐릭터 상태에 따른 애니메이션
 	if (!StatuGet(GROUP_OBJECT_STATU::MOVE) && StatuGet(GROUP_OBJECT_STATU::GROUND))
 	{
-		GetAnimator()->Play(L"PlayerStand");
+		GetAnimator()->Play(L"PlayerStand", fPoint(10, 10), StatuGet(GROUP_OBJECT_STATU::LEFT));
 	}
 	if(StatuGet(GROUP_OBJECT_STATU::MOVE) && StatuGet(GROUP_OBJECT_STATU::GROUND))
 	{
-		GetAnimator()->Play(L"PlayerRun");
+		GetAnimator()->Play(L"PlayerRun",  fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LEFT));
 	}
 	if (!StatuGet(GROUP_OBJECT_STATU::GROUND) && StatuGet(GROUP_OBJECT_STATU::JUMP) || StatuGet(GROUP_OBJECT_STATU::FORCE))
 	{
-		GetAnimator()->Play(L"PlayerJump");
+		GetAnimator()->Play(L"PlayerJump", fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LEFT));
 	}
 
 
 	StatuRemove(GROUP_OBJECT_STATU::MOVE);
+
 	GetStatu()->update();
 	GetAnimator()->update();
 }

@@ -25,8 +25,8 @@ CMonster::CMonster()
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"MonsterTex", L"texture\\Player\\PlayerStand.png");
 
 	CreateAnimator();
-	GetAnimator()->CreateAnimation(L"MonsterTex", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 5);
-	GetAnimator()->Play(L"MonsterTex");
+	GetAnimator()->CreateAnimation(L"MonsterTex", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 5, false);
+	GetAnimator()->Play(L"MonsterTex", fPoint(50, 50));
 }
 
 CMonster::~CMonster()

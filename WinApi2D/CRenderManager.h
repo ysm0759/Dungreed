@@ -23,24 +23,25 @@ private:
 	
 	IDWriteTextFormat* m_pTextFormat;
 	
-	/*
-	void RenderImage(CD2DImage* img, float dstX, float dstY, float dstW, float dstH);
-	void RenderFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY,
-		float srcW, float srcH);
 
-	void RenderRevFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH,
-		float srcX, float srcY, float srcW, float srcH);*/
 public:
 	void init();
 
 
-	void RenderImage(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float alpha = 1.f, float angle = 0.f, fPoint pos = { 0.f,0.f });
-																							// 투명도				//회전				   // 상대좌표 
+	void RenderImage(CD2DImage* img, float dstX, float dstY, float dstW, float dstH ,float alpha= 1.f);
 	void RenderFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY,
-		float srcW, float srcH, float angle = 0.f, fPoint pos = { 0.f,0.f });
+		float srcW, float srcH);
 
 	void RenderRevFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH,
-		float srcX, float srcY, float srcW, float srcH, float angle = 0.f, fPoint pos = { 0.f,0.f });
+		float srcX, float srcY, float srcW, float srcH);
+
+	//void RenderImage(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float alpha = 1.f, float angle = 0.f, fPoint pos = { 0.f,0.f });
+	//																						// 투명도				//회전				   // 상대좌표 
+	//void RenderFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY,
+	//	float srcW, float srcH, float angle = 0.f, fPoint pos = { 0.f,0.f });
+
+	//void RenderRevFrame(CD2DImage* img, float dstX, float dstY, float dstW, float dstH,
+	//	float srcX, float srcY, float srcW, float srcH, float angle = 0.f, fPoint pos = { 0.f,0.f });
 
 
 

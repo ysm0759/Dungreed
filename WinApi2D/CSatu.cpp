@@ -12,7 +12,7 @@ CStatu::CStatu()
 	m_pOwner = nullptr;
 	m_iObjectStatu = 0;
 	m_fGravity = 0;
-	m_fDashDir = {};
+	m_fDir = {};
 }
 
 CStatu::CStatu (const CStatu& other)
@@ -20,7 +20,7 @@ CStatu::CStatu (const CStatu& other)
 	m_pOwner = nullptr;
 	m_iObjectStatu = other.m_iObjectStatu;
 	m_fGravity = 0;
-	m_fDashDir = other.m_fDashDir;
+	m_fDir = other.m_fDir;
 }
 
 CStatu::~CStatu()
@@ -30,7 +30,7 @@ CStatu::~CStatu()
 
 void CStatu::SetDashDir(fVec2 dashDir)
 {
-	this->m_fDashDir = dashDir;
+	this->m_fDir = dashDir;
 }
 
 void CStatu::SetForce(float Force)
@@ -42,7 +42,7 @@ void CStatu::update()
 {
 	Jump();
 	Gravity();
-	Dash(); 
+	Fouce(); 
 }
 
 void CStatu::Jump()
@@ -74,18 +74,19 @@ void CStatu::Gravity()
 	}
 }
 
-void CStatu::Dash()
+void CStatu::Fouce()
 {
 	if (GetStatu((UINT)GROUP_OBJECT_STATU::FORCE))
 	{
 		 // 대쉬 상용할때 카메라 , realpos 주의
 		fPoint objectRealPos = m_pOwner->GetPos();
-		objectRealPos.x += m_fForce * m_fDashDir.normalize().x * fDT;
-		objectRealPos.y += m_fForce * m_fDashDir.normalize().y * fDT;
+		objectRealPos.x += m_fForce * m_fDir.normalize().x * fDT;
+		objectRealPos.y += m_fForce * m_fDir.normalize().y * fDT;
 		m_pOwner->SetPos(objectRealPos);
 	}
 
 }
+
 
 void CStatu::SetStatu(UINT bit)	   //해당 비트를 1로 채움
 {

@@ -22,7 +22,7 @@ private:
 	vector<tAniFrm> m_vecFrm;		// 모든 프레임의 자르기 영역 및 유지시간
 	int				m_iCurFrm;		// 현재 프레임의 index
 	float			m_fAccTime;		// 다음 프레임까지 축적시간
-
+	fPoint			m_fSize;
 	bool			m_bReverse;
 
 public:
@@ -36,6 +36,8 @@ public:
 	void SetFrame(int frmIndex);
 	tAniFrm& GetFrame(int frmIndex);
 
+	void SetSize(fPoint size);
+	void SetReverse(bool reverse);
 	void update();
 	void render();	
 
