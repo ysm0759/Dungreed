@@ -25,7 +25,7 @@ void CSceneTest::update()
 
 	if (KeyDown(VK_TAB))
 	{
-		ChangeScn(GROUP_SCENE::MAIN);
+		ChangeScn(GROUP_SCENE::TOOL);
 	}
 
 	if (KeyDown('Z'))

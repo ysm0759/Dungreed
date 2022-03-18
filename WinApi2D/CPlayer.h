@@ -36,5 +36,6 @@ public:
 	virtual void update();
 	virtual void render();
 	virtual void OnCollisionEnter(CCollider* pOther);
+	void StatuAnimator();
 };
 

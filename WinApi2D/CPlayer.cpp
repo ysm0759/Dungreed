@@ -11,8 +11,8 @@
 
 
 #define DASHCREATETIME 1.2f
-#define DASHVELOCITY 1000.f
-#define DASHTIME 0.25f
+#define DASHVELOCITY 1500.f
+#define DASHTIME 0.125f
 
 CPlayer::CPlayer()
 {
@@ -28,13 +28,13 @@ CPlayer::CPlayer()
 	
 
 	CreateCollider();
-	GetCollider()->SetScale(fPoint(40.f, 40.f));
+	GetCollider()->SetScale(fPoint(40.f, 60.f));
 	GetCollider()->SetOffsetPos(fPoint(0.f, 10.f));
 
 
 
 	CreateAnimator();
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerImg", L"texture\\Player\\PlayerStand.png");
+	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerStand", L"texture\\Player\\PlayerStand.png");
 	GetAnimator()->CreateAnimation(L"PlayerStand", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 5);
 
 	
@@ -68,23 +68,7 @@ void CPlayer::update()
 	fPoint mousePos = MousePos();
 	fPoint objectRenderPos = CCameraManager::getInst()->GetRenderPos(GetPos()); //캐릭터 랜더 위치랑 계산을 해서 
 	fVec2 playDir = fVec2(mousePos.x - objectRenderPos.x, mousePos.y - objectRenderPos.y); // 마우스와 캐릭터의 방향
-	
-	if (playDir.x < 0)
-		StatuSet((UINT)GROUP_OBJECT_STATU::LEFT);
-	else
-		StatuRemove((UINT)GROUP_OBJECT_STATU::LEFT);
-	//대쉬 초기화
-	GetStatu()->update();
-
-	if (m_cDashCount < m_cMaxDashCount)
-	{
-		m_fCreateDashTime += fDT;
-		if (m_fCreateDashTime >= DASHCREATETIME)
-		{
-			m_cDashCount += 1;
-			m_fCreateDashTime -= DASHCREATETIME;
-		}
-	}
+	GetStatu()->SetLook(playDir);
 	
 
 	// 캐릭터 키입력에 따른 상태 변경
@@ -103,7 +87,7 @@ void CPlayer::update()
 		{
 			StatuRemove(GROUP_OBJECT_STATU::JUMP); //점프를 제거 안해주면 RigidBody에 점프함수를 계속 실행하여 이상하게 진행됨
 		}
-		if (m_fDashTime > DASHTIME)
+		if (m_fDashTime > DASHTIME) 
 		{
 			m_fDashTime = 0;
 			StatuRemove(GROUP_OBJECT_STATU::FORCE);
@@ -139,6 +123,10 @@ void CPlayer::update()
 			StatuSet(GROUP_OBJECT_STATU::JUMP);
 			StatuRemove(GROUP_OBJECT_STATU::GROUND);
 		}
+		if (KeyDown(VK_RBUTTON)) //공격
+		{
+			//CreateObj(GROUP_GAMEOBJ::PLAYER_ATTACK);
+		}
 
 	}
 	SetPos(pos);
@@ -146,23 +134,11 @@ void CPlayer::update()
 
 
 	// 캐릭터 상태에 따른 애니메이션
-	if (!StatuGet(GROUP_OBJECT_STATU::MOVE) && StatuGet(GROUP_OBJECT_STATU::GROUND))
-	{
-		GetAnimator()->Play(L"PlayerStand", fPoint(10, 10), StatuGet(GROUP_OBJECT_STATU::LEFT));
-	}
-	if(StatuGet(GROUP_OBJECT_STATU::MOVE) && StatuGet(GROUP_OBJECT_STATU::GROUND))
-	{
-		GetAnimator()->Play(L"PlayerRun",  fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LEFT));
-	}
-	if (!StatuGet(GROUP_OBJECT_STATU::GROUND) && StatuGet(GROUP_OBJECT_STATU::JUMP) || StatuGet(GROUP_OBJECT_STATU::FORCE))
-	{
-		GetAnimator()->Play(L"PlayerJump", fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LEFT));
-	}
+	StatuAnimator();
 
-
-	StatuRemove(GROUP_OBJECT_STATU::MOVE);
-
+	//Statu 업데이트 중력, 대쉬 연산
 	GetStatu()->update();
+
 	GetAnimator()->update();
 }
 
@@ -194,4 +170,22 @@ void CPlayer::OnCollisionEnter(CCollider* pOther)
     	StatuSet(GROUP_OBJECT_STATU::GROUND);
 		StatuRemove(GROUP_OBJECT_STATU::JUMP);
 	}
+}
+
+void CPlayer::StatuAnimator()
+{
+	if (!StatuGet(GROUP_OBJECT_STATU::MOVE) && StatuGet(GROUP_OBJECT_STATU::GROUND))
+	{
+		GetAnimator()->Play(L"PlayerStand", fPoint(50, 50), StatuGet(GROUP_OBJECT_STATU::LOOK));
+	}
+	if (StatuGet(GROUP_OBJECT_STATU::MOVE) && StatuGet(GROUP_OBJECT_STATU::GROUND))
+	{
+		GetAnimator()->Play(L"PlayerRun", fPoint(50, 50), StatuGet(GROUP_OBJECT_STATU::LOOK));
+	}
+	if (!StatuGet(GROUP_OBJECT_STATU::GROUND) || StatuGet(GROUP_OBJECT_STATU::JUMP) || StatuGet(GROUP_OBJECT_STATU::FORCE))
+	{
+		GetAnimator()->Play(L"PlayerJump", fPoint(50, 50), StatuGet(GROUP_OBJECT_STATU::LOOK));
+	}
+	StatuRemove(GROUP_OBJECT_STATU::MOVE);
+
 }

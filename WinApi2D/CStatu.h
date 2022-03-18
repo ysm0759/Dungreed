@@ -9,13 +9,14 @@ class CStatu
 	int m_iObjectStatu;
 	float m_fGravity;
 	float m_fForce;
-	fVec2 m_fDir;
+	fVec2 m_fLook;
+	fVec2 m_fDashDir;
 	CGameObject* m_pOwner;		// 충돌체를 가지는 게임오브젝트의 주소
 
 	void Jump();
 	void Gravity();
 	void Fouce();
-	void Dir();
+	void Look();
 public:
 	CStatu();
 	CStatu(const CStatu& other);
@@ -23,7 +24,7 @@ public:
 
 	void SetDashDir(fVec2 dashDir);
 	void SetForce(float force);
-
+	void SetLook(fVec2 look);
 	void update();
 
 
