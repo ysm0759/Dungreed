@@ -12,4 +12,7 @@ public:
 	virtual void Enter();
 	virtual void Exit();
 
+	void CreateBackGround();
+	void CreateButton();
+
 };

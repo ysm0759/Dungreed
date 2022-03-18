@@ -9,10 +9,7 @@
 #include "CInOutButton.h"
 #include "CD2DImage.h"
 
-void StartClick(DWORD_PTR, DWORD_PTR)
-{
-	ChangeScn(GROUP_SCENE::TEST);
-}
+
 
 CSceneMain::CSceneMain()
 {
@@ -38,6 +35,28 @@ void CSceneMain::update()
 void CSceneMain::Enter()
 {
 
+	CreateBackGround();
+	CreateButton();
+
+	CSoundManager::getInst()->AddSound(L"MainBGM", L"sound\\MainBGM.mp3", true);
+	CSoundManager::getInst()->Play(L"MainBGM");
+	
+	//CSoundManager::getInst()->AddSound(L"VillageBGM", L"sound\\VillageBGM.mp3", true);
+	//CSoundManager::getInst()->Play(L"VillageBGM");
+
+	CCameraManager::getInst()->SetLookAt(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
+
+}
+
+void CSceneMain::Exit()
+{
+	DeleteAll();
+	CSoundManager::getInst()->Stop(L"MainBGM");
+	CCollisionManager::getInst()->Reset();
+}
+
+void CSceneMain::CreateBackGround()
+{
 	CBackGround* backGround1 = new CBackGround();
 	backGround1->SetFix();
 	backGround1->Load(L"BackGround1", L"texture\\Main\\BackGround1.png");
@@ -90,27 +109,52 @@ void CSceneMain::Enter()
 	AddObject(mainLogo, GROUP_GAMEOBJ::BACK_GROUND);
 
 
+}
 
 
-	// 3. 시작 버튼
+void StartClick(DWORD_PTR, DWORD_PTR)
+{
+	ChangeScn(GROUP_SCENE::TEST);
+	//TODO: DataLoad Panel 보여주기
+}
+
+void SettingClick(DWORD_PTR, DWORD_PTR)
+{
+	ChangeScn(GROUP_SCENE::TEST);
+	//TODO: 세팅 scene보여주기
+}
+
+void ExitClick(DWORD_PTR, DWORD_PTR)
+{
+	PostQuitMessage(0);
+}
+
+void CSceneMain::CreateButton()
+{
+	//시작버튼
 	CInOutButton* startButton = new CInOutButton;
 	startButton->ButtonInLoadImg(L"PlayOn", L"texture\\Main\\PlayOn.png");
 	startButton->ButtonOutLoadImg(L"PlayOff", L"texture\\Main\\PlayOff.png");
-	startButton->SetPos(fPoint(WINSIZEX / 2.f , 500.f));
-	//startButton->SetScale(fPoint(100.f, 50.f));
+	startButton->SetPos(fPoint(WINSIZEX / 2.f - startButton->GetScale().x / 2, 400.f));
 	startButton->SetClickedCallBack(StartClick, 0, 0);
 	AddObject(startButton, GROUP_GAMEOBJ::UI);
 
+	//세팅버튼
+	CInOutButton* settingButton = new CInOutButton;
+	settingButton->ButtonInLoadImg(L"OptionOn", L"texture\\Main\\OptionOn.png");
+	settingButton->ButtonOutLoadImg(L"OptionOff", L"texture\\Main\\OptionOff.png");
+	settingButton->SetPos(fPoint(WINSIZEX / 2.f - settingButton->GetScale().x / 2, 460.f));
+	settingButton->SetClickedCallBack(SettingClick, 0, 0);
+	AddObject(settingButton, GROUP_GAMEOBJ::UI);
 
-
-	CCameraManager::getInst()->SetLookAt(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
-
-}
-
-void CSceneMain::Exit()
-{
-	DeleteAll();
-
-	CCollisionManager::getInst()->Reset();
+	//종료버튼
+	CInOutButton* exitButton = new CInOutButton;
+	exitButton->ButtonInLoadImg(L"ExitOn", L"texture\\Main\\ExitOn.png");
+	exitButton->ButtonOutLoadImg(L"ExitOff", L"texture\\Main\\ExitOff.png");
+	exitButton->SetPos(fPoint(WINSIZEX / 2.f - exitButton->GetScale().x / 2, 520.f));
+	exitButton->SetClickedCallBack(ExitClick, 0, 0);
+	AddObject(exitButton, GROUP_GAMEOBJ::UI);
+	
+	//TODO: BGM깔아야함
 }
 
