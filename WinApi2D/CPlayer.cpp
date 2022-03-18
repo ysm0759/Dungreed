@@ -25,27 +25,28 @@ CPlayer::CPlayer()
 	SetScale(fPoint(70.f, 70.f));
 	SetName(L"Player");
 
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerImg", L"texture\\Animation_Player.bmp");
+	
 
-
-	//Matrix3x2F matrot = D2D1::Matrix3x2F::Rotation(1, D2D1::Point2F(1.f, 1.f));
 	CreateCollider();
 	GetCollider()->SetScale(fPoint(40.f, 40.f));
 	GetCollider()->SetOffsetPos(fPoint(0.f, 10.f));
-	CreateAnimator();
-	GetAnimator()->CreateAnimation(L"LeftNone", m_pImg, fPoint(0.f, 0.f), fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.5f, 2);
-	GetAnimator()->CreateAnimation(L"RightNone", m_pImg, fPoint(0.f, 70.f), fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.5f, 2);
-	GetAnimator()->CreateAnimation(L"LeftMove", m_pImg, fPoint(0.f, 140.f), fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.25f, 3);
-	GetAnimator()->CreateAnimation(L"RightMove", m_pImg, fPoint(0.f, 210.f), fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.25f, 3);
-	GetAnimator()->CreateAnimation(L"LeftHit", m_pImg, fPoint(140.f, 0.f), fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.25f, 1);
-	GetAnimator()->CreateAnimation(L"RightHit", m_pImg, fPoint(140.f, 70.f), fPoint(70.f, 70.f), fPoint(70.f, 0.f), 0.25f, 1);
-	GetAnimator()->Play(L"LeftNone");
 
-	CAnimation* pAni;
-	pAni = GetAnimator()->FindAnimation(L"LeftMove");
-	pAni->GetFrame(1).fptOffset = fPoint(0.f, -20.f);
-	pAni = GetAnimator()->FindAnimation(L"RightMove");
-	pAni->GetFrame(1).fptOffset = fPoint(0.f, -20.f);
+
+	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerImg", L"texture\\Player\\PlayerStand.png");
+	CreateAnimator();
+	GetAnimator()->CreateAnimation(L"PlayerStand", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 5);
+	GetAnimator()->Play(L"PlayerStand");
+
+	
+	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerRun", L"texture\\Player\\PlayerRun.png");
+	GetAnimator()->CreateAnimation(L"PlayerRun", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 7);
+	GetAnimator()->Play(L"PlayerRun");
+	
+	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerJump", L"texture\\Player\\PlayerJump.png");
+	GetAnimator()->CreateAnimation(L"PlayerJump", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 1);
+	GetAnimator()->Play(L"PlayerJump");
+
+
 
 	CreateStatu();
 
@@ -65,6 +66,7 @@ void CPlayer::update()
 {
 	fPoint pos = GetPos();
 
+	//대쉬 초기화
 	if (m_cDashCount < m_cMaxDashCount)
 	{
 		m_fCreateDashTime += fDT;
@@ -76,7 +78,8 @@ void CPlayer::update()
 	}
 	
 
-	if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::FORCE) && m_cDashCount < 100) // 대쉬 진입 //TODO: 대쉬 삭제해야함
+	// 캐릭터 키입력에 따른 상태 변경
+	if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::FORCE) && m_cDashCount < 100) // 대쉬 진입 //TODO: 대쉬 삭제 m_cDashCount > 0해야함
 	{
 
 		fVec2 mousePos = MousePos(); //마우스의 현재 좌표와
@@ -107,12 +110,12 @@ void CPlayer::update()
 		if (Key(VK_LEFT))
 		{
 			pos.x -= m_fVelocity * fDT;
-			GetAnimator()->Play(L"LeftMove");
+			StatuSet(GROUP_OBJECT_STATU::MOVE);
 		}
 		if (Key(VK_RIGHT))
 		{
 			pos.x += m_fVelocity * fDT;
-			GetAnimator()->Play(L"RightMove");
+			StatuSet(GROUP_OBJECT_STATU::MOVE);
 		}
 		if (Key(VK_UP))
 		{
@@ -132,14 +135,26 @@ void CPlayer::update()
 		}
 
 	}
-
-	if (KeyDown('Q')) //TODO: 바닥 충돌 바닥과 충돌되었다고 가정 나중에 삭제
-	{
-		StatuRemove(GROUP_OBJECT_STATU::JUMP);
-		StatuSet(GROUP_OBJECT_STATU::GROUND);
-	}
 	SetPos(pos);
 
+
+
+	// 캐릭터 상태에 따른 애니메이션
+	if (!StatuGet(GROUP_OBJECT_STATU::MOVE) && StatuGet(GROUP_OBJECT_STATU::GROUND))
+	{
+		GetAnimator()->Play(L"PlayerStand");
+	}
+	if(StatuGet(GROUP_OBJECT_STATU::MOVE) && StatuGet(GROUP_OBJECT_STATU::GROUND))
+	{
+		GetAnimator()->Play(L"PlayerRun");
+	}
+	if (!StatuGet(GROUP_OBJECT_STATU::GROUND) && StatuGet(GROUP_OBJECT_STATU::JUMP) || StatuGet(GROUP_OBJECT_STATU::FORCE))
+	{
+		GetAnimator()->Play(L"PlayerJump");
+	}
+
+
+	StatuRemove(GROUP_OBJECT_STATU::MOVE);
 	GetStatu()->update();
 	GetAnimator()->update();
 }

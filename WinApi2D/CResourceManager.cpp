@@ -7,6 +7,7 @@
 CResourceManager::CResourceManager()
 {
 	m_pBGM = nullptr;
+
 }
 
 CResourceManager::~CResourceManager()
@@ -37,6 +38,11 @@ CResourceManager::~CResourceManager()
 		{
 			delete iter->second;
 		}
+	}
+
+	if (nullptr != m_pBGM)
+	{
+		delete m_pBGM;
 	}
 	m_mapD2DImg.clear();
 }

@@ -78,10 +78,12 @@ enum class GROUP_SCENE
 
 enum class GROUP_OBJECT_STATU
 {
-	JUMP,
-	GROUND,
-	FORCE,
-	FLY, // 중력을 받지 않고 계속 날라다니는 객체
+	JUMP,  // 점프한 상태
+	GROUND,// 바닥에 붙어있는 상태
+	MOVE,  // 움직이는 상태
+	FORCE, // 힘의 방향으로 날라가는
+	FLY,   // 중력을 받지 않고 계속 날라다니는 객체
+	
 };
 
 //========================================
