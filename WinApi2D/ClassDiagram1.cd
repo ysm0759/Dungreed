@@ -101,14 +101,14 @@
   <Class Name="CAnimation" Collapsed="true">
     <Position X="17" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAQAQAAAABIAAgAAABAAAAAAEABAAAAYAAURBA=</HashCode>
+      <HashCode>AAAAEAAQAQAAAABoAAgIAABAAAAAAEABAAAAYAAUxBA=</HashCode>
       <FileName>CAnimation.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CStatu" Collapsed="true">
     <Position X="18.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAAAAAAAgAoAAIAAgAAAAAEQACAAAAgAIAAICAEBAA=</HashCode>
+      <HashCode>CAEQAAAAAgAoAAIQAgAAAAAEQACAAAAAAIAAICAMBAA=</HashCode>
       <FileName>CStatu.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -136,7 +136,7 @@
   <Class Name="CTile" Collapsed="true">
     <Position X="12.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAggIAQACAAAAAAAAAEAAAAgCAAAAAAAAAAAAAUABA=</HashCode>
+      <HashCode>AAAggIAQBCAAAAYAAAAEAAAAgAAAQAAEZGAAAAIUABA=</HashCode>
       <FileName>CTile.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -171,7 +171,7 @@
   <Class Name="CPlayer" Collapsed="true">
     <Position X="14.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAAgAQAEAAACAAAAAAAACAAIghAACIAIAAAAAUABA=</HashCode>
+      <HashCode>AIAAAgAQAEAAACAAAAAAAACAAIghAACIAIAAABAUABA=</HashCode>
       <FileName>CPlayer.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -304,7 +304,7 @@
   <Enum Name="GROUP_OBJECT_STATU" Collapsed="true">
     <Position X="20.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIQAAgAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAIQAAgAAAAAAAAAAAEAAAAAAAAAAQAAAAAIA=</HashCode>
       <FileName>framework.h</FileName>
     </TypeIdentifier>
   </Enum>

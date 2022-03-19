@@ -45,9 +45,11 @@ CPlayer::CPlayer()
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerJump", L"texture\\Player\\PlayerJump.png");
 	GetAnimator()->CreateAnimation(L"PlayerJump", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 1);
 
-
-
-
+	//CAnimation* pAni;
+	//pAni = GetAnimator()->FindAnimation(L"PlayerStand");
+	//pAni->GetFrame(1).fptOffset = fPoint(-20.f, 0.f);
+	
+	
 	CreateStatu();
 
 }

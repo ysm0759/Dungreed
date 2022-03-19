@@ -86,7 +86,16 @@ enum class GROUP_OBJECT_STATU
 	LOOK,  // 값이 차있으면 왼쪽 값이 비어있으면 오른쪽 
 
 };
+enum class GROUP_TILE
+{
+	NONE,
+	GROUND,
+	PLATFORM,
+	WALL,
+	SLOPE,
 
+	SIZE,
+};
 //========================================
 //## 이벤트 타입					##
 //========================================
