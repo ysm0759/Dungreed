@@ -178,7 +178,7 @@
   <Class Name="CScene" Collapsed="true">
     <Position X="1.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAgwAAAAAAAgAAAAAQAABAEEAAAAIAgBQAAVRDg=</HashCode>
+      <HashCode>BAAAAAAwAAAAAAAgAAAAAAAABAAEAAAAIAgAQAAVRDg=</HashCode>
       <FileName>CScene.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -187,13 +187,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEAAAAAAAIAAAAAAEAAAAIAAAAAAEAAA=</HashCode>
       <FileName>CSceneTest.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CScene_Tool" Collapsed="true">
-    <Position X="0.5" Y="8.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAIAACAAIAAgAAAAAAAhgAAEAAYAIAAAAAAMAAA=</HashCode>
-      <FileName>CScene_Tool.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CResource" Collapsed="true">
@@ -222,6 +215,13 @@
     <TypeIdentifier>
       <HashCode>AAABAAAABAAAAAAAAAAAgAFQAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>CD2DImage.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CScene_Tool" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAIAACECYAAgABAABAGhgAEEQA4AoAgBAAAdAAA=</HashCode>
+      <FileName>CScene_Tool.h</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="tCamEffect" Collapsed="true">

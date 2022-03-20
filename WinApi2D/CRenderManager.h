@@ -54,6 +54,7 @@ public:
 	void RenderFillRectangle(float dstX, float dstY, float dstW, float dstH, COLORREF color = RGB(0, 0, 0), float alpha = 1.f);
 	void RenderEllipse(float dstX, float dstY, float dstW, float dstH, COLORREF color = RGB(0, 0, 0), float strokeWidth = 1.f);
 	void RenderFillEllipse(float dstX, float dstY, float dstW, float dstH, COLORREF color = RGB(0, 0, 0));
+	void RenderLine(fPoint startPoint, fPoint endPoint, COLORREF color = RGB(0, 0, 0), float strokeWidth = 1.f);
 
 
 	ID2D1Bitmap* GetBitmap();

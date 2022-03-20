@@ -256,6 +256,19 @@ void CRenderManager::RenderFillEllipse(float dstX, float dstY, float dstW, float
 }
 
 
+void CRenderManager::RenderLine(fPoint startPoint, fPoint endPoint, COLORREF color, float strokeWidth)
+{
+	D2D1_POINT_2F start = { startPoint.x, startPoint.y };
+	D2D1_POINT_2F end = { endPoint.x, endPoint.y };
+
+	int red = color & 0xFF;
+	int green = (color >> 8) & 0xFF;
+	int blue = (color >> 16) & 0xFF;
+
+	m_pBrush->SetColor(D2D1::ColorF(red / 255.f, green / 255.0f, blue / 255.0f, 1.f));
+	m_pRenderTarget->DrawLine(start, end, m_pBrush, strokeWidth);
+}
+
 
 ID2D1Bitmap* CRenderManager::GetBitmap()
 {

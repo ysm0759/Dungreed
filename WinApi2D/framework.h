@@ -84,6 +84,7 @@ enum class GROUP_OBJECT_STATU
 	FORCE, // 힘의 방향으로 날라가는
 	FLY,   // 중력을 받지 않고 계속 날라다니는 객체
 	LOOK,  // 값이 차있으면 왼쪽 값이 비어있으면 오른쪽 
+	ATTACK,// 공격중인 상태
 
 };
 enum class GROUP_TILE
@@ -109,7 +110,19 @@ enum class TYPE_EVENT
 	SIZE,
 };
 
+enum class BACK_OPTION
+{
+	FIX,		// 고정
+	DEPEND_ON,	// 오브젝트 의존
 
+
+	AUTO,		// 자동으로움직임
+	REPEAT,		// 무한 반복
+	LEFT,		// 왼쪽으로 이동
+	RIGHT,		// 오른쪽으로 이동
+	UP,			// 위로이동
+	DOWN,		// 아래로이동
+};
 
 // Core & Manager
 #include "CCore.h"

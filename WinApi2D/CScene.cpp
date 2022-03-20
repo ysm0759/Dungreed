@@ -2,12 +2,11 @@
 #include "CScene.h"
 #include "CGameObject.h"
 #include "CTile.h"
+#include "CCollider.h"
 
 CScene::CScene()
 {
     m_strName = L"";
-    m_iTileX = 0;
-    m_iTileY = 0;
 }
 
 CScene::~CScene()
@@ -17,7 +16,7 @@ CScene::~CScene()
     {
         for (int j = 0; j < m_arrObj[i].size(); j++)
         {
-            delete m_arrObj[i][j]; //TODO :: 에러남
+            delete m_arrObj[i][j];
         }
     }
 }
@@ -76,28 +75,9 @@ void CScene::render()
 void CScene::render_tile()
 {
     const vector<CGameObject*>& vecTile = GetGroupObject(GROUP_GAMEOBJ::TILE);
-
-    fPoint fptCamLook = CCameraManager::getInst()->GetLookAt();
-    fPoint fptLeftTop = fptCamLook - fPoint(WINSIZEX, WINSIZEY) / 2.f;
-
-    int iLTCol = (int)fptLeftTop.x / CTile::SIZE_TILE;
-    int iLTRow = (int)fptLeftTop.y / CTile::SIZE_TILE;
-    int iLTIdx = m_iTileX * iLTRow + iLTCol;
-
-    int iClientWidth = (int)WINSIZEX / CTile::SIZE_TILE;
-    int iClientHeight = (int)WINSIZEY / CTile::SIZE_TILE;
-    for (int iCurRow = iLTRow; iCurRow <= (iLTRow + iClientHeight); ++iCurRow)
+    for (UINT i = 0; i < vecTile.size(); i++)
     {
-        for (int iCurCol = iLTCol; iCurCol <= (iLTCol + iClientWidth); ++iCurCol)
-        {
-            if (iCurCol < 0 || m_iTileX <= (UINT)iCurCol || iCurRow < 0 || m_iTileY <= (UINT)iCurRow)
-            {
-                continue;
-            }
-            int iIdx = (m_iTileX * iCurRow) + iCurCol;
-
-            vecTile[iIdx]->render();
-        }
+        vecTile[i]->render();
     }
 }
 
@@ -119,16 +99,6 @@ void CScene::SetName(const wstring& strName)
 wstring CScene::GetName()
 {
     return m_strName;
-}
-
-UINT CScene::GetTileX()
-{
-    return m_iTileX;
-}
-
-UINT CScene::GetTileY()
-{
-    return m_iTileY;
 }
 
 void CScene::AddObject(CGameObject* pObj, GROUP_GAMEOBJ type)
@@ -153,29 +123,10 @@ void CScene::DeleteAll()
     }
 }
 
-void CScene::CreateTile(UINT xSize, UINT ySize)
+void CScene::LoadTile(const wstring& strPath)
 {
     DeleteGroup(GROUP_GAMEOBJ::TILE);
 
-    m_iTileX = xSize;
-    m_iTileY = ySize;
-
-    CD2DImage* pImg = CResourceManager::getInst()->LoadD2DImage(L"Tile", L"texture\\tile\\tilemap.bmp");
-
-    for (UINT i = 0; i < ySize; i++)
-    {
-        for (UINT j = 0; j < xSize; j++)
-        {
-            CTile* pTile = new CTile();
-            pTile->SetPos(fPoint((float)(j * CTile::SIZE_TILE), (float)(i * CTile::SIZE_TILE)));
-            pTile->SetTexture(pImg);
-            AddObject(pTile, GROUP_GAMEOBJ::TILE);
-        }
-    }
-}
-
-void CScene::LoadTile(const wstring& strPath)
-{
     FILE* pFile = nullptr;
 
     _wfopen_s(&pFile, strPath.c_str(), L"rb");      // w : write, b : binary
@@ -183,17 +134,33 @@ void CScene::LoadTile(const wstring& strPath)
 
     UINT xCount = 0;
     UINT yCount = 0;
+    UINT tileCount = 0;
 
     fread(&xCount, sizeof(UINT), 1, pFile);
     fread(&yCount, sizeof(UINT), 1, pFile);
+    fread(&tileCount, sizeof(UINT), 1, pFile);
 
-    CreateTile(xCount, yCount);
+    CD2DImage* pImg = CResourceManager::getInst()->LoadD2DImage(L"Tile", L"texture\\tile\\tilemap.bmp");
 
-    const vector<CGameObject*>& vecTile = GetGroupObject(GROUP_GAMEOBJ::TILE);
-
-    for (UINT i = 0; i < vecTile.size(); i++)
+    for (UINT i = 0; i < tileCount; i++)
     {
-        ((CTile*)vecTile[i])->Load(pFile);
+        CTile* newTile = new CTile;
+        newTile->Load(pFile);
+        newTile->SetD2DImage(pImg);
+        newTile->SetPos(fPoint((float)(newTile->GetX() * CTile::SIZE_TILE), (float)(newTile->GetY() * CTile::SIZE_TILE)));
+
+        if (GROUP_TILE::SLOPE == newTile->GetGroup())
+        {
+            // TODO : OBB 충돌체 추가
+        }
+        else if (GROUP_TILE::NONE != newTile->GetGroup())
+        {
+            newTile->CreateCollider();
+            newTile->GetCollider()->SetScale(fPoint(CTile::SIZE_TILE, CTile::SIZE_TILE));
+            newTile->GetCollider()->SetOffsetPos(fPoint(CTile::SIZE_TILE / 2.f, CTile::SIZE_TILE / 2.f));
+        }
+
+        AddObject(newTile, GROUP_GAMEOBJ::TILE);
     }
 
     fclose(pFile);

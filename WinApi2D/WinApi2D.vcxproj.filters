@@ -91,6 +91,12 @@
     <Filter Include="Object\UI\ParentUI">
       <UniqueIdentifier>{e7da3e96-d92d-4e13-8fca-6ca6ca3fb0e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\UI\ToolButton">
+      <UniqueIdentifier>{ef5864e9-a7dc-408d-b362-7a111ec8b118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Village">
+      <UniqueIdentifier>{d841a7c2-10ff-464e-b959-088672153cde}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -156,9 +162,6 @@
     <ClInclude Include="CEventManager.h">
       <Filter>Engine\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="CScene_Tool.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="CAnimator.h">
       <Filter>Engine\Component\Animator</Filter>
     </ClInclude>
@@ -219,6 +222,15 @@
     <ClInclude Include="CUI.h">
       <Filter>Object\UI\ParentUI</Filter>
     </ClInclude>
+    <ClInclude Include="CTileButton.h">
+      <Filter>Object\UI\ToolButton</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Tool.h">
+      <Filter>Scene\Scene_Test</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneVillage.h">
+      <Filter>Scene\Village</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi2D.cpp">
@@ -265,9 +277,6 @@
     </ClCompile>
     <ClCompile Include="CEventManager.cpp">
       <Filter>Engine\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CScene_Tool.cpp">
-      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="CAnimator.cpp">
       <Filter>Engine\Component\Animator</Filter>
@@ -328,6 +337,15 @@
     </ClCompile>
     <ClCompile Include="CUI.cpp">
       <Filter>Object\UI\ParentUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CTileButton.cpp">
+      <Filter>Object\UI\ToolButton</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Tool.cpp">
+      <Filter>Scene\Scene_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneVillage.cpp">
+      <Filter>Scene\Village</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

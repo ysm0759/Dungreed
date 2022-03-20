@@ -125,16 +125,21 @@ void CPlayer::update()
 			StatuSet(GROUP_OBJECT_STATU::JUMP);
 			StatuRemove(GROUP_OBJECT_STATU::GROUND);
 		}
-		if (KeyDown(VK_RBUTTON)) //공격
+		if (KeyDown(VK_RBUTTON) && StatuGet(GROUP_OBJECT_STATU::ATTACK) ) //공격
 		{
-			//CreateObj(GROUP_GAMEOBJ::PLAYER_ATTACK);
+			StatuSet(GROUP_OBJECT_STATU::ATTACK);
+			//CreateObj(PlayerAttack(),GROUP_GAMEOBJ::PLAYER_ATTACK);
 		}
 
 	}
 	SetPos(pos);
 
+	if (KeyDown('Q'))
+	{
 
-
+		StatuRemove(GROUP_OBJECT_STATU::JUMP);
+	}
+	StatuSet(GROUP_OBJECT_STATU::GROUND);
 	// 캐릭터 상태에 따른 애니메이션
 	StatuAnimator();
 
@@ -167,9 +172,11 @@ void CPlayer::OnCollisionEnter(CCollider* pOther)
 {
 
 	CGameObject* pOtherObj = pOther->GetObj();
+
+	
 	if (pOtherObj->GetName() == L"Monster") //TODO: 나중에 타일로 바꿀것
 	{
-    	StatuSet(GROUP_OBJECT_STATU::GROUND);
+		StatuSet(GROUP_OBJECT_STATU::GROUND);
 		StatuRemove(GROUP_OBJECT_STATU::JUMP);
 	}
 }
@@ -190,4 +197,9 @@ void CPlayer::StatuAnimator()
 	}
 	StatuRemove(GROUP_OBJECT_STATU::MOVE);
 
+}
+
+CGameObject* CPlayer::PlayerAttack()
+{
+	return nullptr;
 }

@@ -11,9 +11,6 @@ private:
 	vector<CGameObject*> m_arrObj[(int)GROUP_GAMEOBJ::SIZE];
 	wstring m_strName;
 
-	UINT m_iTileX;
-	UINT m_iTileY;
-
 public:
 	CScene();
 	virtual ~CScene();
@@ -29,8 +26,6 @@ public:
 
 	void SetName(const wstring& strName);
 	wstring GetName();
-	UINT GetTileX();
-	UINT GetTileY();
 
 	const vector<CGameObject*>& GetGroupObject(GROUP_GAMEOBJ group);
 	vector<CGameObject*>& GetUIGroup();		// UI는 렌더링 순서를 변경해야 하기 때문에 원본을 참조 / 주의 필요!
@@ -38,7 +33,6 @@ public:
 	void DeleteGroup(GROUP_GAMEOBJ group);
 	void DeleteAll();
 
-	void CreateTile(UINT xSize, UINT ySize);
 	void LoadTile(const wstring& strPath);
 };
 

@@ -103,7 +103,7 @@ void CAnimation::render()
     }
     else
     {
-        CRenderManager::getInst()->RenderFrame(
+            CRenderManager::getInst()->RenderFrame(
             m_pImg,
             fptPos.x - frm.fptSlice.x / 2.f - m_fSize.x,
             fptPos.y - frm.fptSlice.y / 2.f - m_fSize.y,

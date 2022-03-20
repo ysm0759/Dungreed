@@ -167,8 +167,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    RECT rc;
    rc.left = 0;
    rc.top = 0;
-   rc.right = WINSIZEX;
-   rc.bottom = WINSIZEY;
+   rc.right = (LONG)WINSIZEX;
+   rc.bottom = (LONG)WINSIZEY;
 
    // 실제 창이 크기에 맞게 나온다.
    AdjustWindowRect(&rc, WINSTYLE, false);

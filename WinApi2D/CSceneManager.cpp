@@ -4,6 +4,7 @@
 #include "CSceneTest.h"
 #include "CScene_Tool.h"
 #include "CSceneMain.h"
+#include "CSceneVillage.h"
 
 CSceneManager::CSceneManager()
 {
@@ -50,11 +51,16 @@ void CSceneManager::init()
 	//TODO: Scene들 때려넣기
 
 	m_arrScene[(size_t)GROUP_SCENE::TEST] = new CSceneTest;
-	m_arrScene[(size_t)GROUP_SCENE::TEST]->SetName(L"Scene_Test");
+	m_arrScene[(size_t)GROUP_SCENE::TEST]->SetName(L"CSceneTest");
 
 	
 	m_arrScene[(size_t)GROUP_SCENE::MAIN] = new CSceneMain;
-	m_arrScene[(size_t)GROUP_SCENE::MAIN]->SetName(L"Scene_Main");
+	m_arrScene[(size_t)GROUP_SCENE::MAIN]->SetName(L"CSceneMain");
+
+	
+	m_arrScene[(size_t)GROUP_SCENE::VILLAGE] = new CSceneVillage;
+	m_arrScene[(size_t)GROUP_SCENE::VILLAGE]->SetName(L"CSceneVillage");
+
 
 
 

@@ -37,5 +37,6 @@ public:
 	virtual void render();
 	virtual void OnCollisionEnter(CCollider* pOther);
 	void StatuAnimator();
+	CGameObject* PlayerAttack();
 };
 

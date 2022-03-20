@@ -8,6 +8,10 @@ CD2DImage::CD2DImage()
 
 CD2DImage::~CD2DImage()
 {
+	if (nullptr != m_pBitmap)
+	{
+		m_pBitmap->Release();
+	}
 }
 
 ID2D1Bitmap* CD2DImage::GetImage()
