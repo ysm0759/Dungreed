@@ -86,7 +86,7 @@ void CPlayer::update()
 	// 캐릭터 키입력에 따른 상태 변경
 	if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::FORCE) && m_cDashCount < 100) // 대쉬 진입 //TODO: 대쉬 삭제 m_cDashCount > 0해야함
 	{
-		GetStatu()->SetDashDir(playDir); //대쉬 이동 방향을 정해야함
+		GetStatu()->SetForceDir(playDir); //대쉬 이동 방향을 정해야함
 		GetStatu()->SetForce(DASHVELOCITY);
 		StatuSet(GROUP_OBJECT_STATU::FORCE);
 		m_cDashCount -= 1;

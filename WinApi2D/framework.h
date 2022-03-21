@@ -166,7 +166,7 @@ static float WINSIZEY = 720;
 #define ChangeScn(scene)		CEventManager::getInst()->EventChangeScene(scene)
 
 #define StatuSet(statu) CGameObject::GetStatu()->SetStatu((UINT)statu)
-#define StatuGet(statu) CGameObject::GetStatu()->GetStatu((UINT)statu)
+#define StatuGet(statu) CGameObject::GetStatu()->IsStatu((UINT)statu)
 #define StatuRemove(statu) CGameObject::GetStatu()->RemoveStatu((UINT)statu)
 
 

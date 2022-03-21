@@ -2,6 +2,7 @@
 #include "CCore.h"
 #include "CGameObject.h"
 #include "CTexture.h"
+#include <time.h>
 
 CCore::CCore()
 {
@@ -53,9 +54,11 @@ void CCore::init()
 	CKeyManager::getInst()->init();
 	CSoundManager::getInst()->init();
 	CRenderManager::getInst()->init();
-
 	CCameraManager::getInst()->init();
 	CSceneManager::getInst()->init();
 	CCollisionManager::getInst()->init();
+
+
+	srand((unsigned int)time(NULL));
 }
 

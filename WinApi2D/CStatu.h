@@ -22,14 +22,16 @@ public:
 	CStatu(const CStatu& other);
 	~CStatu();
 
-	void SetDashDir(fVec2 dashDir);
+	void SetForceDir(fVec2 dashDir);
 	void SetForce(float force);
 	void SetLook(fVec2 look);
 	void update();
 
 
+	CStatu* GetStatu();
+
 	void SetStatu(UINT bit);
-	bool GetStatu(UINT bit);
+	bool IsStatu(UINT bit);
 	void RemoveStatu(UINT bit);
 };
 

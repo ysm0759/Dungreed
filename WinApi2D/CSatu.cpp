@@ -28,9 +28,9 @@ CStatu::~CStatu()
 
 }
 
-void CStatu::SetDashDir(fVec2 dashDir)
+void CStatu::SetForceDir(fVec2 forceDir)
 {
-	this->m_fDashDir = dashDir;
+	this->m_fDashDir = forceDir;
 }
 
 void CStatu::SetForce(float Force)
@@ -53,7 +53,7 @@ void CStatu::update()
 
 void CStatu::Jump()
 {
-	if (GetStatu((UINT)GROUP_OBJECT_STATU::JUMP))
+	if (IsStatu((UINT)GROUP_OBJECT_STATU::JUMP))
 	{
 		fPoint objectPos = m_pOwner->GetPos();
 		objectPos.y -= JUMPSPEED * fDT;
@@ -63,7 +63,7 @@ void CStatu::Jump()
 
 void CStatu::Gravity()
 {
-	if (GetStatu((UINT)GROUP_OBJECT_STATU::GROUND)) //	GROUND상태이면 중력을 받지 않음
+	if (IsStatu((UINT)GROUP_OBJECT_STATU::GROUND)) //	GROUND상태이면 중력을 받지 않음
 	{
 		m_fGravity = 0;
 	}
@@ -82,7 +82,7 @@ void CStatu::Gravity()
 
 void CStatu::Fouce()
 {
-	if (GetStatu((UINT)GROUP_OBJECT_STATU::FORCE))
+	if (IsStatu((UINT)GROUP_OBJECT_STATU::FORCE))
 	{
 		 // 대쉬 상용할때 카메라 , realpos 주의
 		fPoint objectRealPos = m_pOwner->GetPos();
@@ -102,12 +102,17 @@ void CStatu::Look()
 }
 
 
+CStatu* CStatu::GetStatu()
+{
+	return this;
+}
+
 void CStatu::SetStatu(UINT bit)	   //해당 비트를 1로 채움
 {
 	m_iObjectStatu |= (1 << bit);
 }
 
-bool CStatu::GetStatu(UINT bit)	   //해당 비트가 1이면 true 아니면 false
+bool CStatu::IsStatu(UINT bit)	   //해당 비트가 1이면 true 아니면 false
 {
 	return m_iObjectStatu & (1 << bit);
 }
