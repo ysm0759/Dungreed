@@ -9,7 +9,7 @@ enum class GROUP_ITEM
 	SWORD,
 	SPEAR,
 	GUN,
-
+	SIZE,
 };
 
 enum class ITEM_STATU
@@ -17,6 +17,7 @@ enum class ITEM_STATU
 	DROP,
 	INVENTORY,
 	WEAR,
+	NONE,
 };
 
 class CD2DImage;
@@ -43,17 +44,17 @@ public:
 	virtual void InventoryRender() {};
 	virtual void WearRender() {};
 
+	virtual CItem* Clone();
 
-
-	void SetDrop();
-	void SetInventory();
-	void SetWear();
+	virtual void SetDrop();
+	virtual void SetInventory();
+	virtual void SetWear();
 
 	void SetStatu(UINT bit);
 	bool IsStatu(UINT bit);
 	void RemoveStatu(UINT bit);
 
-	void RoadItemResource();
+	void LoadItemResource();
 
 	virtual void CreateItem() {};
 	virtual void OnCollisionEnter(CCollider* pOther);

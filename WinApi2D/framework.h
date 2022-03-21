@@ -41,15 +41,18 @@ enum class GROUP_GAMEOBJ
 	TILE,
 	MAP, //나중에 지우던지 하면 됨
 	BACK_GROUND,
-	
+
+
 	MONSTER,
 	MISSILE_MONSTER,
+
 
 	PLAYER_ATTACK,
 	PLAYER_MISSILE,
 	PLAYER_WEAPON_BACK,
 	PLAYER,
 	PLAYER_WEAPON_FRONT,
+	ITEM, //TODO 나중에 옮길것
 
 	UI,		// UI는 모든 게임오브젝트 중 최상단 Layer에 위치
 	SIZE,

@@ -243,6 +243,9 @@
     <ClInclude Include="CWeapon.h">
       <Filter>Object\Character\Player\item\Equipment</Filter>
     </ClInclude>
+    <ClInclude Include="CCoin.h">
+      <Filter>Object\Character\Player\item\GameItem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi2D.cpp">
@@ -364,6 +367,9 @@
     </ClCompile>
     <ClCompile Include="CWeapon.cpp">
       <Filter>Object\Character\Player\item\Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="CCoin.cpp">
+      <Filter>Object\Character\Player\item\GameItem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,8 @@
 #include "CBackGround.h"
 #include "CInOutButton.h"
 #include "CD2DImage.h"
+#include "CItem.h"
+#include "CCoin.h"
 
 
 
@@ -34,7 +36,6 @@ void CSceneVillage::update()
 
 void CSceneVillage::Enter()
 {
-	
 	//wstring path = CPathManager::getInst()->GetContentPath();
 	//path += L"tile\\test.tile";
 	//LoadTile(path);
@@ -46,6 +47,12 @@ void CSceneVillage::Enter()
 	CGameObject* pPlayer = new CPlayer;
 	pPlayer->SetPos(fPoint(200, 200));
 	AddObject(pPlayer, GROUP_GAMEOBJ::PLAYER);
+
+	CItem* pItem = new CCoin(GROUP_COIN::GOLD_SMALL);
+	pItem->SetPos(fPoint(200, 200));
+	pItem->LoadItemResource();
+	AddObject(pItem, GROUP_GAMEOBJ::ITEM);
+	
 
 
 	CSoundManager::getInst()->AddSound(L"VillageBGM", L"sound\\VillageBGM.mp3", true);

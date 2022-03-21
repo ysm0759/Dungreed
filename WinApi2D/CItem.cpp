@@ -10,8 +10,15 @@
 CItem::CItem()
 {
 	m_cItemStatu = 0;
+	m_pImg = nullptr;
+	m_eItemType = (GROUP_ITEM)0;
 	CreateStatu();
 	CreateAnimator();
+	CreateCollider();
+}
+CItem* CItem::Clone()
+{
+	return new CItem(*this);
 }
 
 CItem::~CItem()
@@ -19,18 +26,20 @@ CItem::~CItem()
 
 }
 
-void CItem::RoadItemResource()
+void CItem::LoadItemResource()
 {
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerStand", L"texture\\Item\\CoinSmall.png");
-	GetAnimator()->CreateAnimation(L"PlayerStand", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 5);
+	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"GoldSmall", L"texture\\Item\\GoldSmall.png");
+	GetAnimator()->CreateAnimation(L"GoldSmall", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 7);
 
 
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerRun", L"texture\\Item\\CoinBig.png");
-	GetAnimator()->CreateAnimation(L"PlayerRun", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 7);
+	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"GoldBig", L"texture\\Item\\GoldBig.png");
+	GetAnimator()->CreateAnimation(L"GoldBig", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 7);
 
 
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerJump", L"texture\\Item\\Fairy.png");
-	GetAnimator()->CreateAnimation(L"PlayerJump", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 1);
+	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"FairyS", L"texture\\Item\\FairyS.png");
+	GetAnimator()->CreateAnimation(L"FairyS", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 16);
+
+	SetDrop();
 
 }
 
@@ -39,8 +48,6 @@ void CItem::SetDrop()
 	m_cItemStatu = 0;
 	SetStatu((UINT)ITEM_STATU::DROP);
 }
-
-
 
 void CItem::SetInventory()
 {
@@ -52,7 +59,6 @@ void CItem::SetWear()
 {
 	m_cItemStatu = 0;
 	SetStatu((UINT)ITEM_STATU::WEAR);
-
 }
 
 void CItem::SetStatu(UINT bit)
@@ -85,6 +91,10 @@ void CItem::update()
 	{
 		WearUpdate();
 	}
+	else
+	{
+
+	}
 }
 
 void CItem::render()
@@ -102,7 +112,10 @@ void CItem::render()
 	{
 		WearRender();
 	}
+	else
+	{
 
+	}
 }
 
 
