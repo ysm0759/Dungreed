@@ -70,9 +70,6 @@
     <Filter Include="Object\Character\Monster">
       <UniqueIdentifier>{765d3afe-6f2c-41ee-8ca8-8ec1fb1ae98b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\item">
-      <UniqueIdentifier>{373e7f90-48bc-460a-bc86-7a080b12d292}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scene\Scene_Main">
       <UniqueIdentifier>{320de6a6-4a83-4c0a-8b4a-b46106e62553}</UniqueIdentifier>
     </Filter>
@@ -96,6 +93,15 @@
     </Filter>
     <Filter Include="Scene\Village">
       <UniqueIdentifier>{d841a7c2-10ff-464e-b959-088672153cde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Character\Player\item">
+      <UniqueIdentifier>{373e7f90-48bc-460a-bc86-7a080b12d292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Character\Player\item\Equipment">
+      <UniqueIdentifier>{9a9e91f1-4fe9-4ab3-a2d8-b84eab9b53f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Character\Player\item\GameItem">
+      <UniqueIdentifier>{e4a24220-a326-4dc2-9b2e-adb9dae6a244}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -199,7 +205,7 @@
       <Filter>Object\Character\Player</Filter>
     </ClInclude>
     <ClInclude Include="CItem.h">
-      <Filter>Object\item</Filter>
+      <Filter>Object\Character\Player\item</Filter>
     </ClInclude>
     <ClInclude Include="CSceneMain.h">
       <Filter>Scene\Scene_Main</Filter>
@@ -230,6 +236,12 @@
     </ClInclude>
     <ClInclude Include="CSceneVillage.h">
       <Filter>Scene\Village</Filter>
+    </ClInclude>
+    <ClInclude Include="CEquipment.h">
+      <Filter>Object\Character\Player\item\Equipment</Filter>
+    </ClInclude>
+    <ClInclude Include="CWeapon.h">
+      <Filter>Object\Character\Player\item\Equipment</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -315,7 +327,7 @@
       <Filter>Object\Character\Player</Filter>
     </ClCompile>
     <ClCompile Include="CItem.cpp">
-      <Filter>Object\item</Filter>
+      <Filter>Object\Character\Player\item</Filter>
     </ClCompile>
     <ClCompile Include="CSceneMain.cpp">
       <Filter>Scene\Scene_Main</Filter>
@@ -346,6 +358,12 @@
     </ClCompile>
     <ClCompile Include="CSceneVillage.cpp">
       <Filter>Scene\Village</Filter>
+    </ClCompile>
+    <ClCompile Include="CEquipment.cpp">
+      <Filter>Object\Character\Player\item\Equipment</Filter>
+    </ClCompile>
+    <ClCompile Include="CWeapon.cpp">
+      <Filter>Object\Character\Player\item\Equipment</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

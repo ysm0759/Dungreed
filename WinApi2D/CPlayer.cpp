@@ -16,7 +16,6 @@
 
 CPlayer::CPlayer()
 {
-	m_iPlayerStatu = 0;
 	m_fVelocity = 500;
 	m_cDashCount = 2;
 	m_cMaxDashCount = 2;
@@ -25,7 +24,18 @@ CPlayer::CPlayer()
 	SetScale(fPoint(70.f, 70.f));
 	SetName(L"Player");
 
-	
+	m_cPlayerInfo.AD = 0;
+	m_cPlayerInfo.DF = 0;
+	m_cPlayerInfo.Gold = 0;
+	m_cPlayerInfo.HP = 0;
+	m_cPlayerInfo.Satiety = 0;
+
+	//m_cCurItem.Accessories = nullptr;
+	m_cCurItem.LeftSubWeapon = nullptr;
+	m_cCurItem.LeftWeapon = nullptr;
+	m_cCurItem.RightSubWeapon = nullptr;
+	m_cCurItem.RightWeapon = nullptr;
+
 
 	CreateCollider();
 	GetCollider()->SetScale(fPoint(40.f, 60.f));
@@ -125,7 +135,7 @@ void CPlayer::update()
 			StatuSet(GROUP_OBJECT_STATU::JUMP);
 			StatuRemove(GROUP_OBJECT_STATU::GROUND);
 		}
-		if (KeyDown(VK_RBUTTON) && StatuGet(GROUP_OBJECT_STATU::ATTACK) ) //공격
+		if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::ATTACK) ) //공격
 		{
 			StatuSet(GROUP_OBJECT_STATU::ATTACK);
 			//CreateObj(PlayerAttack(),GROUP_GAMEOBJ::PLAYER_ATTACK);
@@ -134,12 +144,8 @@ void CPlayer::update()
 	}
 	SetPos(pos);
 
-	if (KeyDown('Q'))
-	{
 
-		StatuRemove(GROUP_OBJECT_STATU::JUMP);
-	}
-	StatuSet(GROUP_OBJECT_STATU::GROUND);
+	StatuSet(GROUP_OBJECT_STATU::GROUND); //TODO: 나중에 지울것
 	// 캐릭터 상태에 따른 애니메이션
 	StatuAnimator();
 
@@ -154,7 +160,7 @@ void CPlayer::render()
 	component_render();
 }
 
-void CPlayer::CreateMissile()
+void CPlayer::CreateAttack()
 {
 	fPoint fpMissilePos = GetPos();
 	fpMissilePos.x += GetScale().x / 2.f;
@@ -202,4 +208,9 @@ void CPlayer::StatuAnimator()
 CGameObject* CPlayer::PlayerAttack()
 {
 	return nullptr;
+}
+
+void CPlayer::EatItem()
+{
+
 }
