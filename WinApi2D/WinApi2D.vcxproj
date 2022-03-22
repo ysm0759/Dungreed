@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAccessories.h" />
     <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAnimator.h" />
     <ClInclude Include="CBackGround.h" />
@@ -163,10 +164,13 @@
     <ClInclude Include="CEventManager.h" />
     <ClInclude Include="CFairy.h" />
     <ClInclude Include="CGameObject.h" />
+    <ClInclude Include="CGun.h" />
     <ClInclude Include="CKeyManager.h" />
     <ClInclude Include="CInOutButton.h" />
     <ClInclude Include="CMissile.h" />
     <ClInclude Include="CMonster.h" />
+    <ClInclude Include="CSpear.h" />
+    <ClInclude Include="CSword.h" />
     <ClInclude Include="CWeapon.h" />
     <ClInclude Include="CPanelUI.h" />
     <ClInclude Include="CPathManager.h" />
@@ -200,6 +204,7 @@
     <ClInclude Include="WinApi2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAccessories.cpp" />
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
     <ClCompile Include="CBackGround.cpp" />
@@ -213,10 +218,13 @@
     <ClCompile Include="CEventManager.cpp" />
     <ClCompile Include="CFairy.cpp" />
     <ClCompile Include="CGameObject.cpp" />
+    <ClCompile Include="CGun.cpp" />
     <ClCompile Include="CKeyManager.cpp" />
     <ClCompile Include="CInOutButton.cpp" />
     <ClCompile Include="CMissile.cpp" />
     <ClCompile Include="CMonster.cpp" />
+    <ClCompile Include="CSpear.cpp" />
+    <ClCompile Include="CSword.cpp" />
     <ClCompile Include="CWeapon.cpp" />
     <ClCompile Include="CPanelUI.cpp" />
     <ClCompile Include="CPathManager.cpp" />

@@ -134,7 +134,7 @@ void CItem::OnCollisionEnter(CCollider* pOther)
 
 	if (IsStatu((UINT)ITEM_STATU::DROP))
 	{
-		if (pOtherObj->GetName() == L"Player") //TODO: 나중에 타일로 바꿀것
+		if (pOtherObj->GetName() == L"Player") 
 		{
 			((CPlayer*)pOtherObj)->EatItem();
 		}

@@ -103,6 +103,12 @@
     <Filter Include="Object\Character\Player\item\GameItem">
       <UniqueIdentifier>{e4a24220-a326-4dc2-9b2e-adb9dae6a244}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Character\Player\item\Equipment\Weapon">
+      <UniqueIdentifier>{0a8bfcbc-aa2b-4ff5-b89f-7739aa54f977}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Character\Player\item\Equipment\Accessories">
+      <UniqueIdentifier>{35c43299-5e5f-404a-85be-4cd0bd69dcce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -240,14 +246,26 @@
     <ClInclude Include="CEquipment.h">
       <Filter>Object\Character\Player\item\Equipment</Filter>
     </ClInclude>
-    <ClInclude Include="CWeapon.h">
-      <Filter>Object\Character\Player\item\Equipment</Filter>
-    </ClInclude>
     <ClInclude Include="CCoin.h">
       <Filter>Object\Character\Player\item\GameItem</Filter>
     </ClInclude>
     <ClInclude Include="CFairy.h">
       <Filter>Object\Character\Player\item\GameItem</Filter>
+    </ClInclude>
+    <ClInclude Include="CSpear.h">
+      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="CSword.h">
+      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="CWeapon.h">
+      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="CGun.h">
+      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="CAccessories.h">
+      <Filter>Object\Character\Player\item\Equipment\Accessories</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -368,14 +386,26 @@
     <ClCompile Include="CEquipment.cpp">
       <Filter>Object\Character\Player\item\Equipment</Filter>
     </ClCompile>
-    <ClCompile Include="CWeapon.cpp">
-      <Filter>Object\Character\Player\item\Equipment</Filter>
-    </ClCompile>
     <ClCompile Include="CCoin.cpp">
       <Filter>Object\Character\Player\item\GameItem</Filter>
     </ClCompile>
     <ClCompile Include="CFairy.cpp">
       <Filter>Object\Character\Player\item\GameItem</Filter>
+    </ClCompile>
+    <ClCompile Include="CSpear.cpp">
+      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CSword.cpp">
+      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CWeapon.cpp">
+      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CGun.cpp">
+      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CAccessories.cpp">
+      <Filter>Object\Character\Player\item\Equipment\Accessories</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
