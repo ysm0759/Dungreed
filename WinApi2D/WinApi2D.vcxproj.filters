@@ -252,20 +252,14 @@
     <ClInclude Include="CFairy.h">
       <Filter>Object\Character\Player\item\GameItem</Filter>
     </ClInclude>
-    <ClInclude Include="CSpear.h">
-      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="CSword.h">
-      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
-    </ClInclude>
     <ClInclude Include="CWeapon.h">
-      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="CGun.h">
       <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="CAccessories.h">
       <Filter>Object\Character\Player\item\Equipment\Accessories</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerAttack.h">
+      <Filter>Object\Character\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -392,20 +386,14 @@
     <ClCompile Include="CFairy.cpp">
       <Filter>Object\Character\Player\item\GameItem</Filter>
     </ClCompile>
-    <ClCompile Include="CSpear.cpp">
-      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="CSword.cpp">
-      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
-    </ClCompile>
     <ClCompile Include="CWeapon.cpp">
-      <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="CGun.cpp">
       <Filter>Object\Character\Player\item\Equipment\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="CAccessories.cpp">
       <Filter>Object\Character\Player\item\Equipment\Accessories</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerAttack.cpp">
+      <Filter>Object\Character\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

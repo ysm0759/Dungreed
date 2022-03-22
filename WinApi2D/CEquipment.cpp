@@ -4,7 +4,7 @@
 CEquipment::CEquipment()
 {
 	this->m_eItemType = (ITEM_TYPE)0;
-	this->m_Explanation = L"한대 패면 피 1억다는 쎈검";
+	this->m_sExplanation = L"한대 패면 피 1억다는 쎈검";
 	this->m_sEffect = L"킹왕짱효과";
 	this->m_sName = L"슈퍼킹갓제네럴검";
 	this->m_sType = L"조로의 삼도류!!";
@@ -21,8 +21,5 @@ void CEquipment::SetName(string name)
 
 void CEquipment::SetItemType(ITEM_TYPE itemType)
 {
-}
 
-void CEquipment::CreateItem()
-{
 }

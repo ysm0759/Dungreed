@@ -4,6 +4,7 @@
 
 enum class ITEM_TYPE
 {
+	DEFAULT,
 	ONE_HAND_WEAPON,
 	TWO_HAND_WEAPON,
 	SUB_WEAPON,
@@ -21,7 +22,7 @@ protected:
 	wstring m_sName;
 	wstring m_sType;
 	wstring m_sEffect;
-	wstring m_Explanation;
+	wstring m_sExplanation;
 	Stat m_cItemStat;
 
 
@@ -31,8 +32,6 @@ public:
 
 	void SetName(string name);
 	void SetItemType(ITEM_TYPE itemType);
-	//virtual void Attack() {}; // weapon¸¸ ±¸Çö
-	virtual void CreateItem();
 
 };
 

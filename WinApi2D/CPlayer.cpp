@@ -137,16 +137,14 @@ void CPlayer::update()
 		}
 		if (KeyDown('Q')) //공격
 		{
-			//StatuSet(GROUP_OBJECT_STATU::ATTACK);
  			CreateAttack();
-			//CreateObj(PlayerAttack(),GROUP_GAMEOBJ::PLAYER_ATTACK);
+
 		}
 
 	}
 	SetPos(pos);
 
 
-	//StatuSet(GROUP_OBJECT_STATU::GROUND); //TODO: 나중에 지울것
 	// 캐릭터 상태에 따른 애니메이션
 	StatuAnimator();
 
@@ -166,10 +164,7 @@ void CPlayer::CreateAttack()
 	fPoint objectPos = GetPos();
 	
 	// Misiile Object
-	CItem* object = new CCoin(GROUP_COIN::GOLD_SMALL);
-	object->LoadItemResource();
-	object->SetPos(objectPos);
-	CreateObj(object, GROUP_GAMEOBJ::ITEM);
+
 }
 
 

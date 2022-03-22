@@ -10,11 +10,12 @@ CCoin::CCoin(GROUP_COIN type)
 	int randDir = rand() % 2;
 
 	if (randDir == 0)
-		GetStatu()->SetForceDir(fPoint(-rand(), -rand()));
+		GetStatu()->SetForceDir(fPoint((float)-rand(), (float)-rand()));
 	else
-		GetStatu()->SetForceDir(fPoint(rand(), -rand()));
+		GetStatu()->SetForceDir(fPoint((float)rand(), (float)-rand()));
 
-	GetStatu()->SetForce(rand() %100 + 50 * 10);
+	GetStatu()->SetForce((float)(rand() %100 + 50 * 10));
+
 	SetDrop();
 	switch (m_eCoinType)
 	{
