@@ -45,6 +45,12 @@ void CItem::LoadItemResource()
 
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"FairyL", L"texture\\Item\\FairyL.png");
 	GetAnimator()->CreateAnimation(L"FairyL", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 16);
+	
+
+	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"Sword", L"texture\\Item\\Sword.png");
+	GetAnimator()->CreateAnimation(L"Sword", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 0);
+	
+
 
 
 }

@@ -5,6 +5,7 @@
 class CD2DImage;
 class CItem;
 class CWeapon;
+class CPlayerAttack;
 
 struct ItemPart
 {
@@ -43,6 +44,7 @@ private:
 	ItemPart m_cCurItem;
 	list<CItem*> m_inventory;
 	
+	CPlayerAttack* m_playerAttack;
 
 	void CreateAttack();
 
