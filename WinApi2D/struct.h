@@ -89,3 +89,51 @@ struct fPoint
 typedef iPoint iVec2;
 typedef fPoint fVec2;
 
+enum class STAT
+{
+	MAXAD,
+	MINAD,
+	POWER,
+	DEFEND,
+	TOUGH,
+	BLOCK,
+	CRITICAL,
+	CRITICAL_DAMAGE,
+	EVASION,
+	SPEED,
+	ATTACK_SPEED,
+	RELOADING,
+	DASH_DAMAGE,
+	TRUE_DAMAGE,
+	SIZE,
+};
+
+enum class ATTRIBUTE
+{
+	BURN,
+	POSION,
+	COLD,
+	ELECTRIC_SHOCK,
+	STAN,
+	SIZE,
+};
+
+struct Stat
+{
+	int maxAD;			//최대 공격력
+	int minAD;			//최소 공격력
+	int power;			//위력
+	int defend;			//방어력
+	int tough;			//강인함
+	int block;			//막기
+	int burn;			//화상
+	int critical;		//치명타
+	int criticalDamage; //치명타 데미지
+	int evasion;		//회피
+	int Posion;		    //중독
+	int speed;			//이동속도
+	int attackSpeed;	//공격속도
+	int reloading;		//재장전속도
+	int	dashDamage;		//대쉬공격력
+	int	trueDamage;		//고정데미지
+};

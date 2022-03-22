@@ -1,19 +1,13 @@
 #pragma once
 
 
-#include "CItem.h"
+#include "CEquipment.h"
 
-struct WeaponInfo
+
+
+class CWeapon : public CEquipment
 {
-	int AD;
-	int Delay;
-};
-
-class CWeapon : public CItem
-{
-	CD2DImage* m_pImg;
-	WeaponInfo m_Info;
-
+	
 public:
 	CWeapon();
 	~CWeapon();

@@ -1,5 +1,7 @@
 #pragma once
-class CAccessories
+#include "CEquipment.h"
+
+class CAccessories : public CEquipment
 {
 };
 

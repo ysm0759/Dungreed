@@ -11,6 +11,9 @@ enum class ITEM_TYPE
 	SIZE
 };
 
+
+
+
 class CEquipment : public CItem
 {
 protected:
@@ -19,7 +22,7 @@ protected:
 	wstring m_sType;
 	wstring m_sEffect;
 	wstring m_Explanation;
-
+	Stat m_cItemStat;
 
 
 public:

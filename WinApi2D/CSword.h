@@ -4,9 +4,6 @@
 class CSword : public CWeapon
 {
 
-
-
-
 public:
 	virtual void Attack();
 	
