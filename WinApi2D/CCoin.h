@@ -12,7 +12,6 @@ class CCoin : public CItem
 	GROUP_COIN m_eCoinType;
 	
 public:
-	CCoin();
 	CCoin(GROUP_COIN type);
 	~CCoin();
 	virtual void DropRender();

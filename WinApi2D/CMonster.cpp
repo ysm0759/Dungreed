@@ -20,7 +20,7 @@ CMonster::CMonster()
 	SetName(L"Monster");
 
 	CreateCollider();
-	GetCollider()->SetScale(fPoint(90.f, 90.f));
+	GetCollider()->SetScale(fPoint(2000.f, 200.f));
 
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"MonsterTex", L"texture\\Player\\PlayerStand.png");
 

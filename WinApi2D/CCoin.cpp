@@ -3,29 +3,35 @@
 #include "CAnimator.h"
 #include "CStatu.h"
 #include "CCollider.h"
-CCoin::CCoin()
-{
-
-};
 
 CCoin::CCoin(GROUP_COIN type)
 {
 	this->m_eCoinType = type;
+	int randDir = rand() % 2;
+
+	if (randDir == 0)
+		GetStatu()->SetForceDir(fPoint(-rand(), -rand()));
+	else
+		GetStatu()->SetForceDir(fPoint(rand(), -rand()));
+
+	GetStatu()->SetForce(rand() %100 + 50 * 10);
+	SetDrop();
 	switch (m_eCoinType)
 	{
 	case GROUP_COIN::GOLD_SMALL:
-		SetScale(fPoint(15, 15));
-		CreateCollider();
-		GetCollider()->SetScale(GetScale());
+	{
+	}
+		GetCollider()->SetScale(fPoint(10, 10));
+		GetCollider()->SetOffsetPos(fPoint(0, 3));
 		break;
 	case GROUP_COIN::GOLD_BIG:
-		SetScale(fPoint(2000, 2000));
+		GetCollider()->SetScale(fPoint(30,15));
+		GetCollider()->SetOffsetPos(fPoint(0, 3));
 		break;
 	}
 
-
-
-
+	StatuSet(GROUP_OBJECT_STATU::FORCE);
+	StatuRemove(GROUP_OBJECT_STATU::GROUND);
 }
 CCoin::~CCoin()
 {
@@ -41,13 +47,14 @@ void CCoin::DropRender()
 		GetAnimator()->Play(L"GoldSmall", fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LOOK));
 		break;
 	case GROUP_COIN::GOLD_BIG:
-		GetAnimator()->Play(L"GoldBig", fPoint(50, 50), StatuGet(GROUP_OBJECT_STATU::LOOK));
+		GetAnimator()->Play(L"GoldBig", fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LOOK));
 		break;
-	}
-
+	} 
 	component_render();
 }
 
 void CCoin::DropUpdate()
 {
+
+	GetAnimator()->update();
 }

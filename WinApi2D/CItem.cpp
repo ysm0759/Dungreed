@@ -15,6 +15,7 @@ CItem::CItem()
 	CreateStatu();
 	CreateAnimator();
 	CreateCollider();
+	SetDrop();
 }
 CItem* CItem::Clone()
 {
@@ -39,7 +40,12 @@ void CItem::LoadItemResource()
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"FairyS", L"texture\\Item\\FairyS.png");
 	GetAnimator()->CreateAnimation(L"FairyS", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 16);
 
-	SetDrop();
+	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"FairyM", L"texture\\Item\\FairyM.png");
+	GetAnimator()->CreateAnimation(L"FairyM", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 16);
+
+	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"FairyL", L"texture\\Item\\FairyL.png");
+	GetAnimator()->CreateAnimation(L"FairyL", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 16);
+
 
 }
 
@@ -79,6 +85,7 @@ void CItem::RemoveStatu(UINT bit)
 
 void CItem::update()
 {
+
 	if (IsStatu((UINT)ITEM_STATU::DROP))
 	{
 		DropUpdate();
@@ -95,6 +102,7 @@ void CItem::update()
 	{
 
 	}
+	GetStatu()->update();
 }
 
 void CItem::render()
@@ -130,7 +138,7 @@ void CItem::OnCollisionEnter(CCollider* pOther)
 		{
 			((CPlayer*)pOtherObj)->EatItem();
 		}
-		if (pOtherObj->GetName() == L"Tile") //TODO: 나중에 타일로 바꿀것
+		if (pOtherObj->GetName() == L"Monster") //TODO: 나중에 타일로 바꿀것
 		{
 			StatuSet(GROUP_OBJECT_STATU::GROUND);
 			StatuRemove(GROUP_OBJECT_STATU::FORCE);

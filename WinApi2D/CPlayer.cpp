@@ -7,7 +7,7 @@
 #include "CAnimator.h"
 #include "CAnimation.h"
 #include "CStatu.h"
-
+#include "CCoin.h"
 
 
 #define DASHCREATETIME 1.2f
@@ -135,9 +135,10 @@ void CPlayer::update()
 			StatuSet(GROUP_OBJECT_STATU::JUMP);
 			StatuRemove(GROUP_OBJECT_STATU::GROUND);
 		}
-		if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::ATTACK) ) //공격
+		if (KeyDown('Q')) //공격
 		{
-			StatuSet(GROUP_OBJECT_STATU::ATTACK);
+			//StatuSet(GROUP_OBJECT_STATU::ATTACK);
+ 			CreateAttack();
 			//CreateObj(PlayerAttack(),GROUP_GAMEOBJ::PLAYER_ATTACK);
 		}
 
@@ -145,7 +146,7 @@ void CPlayer::update()
 	SetPos(pos);
 
 
-	StatuSet(GROUP_OBJECT_STATU::GROUND); //TODO: 나중에 지울것
+	//StatuSet(GROUP_OBJECT_STATU::GROUND); //TODO: 나중에 지울것
 	// 캐릭터 상태에 따른 애니메이션
 	StatuAnimator();
 
@@ -162,15 +163,13 @@ void CPlayer::render()
 
 void CPlayer::CreateAttack()
 {
-	fPoint fpMissilePos = GetPos();
-	fpMissilePos.x += GetScale().x / 2.f;
-
+	fPoint objectPos = GetPos();
+	
 	// Misiile Object
-	CMissile* pMissile = new CMissile;
-	pMissile->SetPos(fpMissilePos);
-	pMissile->SetDir(fVec2(1, 0));
-
-	CreateObj(pMissile, GROUP_GAMEOBJ::PLAYER_MISSILE);
+	CItem* object = new CCoin(GROUP_COIN::GOLD_SMALL);
+	object->LoadItemResource();
+	object->SetPos(objectPos);
+	CreateObj(object, GROUP_GAMEOBJ::ITEM);
 }
 
 
@@ -193,11 +192,11 @@ void CPlayer::StatuAnimator()
 	{
 		GetAnimator()->Play(L"PlayerStand", fPoint(50, 50), StatuGet(GROUP_OBJECT_STATU::LOOK));
 	}
-	if (StatuGet(GROUP_OBJECT_STATU::MOVE) && StatuGet(GROUP_OBJECT_STATU::GROUND))
+	else if (StatuGet(GROUP_OBJECT_STATU::MOVE) && StatuGet(GROUP_OBJECT_STATU::GROUND))
 	{
 		GetAnimator()->Play(L"PlayerRun", fPoint(50, 50), StatuGet(GROUP_OBJECT_STATU::LOOK));
 	}
-	if (!StatuGet(GROUP_OBJECT_STATU::GROUND) || StatuGet(GROUP_OBJECT_STATU::JUMP) || StatuGet(GROUP_OBJECT_STATU::FORCE))
+	else if (!StatuGet(GROUP_OBJECT_STATU::GROUND) || StatuGet(GROUP_OBJECT_STATU::JUMP) || StatuGet(GROUP_OBJECT_STATU::FORCE))
 	{
 		GetAnimator()->Play(L"PlayerJump", fPoint(50, 50), StatuGet(GROUP_OBJECT_STATU::LOOK));
 	}

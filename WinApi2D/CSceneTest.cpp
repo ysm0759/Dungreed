@@ -4,10 +4,18 @@
 #include "CGameObject.h"
 #include "CPlayer.h"
 #include "CMonster.h"
-
+#include "CItem.h"
+#include "CCoin.h"
 #include "CBackGround.h"
+#include "CInOutButton.h"
+#include "CFairy.h"
+
 #include "CSound.h"
 #include "CD2DImage.h"
+
+
+
+
 
 
 CSceneTest::CSceneTest()
@@ -46,26 +54,44 @@ void CSceneTest::Enter()
 	wstring path = CPathManager::getInst()->GetContentPath();
 	path += L"tile\\Start.tile";
 	//LoadTile(path);
-
-	// Player 추가
+	// 
+		// Player 추가
 	CGameObject* pPlayer = new CPlayer;
 	pPlayer->SetPos(fPoint(200, 200));
 	AddObject(pPlayer, GROUP_GAMEOBJ::PLAYER);
 
 
-	// Monster 추가 
-	CMonster* pMonster = new CMonster;
-	pMonster->SetPos(fPoint(1100, 350));
-	pMonster->SetCenterPos(pMonster->GetPos());
+	CItem* pItem = new CCoin(GROUP_COIN::GOLD_BIG);
+	pItem->SetPos(fPoint(200, 200));
+	pItem->LoadItemResource();
+	AddObject(pItem, GROUP_GAMEOBJ::ITEM);
+
+	// Player 추가
+	CGameObject* pMonster = new CMonster;
+	pMonster->SetPos(fPoint(200, 600));
 	AddObject(pMonster, GROUP_GAMEOBJ::MONSTER);
 
+	CItem* pFariy = new CFairy(GROUP_FAIRY::FAIRY_SMALL);
+	pFariy->SetPos(fPoint(220, 200));
+	pFariy->LoadItemResource();
+	AddObject(pFariy, GROUP_GAMEOBJ::ITEM);
+	
+	CItem* pFariy1 = new CFairy(GROUP_FAIRY::FAIRY_MIDDLE);
+	pFariy1->SetPos(fPoint(150, 200));
+	pFariy1->LoadItemResource();
+	AddObject(pFariy1, GROUP_GAMEOBJ::ITEM);
 
-	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::MONSTER);
-	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER_MISSILE, GROUP_GAMEOBJ::MONSTER);
+	CItem* pFariy2 = new CFairy(GROUP_FAIRY::FAIRY_BIG);
+	pFariy2->SetPos(fPoint(100, 200));
+	pFariy2->LoadItemResource();
+	AddObject(pFariy2, GROUP_GAMEOBJ::ITEM);
 
-	// Camera Look 지정
-	//CCameraManager::getInst()->SetLookAt(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
 	CCameraManager::getInst()->SetTargetObj(pPlayer);
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::MONSTER);
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::MONSTER, GROUP_GAMEOBJ::ITEM);
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::ITEM);
+
+
 }
 
 void CSceneTest::Exit()

@@ -27,7 +27,7 @@ void CSceneMain::update()
 
 	if (KeyDown(VK_TAB))
 	{
-		ChangeScn(GROUP_SCENE::VILLAGE);
+		ChangeScn(GROUP_SCENE::TEST);
 	}
 
 }

@@ -246,6 +246,9 @@
     <ClInclude Include="CCoin.h">
       <Filter>Object\Character\Player\item\GameItem</Filter>
     </ClInclude>
+    <ClInclude Include="CFairy.h">
+      <Filter>Object\Character\Player\item\GameItem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi2D.cpp">
@@ -369,6 +372,9 @@
       <Filter>Object\Character\Player\item\Equipment</Filter>
     </ClCompile>
     <ClCompile Include="CCoin.cpp">
+      <Filter>Object\Character\Player\item\GameItem</Filter>
+    </ClCompile>
+    <ClCompile Include="CFairy.cpp">
       <Filter>Object\Character\Player\item\GameItem</Filter>
     </ClCompile>
   </ItemGroup>

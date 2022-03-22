@@ -12,7 +12,6 @@ public:
 	virtual void Exit();
 
 	void CreateBackGround();
-	void CreateButton();
 
 };
 

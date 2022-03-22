@@ -41,24 +41,18 @@ void CSceneVillage::Enter()
 	//LoadTile(path);
 
 	CreateBackGround();
-	CreateButton();
 
 	// Player Ãß°¡
 	CGameObject* pPlayer = new CPlayer;
 	pPlayer->SetPos(fPoint(200, 200));
 	AddObject(pPlayer, GROUP_GAMEOBJ::PLAYER);
 
-	CItem* pItem = new CCoin(GROUP_COIN::GOLD_SMALL);
-	pItem->SetPos(fPoint(200, 200));
-	pItem->LoadItemResource();
-	AddObject(pItem, GROUP_GAMEOBJ::ITEM);
 	
 
 
 	CSoundManager::getInst()->AddSound(L"VillageBGM", L"sound\\VillageBGM.mp3", true);
 	CSoundManager::getInst()->Play(L"VillageBGM");
 
-	CCameraManager::getInst()->SetTargetObj(pPlayer);
 
 }
 
@@ -98,10 +92,4 @@ void CSceneVillage::CreateBackGround()
 }
 
 
-
-
-void CSceneVillage::CreateButton()
-{
-
-}
 
