@@ -90,18 +90,7 @@ void CItem::update()
 	{
 		DropUpdate();
 	}
-	else if (IsStatu((UINT)ITEM_STATU::INVENTORY))
-	{
-		InventoryUpdate();
-	}
-	else if (IsStatu((UINT)ITEM_STATU::WEAR))
-	{
-		WearUpdate();
-	}
-	else
-	{
 
-	}
 	GetStatu()->update();
 }
 
@@ -111,18 +100,6 @@ void CItem::render()
 	if (IsStatu((UINT)ITEM_STATU::DROP))
 	{
 		DropRender();
-	}
-	else if (IsStatu((UINT)ITEM_STATU::INVENTORY))
-	{
-		InventoryRender();
-	}
-	else if (IsStatu((UINT)ITEM_STATU::WEAR))
-	{
-		WearRender();
-	}
-	else
-	{
-
 	}
 }
 
