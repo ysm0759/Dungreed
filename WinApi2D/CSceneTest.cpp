@@ -86,11 +86,6 @@ void CSceneTest::Enter()
 	pFariy2->LoadItemResource();
 	AddObject(pFariy2, GROUP_GAMEOBJ::ITEM);
 
-	CPlayerAttack* playerAttack = new CPlayerAttack;
-	playerAttack->SetPos(fPoint(100, 200));
-	AddObject(playerAttack, GROUP_GAMEOBJ::PLAYER_ATTACK);
-	playerAttack->SetAniSize(fPoint(100.f,100.f));
-	playerAttack->SetKey(L"SwordEff");
 
 	CCameraManager::getInst()->SetTargetObj(pPlayer);
 	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::MONSTER);

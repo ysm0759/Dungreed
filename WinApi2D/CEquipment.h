@@ -14,7 +14,6 @@ enum class ITEM_TYPE
 
 
 
-
 class CEquipment : public CItem
 {
 protected:

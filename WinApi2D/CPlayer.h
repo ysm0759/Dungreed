@@ -46,8 +46,8 @@ private:
 	
 	CPlayerAttack* m_playerAttack;
 
-	void CreateAttack();
 
+	void PlayerAttack();
 public:
 	CPlayer();
 	~CPlayer();
@@ -56,7 +56,6 @@ public:
 	virtual void render();
 	virtual void OnCollisionEnter(CCollider* pOther);
 	void StatuAnimator();
-	CGameObject* PlayerAttack();
 	void EatItem();
 
 };

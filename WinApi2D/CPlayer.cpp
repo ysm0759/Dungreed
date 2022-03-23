@@ -8,7 +8,7 @@
 #include "CAnimation.h"
 #include "CStatu.h"
 #include "CCoin.h"
-
+#include "CPlayerAttack.h"
 
 #define DASHCREATETIME 1.2f
 #define DASHVELOCITY 1500.f
@@ -135,10 +135,16 @@ void CPlayer::update()
 			StatuSet(GROUP_OBJECT_STATU::JUMP);
 			StatuRemove(GROUP_OBJECT_STATU::GROUND);
 		}
-		if (KeyDown('Q')) //공격
+		if (KeyDown(VK_LBUTTON)) //공격
 		{
- 			CreateAttack();
-
+			PlayerAttack();
+			CPlayerAttack* playerAttack = new CPlayerAttack;
+			playerAttack->SetPos(fPoint(100, 200));
+			CreateObj(playerAttack, GROUP_GAMEOBJ::PLAYER_ATTACK);
+			playerAttack->SetAniSize(fPoint(100.f, 100.f));
+			playerAttack->SetKey(L"SwordEff");
+			playerAttack->SetPos(this->GetPos());
+			playerAttack->SetDir(playDir);
 		}
 
 	}
@@ -157,14 +163,6 @@ void CPlayer::update()
 void CPlayer::render()
 {
 	component_render();
-}
-
-void CPlayer::CreateAttack()
-{
-	fPoint objectPos = GetPos();
-	
-	// Misiile Object
-
 }
 
 
@@ -199,9 +197,10 @@ void CPlayer::StatuAnimator()
 
 }
 
-CGameObject* CPlayer::PlayerAttack()
+void CPlayer::PlayerAttack()
 {
-	return nullptr;
+
+
 }
 
 void CPlayer::EatItem()

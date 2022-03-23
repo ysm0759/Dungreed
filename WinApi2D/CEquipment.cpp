@@ -8,6 +8,7 @@ CEquipment::CEquipment()
 	this->m_sEffect = L"Å·¿ÕÂ¯È¿°ú";
 	this->m_sName = L"½´ÆÛÅ·°«Á¦³×·²°Ë";
 	this->m_sType = L"Á¶·ÎÀÇ »ïµµ·ù!!";
+	m_cItemStat = Stat();
 }
 
 CEquipment::~CEquipment()

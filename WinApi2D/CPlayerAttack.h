@@ -10,7 +10,9 @@ private:
 	CD2DImage* m_pImg;
 	fPoint m_fAniScale;
 	wstring m_sKey;
-
+	float m_fDestroyTime;
+	float m_fDestroy;
+	float m_fRange;
 public:
 	CPlayerAttack();
 	 ~CPlayerAttack();

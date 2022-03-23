@@ -10,9 +10,11 @@ CPlayerAttack* CPlayerAttack::Clone()
 
 CPlayerAttack::CPlayerAttack()
 {
-	m_fvDir = fVec2(1, 0);
+	m_fvDir = fVec2(-1, -1);
 	m_fAniScale = {};
-
+	m_fDestroyTime = 0.6f;
+	m_fDestroy = 0.f;
+	m_fRange = 100.f;
 	SetName(L"PlayerAttack");
 	CreateCollider();
 	GetCollider()->SetScale(fPoint(200.f, 200.f));
@@ -20,6 +22,7 @@ CPlayerAttack::CPlayerAttack()
 	CreateAnimator();
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"SwordEff", L"texture\\Item\\SwordEff.png");
 	GetAnimator()->CreateAnimation(L"SwordEff", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 6);
+	
 }
 
 CPlayerAttack::~CPlayerAttack()
@@ -29,23 +32,23 @@ CPlayerAttack::~CPlayerAttack()
 
 void CPlayerAttack::update()
 {
-	fPoint pos = GetPos();
+	
+	//pos.x += m_fVelocity * m_fvDir.x * fDT;
+	//pos.y += m_fVelocity * m_fvDir.y * fDT;
 
-	pos.x += m_fVelocity * m_fvDir.x * fDT;
-	pos.y += m_fVelocity * m_fvDir.y * fDT;
+	//SetPos(pos);
 
-	SetPos(pos);
-
-	if (pos.x < 0 || pos.x > WINSIZEX
-		|| pos.y < 0 || pos.y > WINSIZEY)
+	if (m_fDestroy >= m_fDestroyTime)
+	{
 		DeleteObj(this);
-
+	}
+	m_fDestroy += fDT;
 	GetAnimator()->update();
 }
 
 void CPlayerAttack::render()
 {
-	fPoint pos = GetPos();
+	fPoint pos = fPoint(m_fRange *GetPos().x, m_fRange * GetPos().y);
 	fPoint scale = GetScale();
 
 	fPoint fptRenderPos = CCameraManager::getInst()->GetRenderPos(pos);
@@ -60,6 +63,8 @@ void CPlayerAttack::render()
 void CPlayerAttack::SetDir(fVec2 vec)
 {
 	m_fvDir = vec.normalize();
+	fPoint pos = fPoint(m_fRange * m_fvDir.normalize().x + GetPos().x, m_fRange * m_fvDir.normalize().y + GetPos().y);
+	SetPos(pos);
 }
 
 
