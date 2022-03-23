@@ -4,7 +4,7 @@
 
 // 중력
 #define JUMPSPEED  1000		    // 점프 뛰어오르는 속도
-#define GRAVITY_MAX 2000		// 맥스 중력값
+#define GRAVITY_MAX 5000		// 맥스 중력값
 #define GRAVITY_VALUE 2000		// 중력 가속도
 
 CStatu::CStatu()

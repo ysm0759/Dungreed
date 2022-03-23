@@ -47,12 +47,7 @@ void CItem::LoadItemResource()
 	GetAnimator()->CreateAnimation(L"FairyL", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 16);
 	
 
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"Sword", L"texture\\Item\\Sword.png");
-	GetAnimator()->CreateAnimation(L"Sword", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 1);
 	
-
-
-
 }
 
 void CItem::SetDrop()
@@ -96,8 +91,24 @@ void CItem::update()
 	{
 		DropUpdate();
 	}
+	
+	if (IsStatu((UINT)ITEM_STATU::DROP))
+	{
+		StatuRemove(GROUP_OBJECT_STATU::GROUND);
+		StatuSet(GROUP_OBJECT_STATU::FORCE);
+	}
+
+	
+	//if (IsStatu((UINT)ITEM_STATU::INVENTORY))
+	//{
+	//	StatuSet(GROUP_OBJECT_STATU::GROUND);
+	//	StatuRemove(GROUP_OBJECT_STATU::FORCE);
+	//}
+
 
 	GetStatu()->update();
+	GetAnimator()->update();
+	component_render();
 }
 
 void CItem::render()
@@ -107,6 +118,7 @@ void CItem::render()
 	{
 		DropRender();
 	}
+
 }
 
 
@@ -115,6 +127,18 @@ void CItem::OnCollisionEnter(CCollider* pOther)
 	CGameObject* pOtherObj = pOther->GetObj();
 
 
+	if (IsStatu((UINT)ITEM_STATU::DROP))
+	{
+		if (pOtherObj->GetName() == L"Player") 
+		{
+			((CPlayer*)pOtherObj)->EatItem();
+		}
+		if (pOtherObj->GetName() == L"Monster") //TODO: 나중에 타일로 바꿀것
+		{
+			StatuSet(GROUP_OBJECT_STATU::GROUND);
+			StatuRemove(GROUP_OBJECT_STATU::FORCE);
+		}
+	}
 	if (IsStatu((UINT)ITEM_STATU::DROP))
 	{
 		if (pOtherObj->GetName() == L"Player") 

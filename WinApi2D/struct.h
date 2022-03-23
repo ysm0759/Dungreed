@@ -89,7 +89,7 @@ struct fPoint
 typedef iPoint iVec2;
 typedef fPoint fVec2;
 
-enum class STATINFO
+enum class STAT_INFO
 {
 	MAXAD,
 	MINAD,
@@ -120,7 +120,7 @@ enum class ATTRIBUTE
 
 struct Stat
 {
-	int info[(UINT)STATINFO::SIZE];
+	int info[(UINT)STAT_INFO::SIZE];
 	int attribute[(UINT)ATTRIBUTE::SIZE];
 
 	Stat()

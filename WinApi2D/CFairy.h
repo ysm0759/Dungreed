@@ -15,8 +15,8 @@ class CFairy : public CItem
 public:
 	CFairy(GROUP_FAIRY type);
 	~CFairy();
-	virtual void DropRender();
-	virtual void DropUpdate();
+	//virtual void DropRender();
+	//virtual void DropUpdate();
 
 };
 

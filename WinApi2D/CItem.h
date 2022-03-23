@@ -24,7 +24,7 @@ class CD2DImage;
 
 class CItem : public CGameObject
 {
-	
+protected:
 	char m_cItemStatu;
 	GROUP_ITEM m_eItemType;
 	CD2DImage* m_pImg;

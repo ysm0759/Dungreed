@@ -29,8 +29,11 @@ public:
 	CEquipment();
 	~CEquipment();
 
-	void SetName(string name);
-	void SetItemType(ITEM_TYPE itemType);
+	void SetEquipmentName(wstring name);
+	void SetEquipmentEffect(wstring name);
+	void SetEquipmentExplanation(wstring name);
+	void SetEquipmentItemType(ITEM_TYPE itemType);
+	void SetEquipmentItemStat(STAT_INFO statInfo, int data);
 
 };
 

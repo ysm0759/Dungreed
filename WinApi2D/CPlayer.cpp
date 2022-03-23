@@ -150,7 +150,7 @@ void CPlayer::update()
 	}
 	SetPos(pos);
 
-
+//	StatuSet(GROUP_OBJECT_STATU::GROUND);
 	// 캐릭터 상태에 따른 애니메이션
 	StatuAnimator();
 
@@ -178,6 +178,7 @@ void CPlayer::OnCollisionEnter(CCollider* pOther)
 		StatuRemove(GROUP_OBJECT_STATU::JUMP);
 	}
 }
+
 
 void CPlayer::StatuAnimator()
 {

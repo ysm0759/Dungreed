@@ -2,6 +2,10 @@
 #include "CGameObject.h"
 #include "CD2DImage.h"
 
+
+class WeaponAttackInfo;
+class CWeapon;
+
  class CPlayerAttack : public CGameObject
 {
 private:
@@ -13,8 +17,15 @@ private:
 	float m_fDestroyTime;
 	float m_fDestroy;
 	float m_fRange;
+
+	WeaponAttackInfo* m_pWeaponAttackInfo;
+
+
+
 public:
 	CPlayerAttack();
+	CPlayerAttack(CWeapon* pCurentWeapon);
+
 	 ~CPlayerAttack();
 	 virtual CPlayerAttack* Clone();
 

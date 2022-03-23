@@ -39,23 +39,23 @@ CCoin::~CCoin()
 
 };
 
-
-void CCoin::DropRender()
-{
-	switch (m_eCoinType)
-	{
-	case GROUP_COIN::GOLD_SMALL:
-		GetAnimator()->Play(L"GoldSmall", fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LOOK));
-		break;
-	case GROUP_COIN::GOLD_BIG:
-		GetAnimator()->Play(L"GoldBig", fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LOOK));
-		break;
-	} 
-	component_render();
-}
-
-void CCoin::DropUpdate()
-{
-
-	GetAnimator()->update();
-}
+//
+//void CCoin::DropRender()
+//{
+//	switch (m_eCoinType)
+//	{
+//	case GROUP_COIN::GOLD_SMALL:
+//		GetAnimator()->Play(L"GoldSmall", fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LOOK));
+//		break;
+//	case GROUP_COIN::GOLD_BIG:
+//		GetAnimator()->Play(L"GoldBig", fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LOOK));
+//		break;
+//	} 
+//	component_render();
+//}
+//
+//void CCoin::DropUpdate()
+//{
+//
+//	GetAnimator()->update();
+//}

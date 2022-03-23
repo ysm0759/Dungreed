@@ -16,11 +16,29 @@ CEquipment::~CEquipment()
 
 }
 
-void CEquipment::SetName(string name)
+void CEquipment::SetEquipmentName(wstring name)
 {
+	m_sName = name;
 }
 
-void CEquipment::SetItemType(ITEM_TYPE itemType)
+void CEquipment::SetEquipmentItemType(ITEM_TYPE itemType)
 {
+	m_eItemType = itemType;
+}
+
+void CEquipment::SetEquipmentEffect(wstring name)
+{
+
+	this->m_sEffect = name;
+}
+
+void CEquipment::SetEquipmentExplanation(wstring name)
+{
+	this->m_sExplanation = name;
+}
+
+void CEquipment::SetEquipmentItemStat(STAT_INFO statInfo, int data)
+{
+	m_cItemStat.info[(UINT)statInfo] = data;
 
 }

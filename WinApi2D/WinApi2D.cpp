@@ -4,7 +4,6 @@
 #include "framework.h"
 #include "WinApi2D.h"
 #include "locale.h"
-
 #define MAX_LOADSTRING 100
 
 // 전역 변수:

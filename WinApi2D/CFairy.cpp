@@ -34,26 +34,26 @@ CFairy::~CFairy()
 
 };
 
-
-void CFairy::DropRender()
-{
-	switch (m_eFairyType)
-	{
-	case GROUP_FAIRY::FAIRY_SMALL:
-		GetAnimator()->Play(L"FairyS", fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LOOK));
-		break;
-	case GROUP_FAIRY::FAIRY_MIDDLE:
-		GetAnimator()->Play(L"FairyM", fPoint(5, 5), StatuGet(GROUP_OBJECT_STATU::LOOK));
-		break;
-	case GROUP_FAIRY::FAIRY_BIG:
-		GetAnimator()->Play(L"FairyL", fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LOOK));
-		break;
-	}
-	component_render();
-}
-
-void CFairy::DropUpdate()
-{
-
-	GetAnimator()->update();
-}
+//
+//void CFairy::DropRender()
+//{
+//	switch (m_eFairyType)
+//	{
+//	case GROUP_FAIRY::FAIRY_SMALL:
+//		GetAnimator()->Play(L"FairyS", fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LOOK));
+//		break;
+//	case GROUP_FAIRY::FAIRY_MIDDLE:
+//		GetAnimator()->Play(L"FairyM", fPoint(5, 5), StatuGet(GROUP_OBJECT_STATU::LOOK));
+//		break;
+//	case GROUP_FAIRY::FAIRY_BIG:
+//		GetAnimator()->Play(L"FairyL", fPoint(20, 20), StatuGet(GROUP_OBJECT_STATU::LOOK));
+//		break;
+//	}
+//	component_render();
+//}
+//
+//void CFairy::DropUpdate()
+//{
+//
+//	GetAnimator()->update();
+//}
