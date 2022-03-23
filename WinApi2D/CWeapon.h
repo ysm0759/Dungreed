@@ -17,6 +17,7 @@ class CWeapon : public CEquipment
 {
 	float m_fDelay;
 	float m_fRange;
+	fPoint m_fColScale;
 	ITEM_KIND m_eKind;
 
 public:
