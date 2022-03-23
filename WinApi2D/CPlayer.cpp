@@ -7,7 +7,7 @@
 #include "CAnimator.h"
 #include "CAnimation.h"
 #include "CStatu.h"
-#include "CCoin.h"
+#include "CGameItem.h"
 #include "CPlayerAttack.h"
 
 #define DASHCREATETIME 1.2f

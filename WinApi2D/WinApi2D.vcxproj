@@ -164,7 +164,6 @@
     <ClInclude Include="CD2DImage.h" />
     <ClInclude Include="CEquipment.h" />
     <ClInclude Include="CEventManager.h" />
-    <ClInclude Include="CFairy.h" />
     <ClInclude Include="CGameObject.h" />
     <ClInclude Include="CKeyManager.h" />
     <ClInclude Include="CInOutButton.h" />
@@ -200,7 +199,7 @@
     <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="CSceneVillage.h" />
-    <ClInclude Include="CCoin.h" />
+    <ClInclude Include="CGameItem.h" />
     <ClInclude Include="WinApi2D.h" />
   </ItemGroup>
   <ItemGroup>
@@ -216,7 +215,6 @@
     <ClCompile Include="CD2DImage.cpp" />
     <ClCompile Include="CEquipment.cpp" />
     <ClCompile Include="CEventManager.cpp" />
-    <ClCompile Include="CFairy.cpp" />
     <ClCompile Include="CGameObject.cpp" />
     <ClCompile Include="CKeyManager.cpp" />
     <ClCompile Include="CInOutButton.cpp" />
@@ -245,7 +243,7 @@
     <ClCompile Include="CUIManager.cpp" />
     <ClCompile Include="CItem.cpp" />
     <ClCompile Include="CSceneVillage.cpp" />
-    <ClCompile Include="CCoin.cpp" />
+    <ClCompile Include="CGameItem.cpp" />
     <ClCompile Include="CPlayerAttack.cpp" />
     <ClCompile Include="WinApi2D.cpp" />
   </ItemGroup>

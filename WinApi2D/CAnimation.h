@@ -36,7 +36,7 @@ public:
 	void SetFrame(int frmIndex);
 	tAniFrm& GetFrame(int frmIndex);
 
-	void SetSize(fPoint size);
+	void SetSize(fPoint size = fPoint(0, 0));
 	void SetReverse(bool reverse);
 	void update();
 	void render();	

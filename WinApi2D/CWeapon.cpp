@@ -2,7 +2,7 @@
 #include "CWeapon.h"
 #include "CAnimator.h"
 #include "CStatu.h"
-
+#include "CCollider.h"
 CWeapon::CWeapon()
 {
 	m_sAttackInfo.m_fDelay = 0.f;				  //공격 딜레이
@@ -17,10 +17,10 @@ CWeapon::CWeapon()
 	m_sAttackInfo.m_eKind = ITEM_KIND::DEFAULT;   //아이템 종류 창 , 검 , 총 , DEFAULT 맨손 
 }
 
-CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind)
+CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind , fPoint pos)
 {
 
-
+	SetPos(pos);
 	switch (weaponKind)
 	{
 		case WEAPON_KIND::DEFAULT_SWORD:
@@ -37,11 +37,10 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind)
 			m_eItemType						= ITEM_TYPE::ONE_HAND_WEAPON;		//한손검 두손검 아이템 클릭할때 나오는 정보창
 			m_sEffect;															//효과 아이템 클릭할때 나오는 정보창
 			m_sExplanation;														//효과 아이템 클릭할때 나오는 설명창
+			SetScale(fPoint(20, 20));											//무기 크기;
 			//SetEquipmentItemStat();
-
 			break;
-		
-	
+
 	}
 
 
@@ -58,6 +57,7 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind)
 	}
 
 
+	//TODO: 해야함
 	switch (m_eItemType)
 	{
 	case ITEM_TYPE::ONE_HAND_WEAPON:
@@ -71,10 +71,14 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind)
 			break;
 	}
 
+
+
+	//TODO: 해야함
 	switch (itemStatu)
 	{
 	case ITEM_STATU::DROP:
 		CreateCollider();
+		GetCollider()->SetScale(GetScale()+fPoint(10,40));
 		CreateStatu();
 		StatuRemove(GROUP_OBJECT_STATU::GROUND);
 		SetDrop();
@@ -97,13 +101,16 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind)
 	GetAnimator()->CreateAnimation(m_sAttackInfo.m_sWeaponKey, m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 1);
 
 
-
-
 }
 
 CWeapon::~CWeapon()
 {
 
+}
+
+void CWeapon::ItemAniPlay()
+{
+	this->GetAnimator()->Play(m_sAttackInfo.m_sWeaponKey, GetScale());
 }
 
 

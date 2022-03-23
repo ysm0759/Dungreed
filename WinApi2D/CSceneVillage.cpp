@@ -9,7 +9,7 @@
 #include "CInOutButton.h"
 #include "CD2DImage.h"
 #include "CItem.h"
-#include "CCoin.h"
+#include "CGameItem.h"
 
 
 

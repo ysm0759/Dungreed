@@ -5,10 +5,10 @@
 #include "CPlayer.h"
 #include "CMonster.h"
 #include "CItem.h"
-#include "CCoin.h"
+#include "CGameItem.h"
 #include "CBackGround.h"
 #include "CInOutButton.h"
-#include "CFairy.h"
+
 
 #include "CSound.h"
 #include "CD2DImage.h"
@@ -87,8 +87,8 @@ void CSceneTest::Enter()
 	//AddObject(pFariy2, GROUP_GAMEOBJ::ITEM);
 
 
-	CWeapon* pWeapon = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_SWORD);
-	pWeapon->SetPos(fPoint(300, 200));
+	CWeapon* pWeapon = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_SWORD , fPoint(100,100));
+	pWeapon->LoadItemResource();
 	AddObject(pWeapon, GROUP_GAMEOBJ::ITEM);
 
 

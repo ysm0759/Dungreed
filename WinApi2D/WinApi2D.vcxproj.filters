@@ -246,10 +246,7 @@
     <ClInclude Include="CEquipment.h">
       <Filter>Object\Character\Player\item\Equipment</Filter>
     </ClInclude>
-    <ClInclude Include="CCoin.h">
-      <Filter>Object\Character\Player\item\GameItem</Filter>
-    </ClInclude>
-    <ClInclude Include="CFairy.h">
+    <ClInclude Include="CGameItem.h">
       <Filter>Object\Character\Player\item\GameItem</Filter>
     </ClInclude>
     <ClInclude Include="CWeapon.h">
@@ -380,10 +377,7 @@
     <ClCompile Include="CEquipment.cpp">
       <Filter>Object\Character\Player\item\Equipment</Filter>
     </ClCompile>
-    <ClCompile Include="CCoin.cpp">
-      <Filter>Object\Character\Player\item\GameItem</Filter>
-    </ClCompile>
-    <ClCompile Include="CFairy.cpp">
+    <ClCompile Include="CGameItem.cpp">
       <Filter>Object\Character\Player\item\GameItem</Filter>
     </ClCompile>
     <ClCompile Include="CWeapon.cpp">

@@ -1,17 +1,6 @@
 #pragma once
 #include "CGameObject.h"
 
-enum class GROUP_ITEM
-{
-	GOLD_SMALL,
-	GOLD_BIG,
-	FAIRY,
-	SWORD,
-	SPEAR,
-	GUN,
-	SIZE,
-};
-
 enum class ITEM_STATU
 {
 	DROP,
@@ -26,7 +15,6 @@ class CItem : public CGameObject
 {
 protected:
 	char m_cItemStatu;
-	GROUP_ITEM m_eItemType;
 	CD2DImage* m_pImg;
 public:
 	CItem();
@@ -36,10 +24,7 @@ public:
 	virtual void render();
 
 
-	virtual void DropUpdate() {};		// 아이템이 드랍 했을때 Update					
-	virtual void DropRender() {};		// 아이템이 드랍 했을때 Render          
-
-
+	virtual void ItemAniPlay() {};
 
 	virtual CItem* Clone();
 	virtual void SetDrop();

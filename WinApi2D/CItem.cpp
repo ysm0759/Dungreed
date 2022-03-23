@@ -11,11 +11,11 @@ CItem::CItem()
 {
 	m_cItemStatu = 0;
 	m_pImg = nullptr;
-	m_eItemType = (GROUP_ITEM)0;
+
 	CreateStatu();
 	CreateAnimator();
 	CreateCollider();
-	SetDrop();
+	SetDrop(); 
 }
 CItem* CItem::Clone()
 {
@@ -87,10 +87,10 @@ void CItem::RemoveStatu(UINT bit)
 void CItem::update()
 {
 
-	if (IsStatu((UINT)ITEM_STATU::DROP))
-	{
-		DropUpdate();
-	}
+	//if (IsStatu((UINT)ITEM_STATU::DROP))
+	//{
+	//	DropUpdate();
+	//}
 	
 	if (IsStatu((UINT)ITEM_STATU::DROP))
 	{
@@ -99,26 +99,21 @@ void CItem::update()
 	}
 
 	
-	//if (IsStatu((UINT)ITEM_STATU::INVENTORY))
-	//{
-	//	StatuSet(GROUP_OBJECT_STATU::GROUND);
-	//	StatuRemove(GROUP_OBJECT_STATU::FORCE);
-	//}
+	if (IsStatu((UINT)ITEM_STATU::INVENTORY))
+	{
+		StatuSet(GROUP_OBJECT_STATU::GROUND);
+		StatuRemove(GROUP_OBJECT_STATU::FORCE);
+	}
 
 
 	GetStatu()->update();
 	GetAnimator()->update();
-	component_render();
 }
 
 void CItem::render()
 {
-
-	if (IsStatu((UINT)ITEM_STATU::DROP))
-	{
-		DropRender();
-	}
-
+	ItemAniPlay();
+	component_render();
 }
 
 
@@ -135,20 +130,9 @@ void CItem::OnCollisionEnter(CCollider* pOther)
 		}
 		if (pOtherObj->GetName() == L"Monster") //TODO: 나중에 타일로 바꿀것
 		{
-			StatuSet(GROUP_OBJECT_STATU::GROUND);
-			StatuRemove(GROUP_OBJECT_STATU::FORCE);
-		}
-	}
-	if (IsStatu((UINT)ITEM_STATU::DROP))
-	{
-		if (pOtherObj->GetName() == L"Player") 
-		{
-			((CPlayer*)pOtherObj)->EatItem();
-		}
-		if (pOtherObj->GetName() == L"Monster") //TODO: 나중에 타일로 바꿀것
-		{
-			StatuSet(GROUP_OBJECT_STATU::GROUND);
-			StatuRemove(GROUP_OBJECT_STATU::FORCE);
+			SetStatu((UINT)ITEM_STATU::INVENTORY);
+	/*		StatuSet(GROUP_OBJECT_STATU::GROUND);
+			StatuRemove(GROUP_OBJECT_STATU::FORCE);*/
 		}
 	}
 }
