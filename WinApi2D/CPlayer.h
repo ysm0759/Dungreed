@@ -55,6 +55,7 @@ private:
 
 
 	void PlayerAttack(fPoint dir);
+	void ItemSwap();
 public:
 	CPlayer();
 	~CPlayer();

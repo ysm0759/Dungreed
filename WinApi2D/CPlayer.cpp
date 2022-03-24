@@ -32,7 +32,7 @@ CPlayer::CPlayer()
 
 	//m_cCurItem.Accessories = nullptr;
 	m_pCurWeapon = nullptr;
-	m_pPlayerAttack = nullptr;
+	m_pPlayerAttack = new CPlayerAttack();
 
 	for (int i = 0; i < (UINT)ITEM_PART::SIZE; i++)
 	{
@@ -60,10 +60,10 @@ CPlayer::CPlayer()
 	CreateStatu();
 
 	//나중에 지울것
-	this->m_pCurWeapon = new CWeapon(ITEM_STATU::DROP, WEAPON_KIND::DEFAULT_SWORD, GetPos());
-	CreateObj(m_pCurWeapon, GROUP_GAMEOBJ::ITEM);
-	//m_playerAttack = m_pCurWeapon;
-	m_playerAttack = new CPlayerAttack((CWeapon*)m_pCurWeapon);
+	//this->m_pCurWeapon = new CWeapon(ITEM_STATU::DROP, WEAPON_KIND::DEFAULT_SWORD, GetPos());
+	//CreateObj(m_pCurWeapon, GROUP_GAMEOBJ::ITEM);
+	////m_playerAttack = m_pCurWeapon;
+	//m_playerAttack = new CPlayerAttack((CWeapon*)m_pCurWeapon);
 }
 
 CPlayer::~CPlayer()
@@ -85,7 +85,12 @@ void CPlayer::update()
 	GetStatu()->SetLook(playDir);
 	
 	//나중에 지울것
-	m_pCurWeapon->SetPos(GetPos());
+	if (nullptr != m_cCurItem[(UINT)ITEM_PART::LeftWeapon])
+		m_pCurWeapon = m_cCurItem[(UINT)ITEM_PART::LeftWeapon];
+
+	if (nullptr != m_pCurWeapon)
+		m_pCurWeapon->SetPos(GetPos());
+	
 
 	// 캐릭터 키입력에 따른 상태 변경
 	if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::FORCE) && m_cDashCount < 100) // 대쉬 진입 //TODO: 대쉬 삭제 m_cDashCount > 0해야함
@@ -147,6 +152,9 @@ void CPlayer::update()
 
 
 		}
+		if (KeyDown('R'))
+		{
+		}
 	}
 	SetPos(pos);
 
@@ -207,9 +215,14 @@ void CPlayer::StatuAnimator()
 
 void CPlayer::PlayerAttack(fPoint dir)
 {
-	m_playerAttack->SetPos(GetPos());
-	m_playerAttack->SetOffSetPos(dir);
-	CreateObj(m_playerAttack->Clone(), GROUP_GAMEOBJ::PLAYER_ATTACK);
+	if (nullptr != m_pPlayerAttack)
+	{
+		m_playerAttack = new CPlayerAttack((CWeapon*)m_pCurWeapon);
+		m_playerAttack->SetPos(GetPos());
+		m_playerAttack->SetOffSetPos(dir);
+		CreateObj(m_playerAttack->Clone(), GROUP_GAMEOBJ::PLAYER_ATTACK);
+	}
+
 
 }
 
@@ -226,4 +239,17 @@ list<CItem*> CPlayer::GetInvetroy()
 CItem* CPlayer::GetCurItem(ITEM_PART type)
 {
 	return m_cCurItem[(UINT)type];
+}
+
+
+void CPlayer::ItemSwap()
+{
+	if (m_pCurWeapon == m_cCurItem[(UINT)ITEM_PART::LeftWeapon])
+	{
+		m_pCurWeapon = m_cCurItem[(UINT)ITEM_PART::RightWeapon];
+	}
+	else
+	{
+		m_pCurWeapon = m_cCurItem[(UINT)ITEM_PART::LeftWeapon];
+	}
 }

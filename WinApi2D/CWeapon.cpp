@@ -126,9 +126,11 @@ void CWeapon::OnCollisionEnter(CCollider* pOther)
 	{
 		if (IsStatu((UINT)ITEM_STATU::DROP))
 		{
-
-			//if(0 == ((CPlayer*)pOtherObj)->GetInvetroy().size());
-				
+			if (((CPlayer*)pOtherObj)->GetCurItem(ITEM_PART::LeftWeapon) == nullptr)
+			{
+				CItem* tmp = ((CPlayer*)pOtherObj)->GetCurItem(ITEM_PART::LeftWeapon);
+				tmp = this;
+			}
 		}
 	}
 

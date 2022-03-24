@@ -94,8 +94,8 @@ void CSceneTest::Enter()
 	AddObject(pFariyClone, GROUP_GAMEOBJ::ITEM);
 
 
-	//CGameObject* pWeapon = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_SWORD , fPoint(100,100));
-	//AddObject(pWeapon, GROUP_GAMEOBJ::ITEM);
+	CGameObject* pWeapon = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_SWORD , fPoint(100,100));
+	AddObject(pWeapon, GROUP_GAMEOBJ::ITEM);
 
 
 
@@ -106,7 +106,6 @@ void CSceneTest::Enter()
 	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::MONSTER);
 	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::MONSTER, GROUP_GAMEOBJ::ITEM);
 	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::ITEM);
-	
 	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::MONSTER, GROUP_GAMEOBJ::PLAYER_ATTACK);
 
 
