@@ -252,6 +252,11 @@ CItem* CPlayer::GetCurItem(ITEM_PART type)
 
 void CPlayer::ItemSwap()
 {
+	if (m_pPlayerAttack != nullptr)
+	{
+		delete m_pPlayerAttack;
+		m_pPlayerAttack = nullptr;
+	}
 	if (m_pCurWeapon == m_cCurItem[(UINT)ITEM_PART::LeftWeapon])
 	{
 		m_pCurWeapon = m_cCurItem[(UINT)ITEM_PART::RightWeapon];

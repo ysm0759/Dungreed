@@ -98,6 +98,11 @@ void CSceneTest::Enter()
 	AddObject(pWeapon, GROUP_GAMEOBJ::ITEM);
 
 
+	
+	CGameObject* pWeapon2 = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_GUN , fPoint(100,100));
+	AddObject(pWeapon2, GROUP_GAMEOBJ::ITEM);
+
+
 
 
 

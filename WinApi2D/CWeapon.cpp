@@ -25,23 +25,41 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind , fPoint pos)
 	switch (weaponKind)
 	{
 		case WEAPON_KIND::DEFAULT_SWORD:
-			m_sKey = L"Sword";													//sword 애니메이션 Key
-			m_sAttackInfo->m_sEffKey		= m_sKey+L"Eff";						//Effect 애니메이션 key  // Key가 null이면 맨손
-			m_sAttackInfo->m_fDelay			= 0.53f;							//공격 딜레이
-			m_sAttackInfo->m_fRange			= 100.f;							//공격 범위 플레이어 기준으로 픽셀 원단위 
-			m_sAttackInfo->m_fVelocity		= 0.f;								//원거리라면 탄환 이동속도
-			m_sAttackInfo->m_fAniTime		= 0.05;								//애니메이션 속도
-			m_sAttackInfo->m_iAniCut		= 6;								//애니메이션 몇컷인지
+			m_sKey = L"Sword";																			//sword 애니메이션 Key
+			m_sAttackInfo->m_sEffKey		= m_sKey+L"Eff";											//Effect 애니메이션 key  // Key가 null이면 맨손
+			m_sAttackInfo->m_fDelay			= 0.53f;													//공격 딜레이
+			m_sAttackInfo->m_fRange			= 100.f;													//공격 범위 플레이어 기준으로 픽셀 원단위 
+			m_sAttackInfo->m_fVelocity		= 0.f;														//원거리라면 탄환 이동속도
+			m_sAttackInfo->m_fAniTime		= 0.05;														//애니메이션 속도
+			m_sAttackInfo->m_iAniCut		= 6;														//애니메이션 몇컷인지
 			m_sAttackInfo->m_fDestroyTime = m_sAttackInfo->m_fAniTime * m_sAttackInfo->m_iAniCut;		//임펙트 몇초 유지?
-			m_sAttackInfo->m_fAniScale		= fPoint(50, 50);					//애니메이션 스케일
-			m_sAttackInfo->m_fColScale		= fPoint(150, 150);					//공격 충돌체 크기
-			m_sAttackInfo->m_IsMultiple		= true;								//한 콜라이더가 다수를 때리는지 , 
-			m_sAttackInfo->m_eKind			= ITEM_KIND::SWORD;					//아이템 종류 창 , 검 , 총 , DEFAULT 맨손 
-			m_eItemType						= ITEM_TYPE::ONE_HAND_WEAPON;		//한손검 두손검 아이템 클릭할때 나오는 정보창
-			m_sEffect;															//효과 아이템 클릭할때 나오는 정보창
-			m_sExplanation;														//효과 아이템 클릭할때 나오는 설명창
-			SetScale(fPoint(20, 20));											//무기 크기;
+			m_sAttackInfo->m_fAniScale		= fPoint(50, 50);											//애니메이션 스케일
+			m_sAttackInfo->m_fColScale		= fPoint(150, 150);											//공격 충돌체 크기
+			m_sAttackInfo->m_IsMultiple		= true;														//한 콜라이더가 다수를 때리는지 , 
+			m_sAttackInfo->m_eKind			= ITEM_KIND::SWORD;											//아이템 종류 창 , 검 , 총 , DEFAULT 맨손 
+			m_eItemType						= ITEM_TYPE::ONE_HAND_WEAPON;								//한손검 두손검 아이템 클릭할때 나오는 정보창
+			m_sEffect;																					//효과 아이템 클릭할때 나오는 정보창
+			m_sExplanation;																				//효과 아이템 클릭할때 나오는 설명창
+			SetScale(fPoint(20, 20));																	//무기 크기;
 			//SetEquipmentItemStat();
+			break;
+		case WEAPON_KIND::DEFAULT_GUN:
+			m_sKey = L"Gun";
+			m_sAttackInfo->m_sEffKey = m_sKey + L"Eff";
+			m_sAttackInfo->m_fDelay = 0.53f;
+			m_sAttackInfo->m_fRange = 20.f;
+			m_sAttackInfo->m_fVelocity = 200.f;
+			m_sAttackInfo->m_fAniTime = 0.05;
+			m_sAttackInfo->m_iAniCut = 4;
+			m_sAttackInfo->m_fDestroyTime = m_sAttackInfo->m_fAniTime * m_sAttackInfo->m_iAniCut + 30.f;
+			m_sAttackInfo->m_fAniScale = fPoint(10, 20);
+			m_sAttackInfo->m_fColScale = fPoint(10, 20);
+			m_sAttackInfo->m_IsMultiple = true;
+			m_sAttackInfo->m_eKind = ITEM_KIND::GUN;
+			m_eItemType = ITEM_TYPE::TWO_HAND_WEAPON;
+			m_sEffect;
+			m_sExplanation;
+			SetScale(fPoint(20, 20));
 			break;
 
 	}
