@@ -8,7 +8,25 @@
 
 CPlayerAttack* CPlayerAttack::Clone()
 {
-	return new CPlayerAttack(*this);
+
+	CPlayerAttack* newAttack = new CPlayerAttack;
+
+	newAttack->SetDir(this->m_fvDir);
+	newAttack->SetPos(this->GetPos());
+	newAttack->m_pWeaponAttackInfo = new WeaponAttackInfo();
+	newAttack->m_pWeaponAttackInfo->m_eKind = m_pWeaponAttackInfo->m_eKind;
+	newAttack->m_pWeaponAttackInfo->m_fDelay = m_pWeaponAttackInfo->m_fDelay;
+	newAttack->m_pWeaponAttackInfo->m_fAniScale = m_pWeaponAttackInfo->m_fAniScale;
+	newAttack->m_pWeaponAttackInfo->m_fColScale = m_pWeaponAttackInfo->m_fColScale;
+	newAttack->m_pWeaponAttackInfo->m_fDestroyTime = m_pWeaponAttackInfo->m_fDestroyTime;
+	newAttack->m_pWeaponAttackInfo->m_fRange = m_pWeaponAttackInfo->m_fRange;
+	newAttack->m_pWeaponAttackInfo->m_fVelocity = m_pWeaponAttackInfo->m_fVelocity;
+	newAttack->m_pWeaponAttackInfo->m_IsMultiple = m_pWeaponAttackInfo->m_IsMultiple;
+	newAttack->m_pWeaponAttackInfo->m_sEffKey = m_pWeaponAttackInfo->m_sEffKey;
+	newAttack->m_pWeaponAttackInfo->m_sWeaponKey = m_pWeaponAttackInfo->m_sWeaponKey;
+
+
+	return newAttack;
 }
 
 CPlayerAttack::CPlayerAttack()
@@ -26,6 +44,7 @@ CPlayerAttack::CPlayerAttack()
 	CreateAnimator();
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"SwordEff", L"texture\\Item\\SwordEff.png");
 	GetAnimator()->CreateAnimation(L"SwordEff", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.05f, 6);
+	GetAnimator()->Play(L"SwordEff");
 }
 
 CPlayerAttack::CPlayerAttack(CWeapon* pCurentWeapon)
@@ -45,14 +64,12 @@ CPlayerAttack::CPlayerAttack(CWeapon* pCurentWeapon)
 
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(m_pWeaponAttackInfo->m_sEffKey, L"texture\\Item\\" + m_pWeaponAttackInfo->m_sEffKey + L".png");
 	GetAnimator()->CreateAnimation(m_pWeaponAttackInfo->m_sEffKey, m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.05f, 6);
+	GetAnimator()->Play(m_pWeaponAttackInfo->m_sEffKey);
 }
 
 CPlayerAttack::~CPlayerAttack()
 {
-	if (nullptr != m_pWeaponAttackInfo)
-	{
-		delete m_pWeaponAttackInfo;
-	}
+	delete m_pWeaponAttackInfo;
 }
 
 void CPlayerAttack::update()
@@ -73,11 +90,11 @@ void CPlayerAttack::update()
 
 void CPlayerAttack::render()
 {
+
 	fPoint pos = fPoint(m_pWeaponAttackInfo->m_fRange * GetPos().x, m_pWeaponAttackInfo->m_fRange * GetPos().y);
 	fPoint scale = GetScale();
 
 	fPoint fptRenderPos = CCameraManager::getInst()->GetRenderPos(pos);
-
 
 	GetAnimator()->Play(m_pWeaponAttackInfo->m_sEffKey, m_pWeaponAttackInfo->m_fAniScale);
 	component_render();
@@ -91,4 +108,9 @@ void CPlayerAttack::OnCollisionEnter(CCollider* pOther)
 	{
 		DeleteObj(this);
 	}
+}
+
+void CPlayerAttack::SetDir(fVec2 vec)
+{
+	m_fvDir = vec.normalize();
 }

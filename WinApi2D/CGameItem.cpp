@@ -61,6 +61,7 @@ CGameItem::CGameItem(GROUP_GAMEITEM type)
 		break;
 	}
 
+	GetAnimator()->Play(m_sKey);
 }	
 
 CGameItem::~CGameItem()

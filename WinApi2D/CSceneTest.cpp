@@ -94,8 +94,8 @@ void CSceneTest::Enter()
 	AddObject(pFariyClone, GROUP_GAMEOBJ::ITEM);
 
 
-	CGameObject* pWeapon = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_SWORD , fPoint(100,100));
-	AddObject(pWeapon, GROUP_GAMEOBJ::ITEM);
+	//CGameObject* pWeapon = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_SWORD , fPoint(100,100));
+	//AddObject(pWeapon, GROUP_GAMEOBJ::ITEM);
 
 
 

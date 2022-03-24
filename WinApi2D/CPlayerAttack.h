@@ -9,6 +9,7 @@ class CWeapon;
  class CPlayerAttack : public CGameObject
 {
 private:
+
 	fVec2 m_fvDir;
 	CD2DImage* m_pImg;
 	float m_fDestroy;
@@ -20,12 +21,13 @@ public:
 	CPlayerAttack();
 	CPlayerAttack(CWeapon* pCurentWeapon);
 
-	 ~CPlayerAttack();
+	 virtual ~CPlayerAttack();
 	 virtual CPlayerAttack* Clone();
 
 	 virtual void update();
 	 virtual void render();
 
+	 void SetDir(fVec2 vec);
 	 void OnCollisionEnter(CCollider* pOther);
 };
 

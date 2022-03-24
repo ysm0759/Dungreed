@@ -47,6 +47,7 @@ struct WeaponAttackInfo
 
 	bool m_IsMultiple;   //한 콜라이더가 다수를 때리는지 , 
 	ITEM_KIND m_eKind;   //아이템 종류 창 , 검 , 총 , DEFAULT 맨손 맨손
+
 };
 
 

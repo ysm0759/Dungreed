@@ -68,11 +68,13 @@ CPlayer::CPlayer()
 	//나중에 지울것
 	this->m_pCurWeapon = new CWeapon(ITEM_STATU::DROP, WEAPON_KIND::DEFAULT_SWORD, GetPos());
 	CreateObj(m_pCurWeapon, GROUP_GAMEOBJ::ITEM);
+	//m_playerAttack = m_pCurWeapon;
+	m_playerAttack = new CPlayerAttack((CWeapon*)m_pCurWeapon);
 }
 
 CPlayer::~CPlayer()
 {
-
+	delete m_playerAttack;
 }
 
 CPlayer* CPlayer::Clone()
@@ -157,9 +159,9 @@ void CPlayer::update()
 		}
 		if (KeyDown('Q'))
 		{
-			m_playerAttack = new CPlayerAttack((CWeapon*)m_pCurWeapon);
-			CPlayerAttack* PlayerClone = m_playerAttack->Clone();
-			CreateObj(PlayerClone, GROUP_GAMEOBJ::PLAYER_ATTACK);
+			m_playerAttack->SetPos(this->GetPos());
+			m_playerAttack->SetDir(playDir);
+			CreateObj(m_playerAttack->Clone() , GROUP_GAMEOBJ::PLAYER_ATTACK);
 		}
 	}
 	SetPos(pos);
