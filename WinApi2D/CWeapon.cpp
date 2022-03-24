@@ -104,6 +104,10 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind , fPoint pos)
 
 CWeapon::~CWeapon()
 {
+	if (nullptr != m_sAttackInfo)
+	{
+		delete m_sAttackInfo;
+	}
 
 }
 

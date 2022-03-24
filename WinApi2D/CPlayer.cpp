@@ -10,6 +10,8 @@
 #include "CGameItem.h"
 #include "CPlayerAttack.h"
 #include "CWeapon.h"
+
+
 #define DASHCREATETIME 1.2f
 #define DASHVELOCITY 1500.f
 #define DASHTIME 0.125f
@@ -32,7 +34,7 @@ CPlayer::CPlayer()
 
 	//m_cCurItem.Accessories = nullptr;
 	m_pCurWeapon = nullptr;
-	m_pPlayerAttack = new CPlayerAttack();
+	m_pPlayerAttack = nullptr;
 
 	for (int i = 0; i < (UINT)ITEM_PART::SIZE; i++)
 	{
@@ -59,16 +61,12 @@ CPlayer::CPlayer()
 
 	CreateStatu();
 
-	//나중에 지울것
-	//this->m_pCurWeapon = new CWeapon(ITEM_STATU::DROP, WEAPON_KIND::DEFAULT_SWORD, GetPos());
-	//CreateObj(m_pCurWeapon, GROUP_GAMEOBJ::ITEM);
-	////m_playerAttack = m_pCurWeapon;
-	//m_playerAttack = new CPlayerAttack((CWeapon*)m_pCurWeapon);
 }
 
 CPlayer::~CPlayer()
 {
-	delete m_playerAttack;
+	delete m_pPlayerAttack;
+
 }
 
 CPlayer* CPlayer::Clone()
@@ -87,6 +85,10 @@ void CPlayer::update()
 	//나중에 지울것
 	if (nullptr != m_cCurItem[(UINT)ITEM_PART::LeftWeapon])
 		m_pCurWeapon = m_cCurItem[(UINT)ITEM_PART::LeftWeapon];
+	//else if(nullptr == m_cCurItem[(UINT)ITEM_PART::RightWeapon])
+	//	m_pCurWeapon = m_cCurItem[(UINT)ITEM_PART::LeftWeapon];
+	//else
+	//	m_inventory.push_back()
 
 	if (nullptr != m_pCurWeapon)
 		m_pCurWeapon->SetPos(GetPos());
@@ -154,6 +156,7 @@ void CPlayer::update()
 		}
 		if (KeyDown('R'))
 		{
+			ItemSwap();
 		}
 	}
 	SetPos(pos);
@@ -215,14 +218,19 @@ void CPlayer::StatuAnimator()
 
 void CPlayer::PlayerAttack(fPoint dir)
 {
-	if (nullptr != m_pPlayerAttack)
+	if (nullptr == m_pPlayerAttack)
 	{
-		m_playerAttack = new CPlayerAttack((CWeapon*)m_pCurWeapon);
-		m_playerAttack->SetPos(GetPos());
-		m_playerAttack->SetOffSetPos(dir);
-		CreateObj(m_playerAttack->Clone(), GROUP_GAMEOBJ::PLAYER_ATTACK);
+		m_pPlayerAttack = new CPlayerAttack((CWeapon*)m_pCurWeapon);
+		m_pPlayerAttack->SetPos(GetPos());
+		m_pPlayerAttack->SetOffSetPos(dir);
+		CreateObj(m_pPlayerAttack->Clone(), GROUP_GAMEOBJ::PLAYER_ATTACK);
 	}
-
+	else
+	{
+		m_pPlayerAttack->SetPos(GetPos());
+		m_pPlayerAttack->SetOffSetPos(dir);
+		CreateObj(m_pPlayerAttack->Clone(), GROUP_GAMEOBJ::PLAYER_ATTACK);
+	}
 
 }
 

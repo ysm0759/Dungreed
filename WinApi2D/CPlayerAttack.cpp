@@ -59,7 +59,21 @@ CPlayerAttack::CPlayerAttack(CWeapon* pCurentWeapon)
 {
 
 
-	m_pWeaponAttackInfo = pCurentWeapon->GetInfo();
+	m_pWeaponAttackInfo = new WeaponAttackInfo();
+	m_pWeaponAttackInfo->m_eKind = pCurentWeapon->GetInfo()->m_eKind;
+	m_pWeaponAttackInfo->m_fDelay = pCurentWeapon->GetInfo()->m_fDelay;
+	m_pWeaponAttackInfo->m_fAniScale = pCurentWeapon->GetInfo()->m_fAniScale;
+	m_pWeaponAttackInfo->m_fColScale = pCurentWeapon->GetInfo()->m_fColScale;
+	m_pWeaponAttackInfo->m_fDestroyTime = pCurentWeapon->GetInfo()->m_fDestroyTime;
+	m_pWeaponAttackInfo->m_fRange = pCurentWeapon->GetInfo()->m_fRange;
+	m_pWeaponAttackInfo->m_fVelocity = pCurentWeapon->GetInfo()->m_fVelocity;
+	m_pWeaponAttackInfo->m_IsMultiple = pCurentWeapon->GetInfo()->m_IsMultiple;
+	m_pWeaponAttackInfo->m_sEffKey = pCurentWeapon->GetInfo()->m_sEffKey;
+	m_pWeaponAttackInfo->m_sWeaponKey = pCurentWeapon->GetInfo()->m_sWeaponKey;
+	m_pWeaponAttackInfo->m_iAniCut = pCurentWeapon->GetInfo()->m_iAniCut;
+	m_pWeaponAttackInfo->m_fAniTime = pCurentWeapon->GetInfo()->m_fAniTime;
+	//	pCurentWeapon->GetInfo();
+	
 	m_fvDir = fVec2(0, -1); // 잘못설정하면 위로 날라감
 	m_fDestroy = 0.f;
 
@@ -78,7 +92,9 @@ CPlayerAttack::CPlayerAttack(CWeapon* pCurentWeapon)
 
 CPlayerAttack::~CPlayerAttack()
 {
+
 	delete m_pWeaponAttackInfo;
+
 }
 
 void CPlayerAttack::update()

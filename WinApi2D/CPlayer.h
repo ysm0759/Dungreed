@@ -48,10 +48,9 @@ private:
 	PlayerInfo m_cPlayerInfo;
 	CItem* m_cCurItem[(UINT)ITEM_PART::SIZE];
 	CGameObject* m_pCurWeapon;
-	CPlayerAttack* m_pPlayerAttack;
 	list<CItem*> m_inventory;
 
-	CPlayerAttack* m_playerAttack;
+	CPlayerAttack* m_pPlayerAttack;
 
 
 	void PlayerAttack(fPoint dir);
