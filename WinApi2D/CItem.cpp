@@ -5,6 +5,10 @@
 #include "CPlayer.h"
 #include "CAnimator.h"
 
+CItem* CItem::Clone()
+{
+	return new CItem(*this);
+}
 
 
 CItem::CItem()
@@ -27,10 +31,6 @@ CItem::CItem()
 	GetStatu()->SetForce(m_fForce);
 }
 
-CItem* CItem::Clone()
-{
-	return new CItem(*this);
-}
 
 CItem::~CItem()
 {

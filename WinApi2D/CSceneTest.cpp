@@ -66,27 +66,35 @@ void CSceneTest::Enter()
 	pMonster->SetPos(fPoint(200, 600));
 	AddObject(pMonster, GROUP_GAMEOBJ::MONSTER);
 
+	CGameObject* pMonsterClone = pMonster->Clone();
+	pMonsterClone->SetPos(fPoint(200, 500));
+	AddObject(pMonsterClone, GROUP_GAMEOBJ::MONSTER);
 
 
-	CItem* pItem = new CGameItem(GROUP_GAMEITEM::GOLD_BIG);
+	CGameObject* pItem = new CGameItem(GROUP_GAMEITEM::GOLD_BIG);
 	pItem->SetPos(fPoint(200, 200));
 	AddObject(pItem, GROUP_GAMEOBJ::ITEM);
 
 
-	CItem* pFariy = new CGameItem(GROUP_GAMEITEM::FAIRY_SMALL);
+	CGameObject* pFariy = new CGameItem(GROUP_GAMEITEM::FAIRY_SMALL);
 	pFariy->SetPos(fPoint(220, 200));
 	AddObject(pFariy, GROUP_GAMEOBJ::ITEM);
 	
-	CItem* pFariy1 = new CGameItem(GROUP_GAMEITEM::FAIRY_MIDDLE);
+	CGameObject* pFariy1 = new CGameItem(GROUP_GAMEITEM::FAIRY_MIDDLE);
 	pFariy1->SetPos(fPoint(150, 200));
 	AddObject(pFariy1, GROUP_GAMEOBJ::ITEM);
 
-	CItem* pFariy2 = new CGameItem(GROUP_GAMEITEM::FAIRY_BIG);
+	CGameObject* pFariy2 = new CGameItem(GROUP_GAMEITEM::FAIRY_BIG);
 	pFariy2->SetPos(fPoint(100, 200));
 	AddObject(pFariy2, GROUP_GAMEOBJ::ITEM);
+	
+	
+	CGameObject* pFariyClone = pFariy2->Clone();
+	pFariyClone->SetPos(fPoint(100, 200));
+	AddObject(pFariyClone, GROUP_GAMEOBJ::ITEM);
 
 
-	CWeapon* pWeapon = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_SWORD , fPoint(100,100));
+	CGameObject* pWeapon = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_SWORD , fPoint(100,100));
 	AddObject(pWeapon, GROUP_GAMEOBJ::ITEM);
 
 

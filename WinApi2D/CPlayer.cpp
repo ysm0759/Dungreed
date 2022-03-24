@@ -65,6 +65,9 @@ CPlayer::CPlayer()
 	
 	CreateStatu();
 
+	//나중에 지울것
+	this->m_pCurWeapon = new CWeapon(ITEM_STATU::DROP, WEAPON_KIND::DEFAULT_SWORD, GetPos());
+	CreateObj(m_pCurWeapon, GROUP_GAMEOBJ::ITEM);
 }
 
 CPlayer::~CPlayer()
@@ -85,6 +88,8 @@ void CPlayer::update()
 	fVec2 playDir = fVec2(mousePos.x - objectRenderPos.x, mousePos.y - objectRenderPos.y); // 마우스와 캐릭터의 방향
 	GetStatu()->SetLook(playDir);
 	
+	//나중에 지울것
+	m_pCurWeapon->SetPos(GetPos());
 
 	// 캐릭터 키입력에 따른 상태 변경
 	if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::FORCE) && m_cDashCount < 100) // 대쉬 진입 //TODO: 대쉬 삭제 m_cDashCount > 0해야함
@@ -142,18 +147,19 @@ void CPlayer::update()
 		{
 			PlayerAttack();
 
-			CPlayerAttack* playerAttack = new CPlayerAttack;
-			playerAttack->SetPos(fPoint(100, 200));
-			CreateObj(playerAttack, GROUP_GAMEOBJ::PLAYER_ATTACK);
-			playerAttack->SetAniSize(fPoint(100.f, 100.f));
-			playerAttack->SetKey(L"SwordEff");
-			playerAttack->SetPos(this->GetPos());
-			playerAttack->SetDir(playDir);
+			//CPlayerAttack* playerAttack = new CPlayerAttack;
+			//playerAttack->SetPos(fPoint(100, 200));
+			//CreateObj(playerAttack, GROUP_GAMEOBJ::PLAYER_ATTACK);
+			//playerAttack->SetAniSize(fPoint(100.f, 100.f));
+			//playerAttack->SetKey(L"SwordEff");
+			//playerAttack->SetPos(this->GetPos());
+			//playerAttack->SetDir(playDir);
 		}
 		if (KeyDown('Q'))
 		{
-			CItem* tmp = new CWeapon(ITEM_STATU::DROP, WEAPON_KIND::DEFAULT_SWORD, GetPos());
-			CreateObj(tmp,GROUP_GAMEOBJ::ITEM);
+			m_playerAttack = new CPlayerAttack((CWeapon*)m_pCurWeapon);
+			CPlayerAttack* PlayerClone = m_playerAttack->Clone();
+			CreateObj(PlayerClone, GROUP_GAMEOBJ::PLAYER_ATTACK);
 		}
 	}
 	SetPos(pos);

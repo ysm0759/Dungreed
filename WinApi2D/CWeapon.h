@@ -52,21 +52,14 @@ struct WeaponAttackInfo
 
 class CWeapon : public CEquipment
 {
-	WeaponAttackInfo m_sAttackInfo;
+	WeaponAttackInfo* m_sAttackInfo;
 
 public:
 	CWeapon();
 	CWeapon(ITEM_STATU itemStatu, WEAPON_KIND weaponKind , fPoint pos);
 	~CWeapon();
-	void SetWeaponDelay(float delay);
-	void SetWeaponRange(float range);
-	void SetWeaponColScale(fPoint colScale);
-	void SetWeaponKey(wstring key);
-	void SetWeaponKind(ITEM_KIND kind);	
-	void SetWeaponMultiple(bool multiple);
-	void SetWeaponVelocity(float velocity);
-	void SetWeaponDestroyTime(float destroyTime);
-	void SetWeaponAniScale(fPoint aniScale);
+
+	virtual CWeapon* Clone();
 	WeaponAttackInfo* GetInfo();
 
 };

@@ -4,6 +4,12 @@
 #include "CStatu.h"
 #include "CCollider.h"
 
+
+CGameItem* CGameItem::Clone()
+{
+	return new CGameItem(*this);
+}
+
 CGameItem::CGameItem(GROUP_GAMEITEM type)
 {
 
@@ -54,10 +60,6 @@ CGameItem::CGameItem(GROUP_GAMEITEM type)
 		SetStay();
 		break;
 	}
-
-
-
-
 
 }	
 

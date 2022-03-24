@@ -16,7 +16,9 @@ class CGameItem : public CItem
 public:
 	CGameItem(GROUP_GAMEITEM type);
 	~CGameItem();
-	
+
+	virtual CGameItem* Clone();
+
 	virtual void ItemAniRender();
 };
 
