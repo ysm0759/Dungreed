@@ -3,7 +3,7 @@
 #include "CAnimator.h"
 #include "CStatu.h"
 #include "CCollider.h"
-
+#include "CPlayer.h"
 
 CWeapon::CWeapon()
 {
@@ -26,13 +26,15 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind , fPoint pos)
 	{
 		case WEAPON_KIND::DEFAULT_SWORD:
 			m_sKey = L"Sword";													//sword 애니메이션 Key
+			m_sAttackInfo->m_sEffKey		= m_sKey+L"Eff";						//Effect 애니메이션 key  // Key가 null이면 맨손
 			m_sAttackInfo->m_fDelay			= 0.53f;							//공격 딜레이
 			m_sAttackInfo->m_fRange			= 100.f;							//공격 범위 플레이어 기준으로 픽셀 원단위 
-			m_sAttackInfo->m_fVelocity		= 0;								//원거리라면 탄환 이동속도
-			m_sAttackInfo->m_fDestroyTime	= 0.6f;								//임펙트 몇초 유지?
-			m_sAttackInfo->m_sEffKey		= L"SwordEff";						//Effect 애니메이션 key  // Key가 null이면 맨손
-			m_sAttackInfo->m_fAniScale		= fPoint(100, 100);					//애니메이션 스케일
-			m_sAttackInfo->m_fColScale		= fPoint(100, 100);					//공격 충돌체 크기
+			m_sAttackInfo->m_fVelocity		= 0.f;								//원거리라면 탄환 이동속도
+			m_sAttackInfo->m_fAniTime		= 0.05;								//애니메이션 속도
+			m_sAttackInfo->m_iAniCut		= 6;								//애니메이션 몇컷인지
+			m_sAttackInfo->m_fDestroyTime = m_sAttackInfo->m_fAniTime * m_sAttackInfo->m_iAniCut;		//임펙트 몇초 유지?
+			m_sAttackInfo->m_fAniScale		= fPoint(50, 50);					//애니메이션 스케일
+			m_sAttackInfo->m_fColScale		= fPoint(150, 150);					//공격 충돌체 크기
 			m_sAttackInfo->m_IsMultiple		= true;								//한 콜라이더가 다수를 때리는지 , 
 			m_sAttackInfo->m_eKind			= ITEM_KIND::SWORD;					//아이템 종류 창 , 검 , 총 , DEFAULT 맨손 
 			m_eItemType						= ITEM_TYPE::ONE_HAND_WEAPON;		//한손검 두손검 아이템 클릭할때 나오는 정보창
@@ -73,7 +75,6 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind , fPoint pos)
 	}
 
 
-
 	//TODO: 해야함
 	switch (itemStatu)
 	{
@@ -112,5 +113,30 @@ CWeapon::~CWeapon()
 WeaponAttackInfo* CWeapon::GetInfo()
 {
 	return m_sAttackInfo;
+}
+
+
+void CWeapon::OnCollisionEnter(CCollider* pOther)
+{
+	CGameObject* pOtherObj = pOther->GetObj();
+
+
+
+	if (pOtherObj->GetName() == L"Player")
+	{
+		if (IsStatu((UINT)ITEM_STATU::DROP))
+		{
+
+			//if(0 == ((CPlayer*)pOtherObj)->GetInvetroy().size());
+				
+		}
+	}
+
+
+
+	if (pOtherObj->GetName() == L"Monster") //TODO: 나중에 타일로 바꿀것
+	{
+		SetStatu((UINT)ITEM_STATU::STAY);
+	}
 }
 

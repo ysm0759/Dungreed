@@ -7,14 +7,19 @@ class CItem;
 class CWeapon;
 class CPlayerAttack;
 
-struct ItemPart
+enum class ITEM_PART
 {
-	CItem* LeftWeapon;
-	CItem* LeftSubWeapon;
-	CItem* RightWeapon;
-	CItem* RightSubWeapon;
-	vector<CItem*> Accessories; //max 4
+	LeftWeapon,
+	LeftSubWeapon,
+	RightWeapon,
+	RightSubWeapon,
+	ACCESSORIES1,
+	ACCESSORIES2,
+	ACCESSORIES3,
+	ACCESSORIES4,
+	SIZE,
 };
+
 
 struct PlayerInfo
 {
@@ -23,7 +28,7 @@ struct PlayerInfo
 	int DF;
 	int Satiety;
 	int Gold;
-	//스킬추가
+	//TODO: 스킬추가
 };
 
 
@@ -31,7 +36,7 @@ class CPlayer : public CGameObject
 {
 private:
 
-	
+
 	CD2DImage* m_pImg;
 	float m_fVelocity;
 	fVec2 m_fDashDir;
@@ -41,15 +46,15 @@ private:
 	float m_fDashTime;
 
 	PlayerInfo m_cPlayerInfo;
-	ItemPart m_cCurItem;
+	CItem* m_cCurItem[(UINT)ITEM_PART::SIZE];
 	CGameObject* m_pCurWeapon;
 	CPlayerAttack* m_pPlayerAttack;
 	list<CItem*> m_inventory;
-	
+
 	CPlayerAttack* m_playerAttack;
 
 
-	void PlayerAttack();
+	void PlayerAttack(fPoint dir);
 public:
 	CPlayer();
 	~CPlayer();
@@ -60,5 +65,8 @@ public:
 	void StatuAnimator();
 	void EatItem();
 
+
+	list<CItem*> GetInvetroy();
+	CItem* GetCurItem(ITEM_PART type);
 };
 

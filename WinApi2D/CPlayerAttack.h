@@ -20,14 +20,14 @@ private:
 public:
 	CPlayerAttack();
 	CPlayerAttack(CWeapon* pCurentWeapon);
+	void SetDir(fVec2 vec);
+	virtual ~CPlayerAttack();
+	virtual CPlayerAttack* Clone();
 
-	 virtual ~CPlayerAttack();
-	 virtual CPlayerAttack* Clone();
+	virtual void update();
+	virtual void render();
 
-	 virtual void update();
-	 virtual void render();
-
-	 void SetDir(fVec2 vec);
-	 void OnCollisionEnter(CCollider* pOther);
+	void SetOffSetPos(fVec2 vec);
+	void OnCollisionEnter(CCollider* pOther);
 };
 

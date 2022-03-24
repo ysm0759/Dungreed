@@ -11,8 +11,6 @@ CPlayerAttack* CPlayerAttack::Clone()
 
 	CPlayerAttack* newAttack = new CPlayerAttack;
 
-	newAttack->SetDir(this->m_fvDir);
-	newAttack->SetPos(this->GetPos());
 	newAttack->m_pWeaponAttackInfo = new WeaponAttackInfo();
 	newAttack->m_pWeaponAttackInfo->m_eKind = m_pWeaponAttackInfo->m_eKind;
 	newAttack->m_pWeaponAttackInfo->m_fDelay = m_pWeaponAttackInfo->m_fDelay;
@@ -24,8 +22,27 @@ CPlayerAttack* CPlayerAttack::Clone()
 	newAttack->m_pWeaponAttackInfo->m_IsMultiple = m_pWeaponAttackInfo->m_IsMultiple;
 	newAttack->m_pWeaponAttackInfo->m_sEffKey = m_pWeaponAttackInfo->m_sEffKey;
 	newAttack->m_pWeaponAttackInfo->m_sWeaponKey = m_pWeaponAttackInfo->m_sWeaponKey;
+	newAttack->m_pWeaponAttackInfo->m_iAniCut = m_pWeaponAttackInfo->m_iAniCut;
+	newAttack->m_pWeaponAttackInfo->m_fAniTime = m_pWeaponAttackInfo->m_fAniTime;
+	newAttack->SetPos(this->GetPos());
+	newAttack->SetDir(this->m_fvDir);
+	newAttack->SetName(L"PlayerAttack");
+	newAttack->CreateCollider();
+	newAttack->GetCollider()->SetScale(m_pWeaponAttackInfo->m_fColScale);
+	newAttack->CreateAnimator();
 
+	newAttack->m_pImg = CResourceManager::getInst()->LoadD2DImage(m_pWeaponAttackInfo->m_sEffKey,
+																	L"texture\\Item\\" + m_pWeaponAttackInfo->m_sEffKey + L".png");
+	
+	newAttack->GetAnimator()->CreateAnimation(m_pWeaponAttackInfo->m_sEffKey,
+											m_pImg,
+											fPoint(0, 0),
+											fPoint(32.f, 32.f),
+											fPoint(32.f, 0),
+											m_pWeaponAttackInfo->m_fAniTime,
+											m_pWeaponAttackInfo->m_iAniCut);
 
+	newAttack->GetAnimator()->Play(m_pWeaponAttackInfo->m_sEffKey);
 	return newAttack;
 }
 
@@ -36,15 +53,6 @@ CPlayerAttack::CPlayerAttack()
 	m_fDestroy = 0.f;
 	m_pWeaponAttackInfo = nullptr;
 
-
-	SetName(L"PlayerAttack");
-	CreateCollider();
-	GetCollider()->SetScale(fPoint(200.f, 200.f));
-
-	CreateAnimator();
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"SwordEff", L"texture\\Item\\SwordEff.png");
-	GetAnimator()->CreateAnimation(L"SwordEff", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.05f, 6);
-	GetAnimator()->Play(L"SwordEff");
 }
 
 CPlayerAttack::CPlayerAttack(CWeapon* pCurentWeapon)
@@ -63,7 +71,8 @@ CPlayerAttack::CPlayerAttack(CWeapon* pCurentWeapon)
 	CreateAnimator();
 
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(m_pWeaponAttackInfo->m_sEffKey, L"texture\\Item\\" + m_pWeaponAttackInfo->m_sEffKey + L".png");
-	GetAnimator()->CreateAnimation(m_pWeaponAttackInfo->m_sEffKey, m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.05f, 6);
+	GetAnimator()->CreateAnimation(m_pWeaponAttackInfo->m_sEffKey, m_pImg, 
+									fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), m_pWeaponAttackInfo->m_fAniTime, m_pWeaponAttackInfo->m_iAniCut);
 	GetAnimator()->Play(m_pWeaponAttackInfo->m_sEffKey);
 }
 
@@ -74,11 +83,15 @@ CPlayerAttack::~CPlayerAttack()
 
 void CPlayerAttack::update()
 {
-	
-	//pos.x += m_fVelocity * m_fvDir.x * fDT;
-	//pos.y += m_fVelocity * m_fvDir.y * fDT;
 
-	//SetPos(pos);
+	if (this->m_pWeaponAttackInfo->m_fVelocity >= 1.f )
+	{
+
+		fPoint pos = fPoint(GetPos());
+		pos.x += m_pWeaponAttackInfo->m_fVelocity * m_fvDir.x * fDT;
+		pos.y += m_pWeaponAttackInfo->m_fVelocity * m_fvDir.y * fDT;
+		SetPos(pos);
+	}
 
 	if (m_fDestroy >= m_pWeaponAttackInfo->m_fDestroyTime)
 	{
@@ -106,11 +119,26 @@ void CPlayerAttack::OnCollisionEnter(CCollider* pOther)
 	CGameObject* pOtherObj = pOther->GetObj();
 	if (pOtherObj->GetName() == L"Monster")
 	{
-		DeleteObj(this);
+		//맞았을때 바로 사라지는 오브젝트
+		if (this->m_pWeaponAttackInfo->m_IsMultiple)
+		{
+
+		}
+		else
+			DeleteObj(this);
+
 	}
 }
 
 void CPlayerAttack::SetDir(fVec2 vec)
 {
+	this->m_fvDir = vec;
+}
+
+void CPlayerAttack::SetOffSetPos(fVec2 vec)
+{
 	m_fvDir = vec.normalize();
+	fPoint pos = fPoint(m_pWeaponAttackInfo->m_fRange * m_fvDir.normalize().x + GetPos().x,
+						m_pWeaponAttackInfo->m_fRange * m_fvDir.normalize().y + GetPos().y);
+	SetPos(pos);
 }

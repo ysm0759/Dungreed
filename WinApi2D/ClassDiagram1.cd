@@ -45,14 +45,14 @@
   <Class Name="CRenderManager" Collapsed="true">
     <Position X="24" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AiAAAAgAAAAAAgBCAEAAgAhABACACIoAIIAAAAIAAQA=</HashCode>
+      <HashCode>AiAAAAgAAAAAAgBCAEAAgAhABACACMoAIIAAAAIAAQA=</HashCode>
       <FileName>CRenderManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CResourceManager" Collapsed="true">
     <Position X="17" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAGAAAIAAAAAAAAAAAAAIACCAAQABQAAAIAEAAQA=</HashCode>
+      <HashCode>AAkAAGAAIIAAAAAAAAAAAAAIACCAAQABQAAAIAEAAQA=</HashCode>
       <FileName>CResourceManager.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -108,7 +108,7 @@
   <Class Name="CStatu" Collapsed="true">
     <Position X="18.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAEQAAAAAgAoAAIQAgAAAAAEQACAAAAAAIAAICAMBAA=</HashCode>
+      <HashCode>CAEQAAAAAgAoAAYQAAAAAAAEQACAAAAAAIAAICEMBAA=</HashCode>
       <FileName>CStatu.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -166,13 +166,6 @@
     <TypeIdentifier>
       <HashCode>AEAAAAAQAEBAAAAAAAAAEBAAAAAAAAAIAAAAEAIUABA=</HashCode>
       <FileName>CMonster.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="CPlayer" Collapsed="true">
-    <Position X="14.5" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AIAAAgAQAEAAACAAAAAAAACAAIghAACIAIAAABAUABA=</HashCode>
-      <FileName>CPlayer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CScene" Collapsed="true">
@@ -276,7 +269,7 @@
   <Enum Name="GROUP_GAMEOBJ" Collapsed="true">
     <Position X="18.75" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABRIAAAEAAACAAAABAAgAAQABAAAAAAAAAAAAEoA=</HashCode>
+      <HashCode>AAAABRIAAAEAAACAAAABAAgAAQABAAAAAAQAAAAAEoA=</HashCode>
       <FileName>framework.h</FileName>
     </TypeIdentifier>
   </Enum>
@@ -304,7 +297,7 @@
   <Enum Name="GROUP_OBJECT_STATU" Collapsed="true">
     <Position X="20.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIQAAgAAAAAAAAAAAEAAAAAAAAAAQAAAAAIA=</HashCode>
+      <HashCode>AAAAAAAAIQAAgAAAAAAAgAAAEAAAAAAAAAAQAAAAAIA=</HashCode>
       <FileName>framework.h</FileName>
     </TypeIdentifier>
   </Enum>

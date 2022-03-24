@@ -34,11 +34,10 @@ CPlayer::CPlayer()
 	m_pCurWeapon = nullptr;
 	m_pPlayerAttack = nullptr;
 
-	m_cCurItem.LeftSubWeapon = nullptr;
-	m_cCurItem.LeftWeapon = nullptr;
-	m_cCurItem.RightSubWeapon = nullptr;
-	m_cCurItem.RightWeapon = nullptr;
-
+	for (int i = 0; i < (UINT)ITEM_PART::SIZE; i++)
+	{
+		m_cCurItem[i] = nullptr;
+	}
 
 	CreateCollider();
 	GetCollider()->SetScale(fPoint(40.f, 60.f));
@@ -58,11 +57,6 @@ CPlayer::CPlayer()
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerJump", L"texture\\Player\\PlayerJump.png");
 	GetAnimator()->CreateAnimation(L"PlayerJump", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 1);
 
-	//CAnimation* pAni;
-	//pAni = GetAnimator()->FindAnimation(L"PlayerStand");
-	//pAni->GetFrame(1).fptOffset = fPoint(-20.f, 0.f);
-	
-	
 	CreateStatu();
 
 	//나중에 지울것
@@ -119,26 +113,23 @@ void CPlayer::update()
 	}
 	else //대쉬중이면 조작키 안됨
 	{
-		if (Key(VK_LEFT))
+		if (Key('A'))
 		{
 			pos.x -= m_fVelocity * fDT;
 			StatuSet(GROUP_OBJECT_STATU::MOVE);
 		}
-		if (Key(VK_RIGHT))
+		if (Key('D'))
 		{
 			pos.x += m_fVelocity * fDT;
 			StatuSet(GROUP_OBJECT_STATU::MOVE);
 		}
-		if (Key(VK_UP))
+
+		if (Key('S'))
 		{
-			pos.y -= m_fVelocity * fDT;
-		}
-		if (Key(VK_DOWN))
-		{
-			pos.y += m_fVelocity * fDT;
+	
 		}
 
-		if (KeyDown(VK_SPACE)   // 점프
+		if (KeyDown(VK_SPACE) || KeyDown('W')   // 점프
 			&& !StatuGet(GROUP_OBJECT_STATU::JUMP)
 			&& StatuGet(GROUP_OBJECT_STATU::GROUND))
 		{
@@ -147,26 +138,19 @@ void CPlayer::update()
 		}
 		if (KeyDown(VK_LBUTTON)) //공격
 		{
-			PlayerAttack();
+			if (nullptr != m_pCurWeapon)
+				PlayerAttack(playDir);
 
-			//CPlayerAttack* playerAttack = new CPlayerAttack;
-			//playerAttack->SetPos(fPoint(100, 200));
-			//CreateObj(playerAttack, GROUP_GAMEOBJ::PLAYER_ATTACK);
-			//playerAttack->SetAniSize(fPoint(100.f, 100.f));
-			//playerAttack->SetKey(L"SwordEff");
-			//playerAttack->SetPos(this->GetPos());
-			//playerAttack->SetDir(playDir);
 		}
 		if (KeyDown('Q'))
 		{
-			m_playerAttack->SetPos(this->GetPos());
-			m_playerAttack->SetDir(playDir);
-			CreateObj(m_playerAttack->Clone() , GROUP_GAMEOBJ::PLAYER_ATTACK);
+
+
 		}
 	}
 	SetPos(pos);
 
-//	StatuSet(GROUP_OBJECT_STATU::GROUND);
+	//	StatuSet(GROUP_OBJECT_STATU::GROUND);
 	// 캐릭터 상태에 따른 애니메이션
 	StatuAnimator();
 
@@ -221,13 +205,25 @@ void CPlayer::StatuAnimator()
 
 }
 
-void CPlayer::PlayerAttack()
+void CPlayer::PlayerAttack(fPoint dir)
 {
-
+	m_playerAttack->SetPos(GetPos());
+	m_playerAttack->SetOffSetPos(dir);
+	CreateObj(m_playerAttack->Clone(), GROUP_GAMEOBJ::PLAYER_ATTACK);
 
 }
 
 void CPlayer::EatItem()
 {
 
+}
+
+list<CItem*> CPlayer::GetInvetroy()
+{
+	return this->m_inventory;
+}
+
+CItem* CPlayer::GetCurItem(ITEM_PART type)
+{
+	return m_cCurItem[(UINT)type];
 }

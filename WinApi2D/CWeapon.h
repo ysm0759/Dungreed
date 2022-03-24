@@ -41,13 +41,14 @@ struct WeaponAttackInfo
 	wstring m_sWeaponKey; //sword 애니메이션 Key
 	wstring m_sEffKey;	 //Effect 애니메이션 key  // Key가 null이면 맨손
 	
-
+	int m_iAniCut;
+	float m_fAniTime;
 	fPoint m_fAniScale;   //애니메이션 스케일
 	fPoint m_fColScale;  //공격 충돌체 크기
 
 	bool m_IsMultiple;   //한 콜라이더가 다수를 때리는지 , 
 	ITEM_KIND m_eKind;   //아이템 종류 창 , 검 , 총 , DEFAULT 맨손 맨손
-
+	
 };
 
 
@@ -62,6 +63,6 @@ public:
 
 	virtual CWeapon* Clone();
 	WeaponAttackInfo* GetInfo();
-
+	virtual void OnCollisionEnter(CCollider* pOther);
 };
 
