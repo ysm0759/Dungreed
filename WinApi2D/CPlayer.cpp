@@ -9,7 +9,7 @@
 #include "CStatu.h"
 #include "CGameItem.h"
 #include "CPlayerAttack.h"
-
+#include "CWeapon.h"
 #define DASHCREATETIME 1.2f
 #define DASHVELOCITY 1500.f
 #define DASHTIME 0.125f
@@ -31,6 +31,9 @@ CPlayer::CPlayer()
 	m_cPlayerInfo.Satiety = 0;
 
 	//m_cCurItem.Accessories = nullptr;
+	m_pCurWeapon = nullptr;
+	m_pPlayerAttack = nullptr;
+
 	m_cCurItem.LeftSubWeapon = nullptr;
 	m_cCurItem.LeftWeapon = nullptr;
 	m_cCurItem.RightSubWeapon = nullptr;
@@ -138,6 +141,7 @@ void CPlayer::update()
 		if (KeyDown(VK_LBUTTON)) //공격
 		{
 			PlayerAttack();
+
 			CPlayerAttack* playerAttack = new CPlayerAttack;
 			playerAttack->SetPos(fPoint(100, 200));
 			CreateObj(playerAttack, GROUP_GAMEOBJ::PLAYER_ATTACK);
@@ -146,7 +150,11 @@ void CPlayer::update()
 			playerAttack->SetPos(this->GetPos());
 			playerAttack->SetDir(playDir);
 		}
-
+		if (KeyDown('Q'))
+		{
+			CItem* tmp = new CWeapon(ITEM_STATU::DROP, WEAPON_KIND::DEFAULT_SWORD, GetPos());
+			CreateObj(tmp,GROUP_GAMEOBJ::ITEM);
+		}
 	}
 	SetPos(pos);
 
@@ -170,6 +178,13 @@ void CPlayer::OnCollisionEnter(CCollider* pOther)
 {
 
 	CGameObject* pOtherObj = pOther->GetObj();
+
+	if (L"Weapon" == pOtherObj->GetName())
+	{
+		this->m_pCurWeapon = pOtherObj;
+		((CWeapon*)m_pCurWeapon)->GetInfo();
+
+	}
 
 	
 	if (pOtherObj->GetName() == L"Monster") //TODO: 나중에 타일로 바꿀것

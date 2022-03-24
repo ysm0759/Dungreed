@@ -4,6 +4,7 @@
 enum class ITEM_STATU
 {
 	DROP,
+	STAY,
 	INVENTORY,
 	WEAR,
 	NONE,
@@ -16,6 +17,10 @@ class CItem : public CGameObject
 protected:
 	char m_cItemStatu;
 	CD2DImage* m_pImg;
+	wstring m_sKey;
+	fPoint m_fDir;
+	float m_fForce;
+
 public:
 	CItem();
 	~CItem();
@@ -27,16 +32,16 @@ public:
 	virtual void ItemAniPlay() {};
 
 	virtual CItem* Clone();
-	virtual void SetDrop();
-	virtual void SetInventory();
-	virtual void SetWear();
+	void SetStay();
+	void SetDrop();
+	void SetInventory();
+	void SetWear();
 
 	void SetStatu(UINT bit);
 	bool IsStatu(UINT bit);
 	void RemoveStatu(UINT bit);
 
 
-	void LoadItemResource();
 	virtual void CreateItem() {};
 	virtual void OnCollisionEnter(CCollider* pOther);
 };

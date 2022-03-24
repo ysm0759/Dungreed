@@ -11,12 +11,22 @@ CItem::CItem()
 {
 	m_cItemStatu = 0;
 	m_pImg = nullptr;
+	m_sKey = L"";
 
+
+	//드랍될때 방향 , 힘
+	if (0 == rand() % 2)
+		m_fDir = fPoint((float)-rand(), (float)-rand());
+	else
+		m_fDir = fPoint((float)rand(), (float)-rand());
+	
+	m_fForce = (float)(rand() % 200 + 400);
+	
 	CreateStatu();
-	CreateAnimator();
-	CreateCollider();
-	SetDrop(); 
+	GetStatu()->SetForceDir(m_fDir);
+	GetStatu()->SetForce(m_fForce);
 }
+
 CItem* CItem::Clone()
 {
 	return new CItem(*this);
@@ -27,28 +37,6 @@ CItem::~CItem()
 
 }
 
-void CItem::LoadItemResource()
-{
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"GoldSmall", L"texture\\Item\\GoldSmall.png");
-	GetAnimator()->CreateAnimation(L"GoldSmall", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 7);
-
-
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"GoldBig", L"texture\\Item\\GoldBig.png");
-	GetAnimator()->CreateAnimation(L"GoldBig", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 7);
-
-
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"FairyS", L"texture\\Item\\FairyS.png");
-	GetAnimator()->CreateAnimation(L"FairyS", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 16);
-
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"FairyM", L"texture\\Item\\FairyM.png");
-	GetAnimator()->CreateAnimation(L"FairyM", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 16);
-
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"FairyL", L"texture\\Item\\FairyL.png");
-	GetAnimator()->CreateAnimation(L"FairyL", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 16);
-	
-
-	
-}
 
 void CItem::SetDrop()
 {
@@ -73,6 +61,11 @@ void CItem::SetStatu(UINT bit)
 	m_cItemStatu |= (1 << bit);
 }
 
+void CItem::SetStay()
+{
+	m_cItemStatu = 0;
+	SetStatu((UINT)ITEM_STATU::STAY);
+}
 bool CItem::IsStatu(UINT bit)
 {
 	return m_cItemStatu & (1 << bit);
@@ -87,10 +80,6 @@ void CItem::RemoveStatu(UINT bit)
 void CItem::update()
 {
 
-	//if (IsStatu((UINT)ITEM_STATU::DROP))
-	//{
-	//	DropUpdate();
-	//}
 	
 	if (IsStatu((UINT)ITEM_STATU::DROP))
 	{
@@ -98,11 +87,14 @@ void CItem::update()
 		StatuSet(GROUP_OBJECT_STATU::FORCE);
 	}
 
-	
-	if (IsStatu((UINT)ITEM_STATU::INVENTORY))
+	if (IsStatu((UINT)ITEM_STATU::STAY))
 	{
 		StatuSet(GROUP_OBJECT_STATU::GROUND);
 		StatuRemove(GROUP_OBJECT_STATU::FORCE);
+	}
+	if (IsStatu((UINT)ITEM_STATU::INVENTORY))
+	{
+
 	}
 
 
@@ -112,7 +104,7 @@ void CItem::update()
 
 void CItem::render()
 {
-	ItemAniPlay();
+	this->GetAnimator()->Play(m_sKey, GetScale());
 	component_render();
 }
 
@@ -130,9 +122,7 @@ void CItem::OnCollisionEnter(CCollider* pOther)
 		}
 		if (pOtherObj->GetName() == L"Monster") //TODO: 나중에 타일로 바꿀것
 		{
-			SetStatu((UINT)ITEM_STATU::INVENTORY);
-	/*		StatuSet(GROUP_OBJECT_STATU::GROUND);
-			StatuRemove(GROUP_OBJECT_STATU::FORCE);*/
+			SetStatu((UINT)ITEM_STATU::STAY);
 		}
 	}
 }

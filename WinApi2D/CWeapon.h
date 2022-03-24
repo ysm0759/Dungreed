@@ -58,7 +58,6 @@ public:
 	CWeapon();
 	CWeapon(ITEM_STATU itemStatu, WEAPON_KIND weaponKind , fPoint pos);
 	~CWeapon();
-	virtual void ItemAniPlay();
 	void SetWeaponDelay(float delay);
 	void SetWeaponRange(float range);
 	void SetWeaponColScale(fPoint colScale);

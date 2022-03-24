@@ -42,6 +42,8 @@ private:
 
 	PlayerInfo m_cPlayerInfo;
 	ItemPart m_cCurItem;
+	CGameObject* m_pCurWeapon;
+	CPlayerAttack* m_pPlayerAttack;
 	list<CItem*> m_inventory;
 	
 	CPlayerAttack* m_playerAttack;

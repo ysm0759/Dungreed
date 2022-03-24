@@ -9,7 +9,7 @@ CWeapon::CWeapon()
 	m_sAttackInfo.m_fRange = 0.f;				  //공격 범위 플레이어 기준으로 픽셀 원단위 
 	m_sAttackInfo.m_fVelocity = 0.f;			  //원거리라면 탄환 이동속도
 	m_sAttackInfo.m_fDestroyTime = 0.f;			  //임펙트 몇초 유지?
-	m_sAttackInfo.m_sWeaponKey = L"";			  //sword 애니메이션 Key
+	m_sKey = L"";			  //sword 애니메이션 Key
 	m_sAttackInfo.m_sEffKey =L"";				  //Effect 애니메이션 key  // Key가 null이면 맨손
 	m_sAttackInfo.m_fAniScale = {};				  //애니메이션 스케일
 	m_sAttackInfo.m_fColScale = {};				  //공격 충돌체 크기
@@ -21,14 +21,15 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind , fPoint pos)
 {
 
 	SetPos(pos);
+	SetName(L"Weapon");
 	switch (weaponKind)
 	{
 		case WEAPON_KIND::DEFAULT_SWORD:
+			m_sKey = L"Sword";													//sword 애니메이션 Key
 			m_sAttackInfo.m_fDelay			= 0.53f;							//공격 딜레이
 			m_sAttackInfo.m_fRange			= 100.f;							//공격 범위 플레이어 기준으로 픽셀 원단위 
 			m_sAttackInfo.m_fVelocity		= 0;								//원거리라면 탄환 이동속도
 			m_sAttackInfo.m_fDestroyTime	= 0.6f;								//임펙트 몇초 유지?
-			m_sAttackInfo.m_sWeaponKey		= L"Sword";							//sword 애니메이션 Key
 			m_sAttackInfo.m_sEffKey			= L"SwordEff";						//Effect 애니메이션 key  // Key가 null이면 맨손
 			m_sAttackInfo.m_fAniScale		= fPoint(100, 100);					//애니메이션 스케일
 			m_sAttackInfo.m_fColScale		= fPoint(100, 100);					//공격 충돌체 크기
@@ -79,8 +80,6 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind , fPoint pos)
 	case ITEM_STATU::DROP:
 		CreateCollider();
 		GetCollider()->SetScale(GetScale()+fPoint(10,40));
-		CreateStatu();
-		StatuRemove(GROUP_OBJECT_STATU::GROUND);
 		SetDrop();
 		break;
 	case ITEM_STATU::INVENTORY:
@@ -97,10 +96,8 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind , fPoint pos)
 
 
 	CreateAnimator();
-	m_pImg = CResourceManager::getInst()->LoadD2DImage(m_sAttackInfo.m_sWeaponKey, L"texture\\Item\\" + m_sAttackInfo.m_sWeaponKey + L".png");
-	GetAnimator()->CreateAnimation(m_sAttackInfo.m_sWeaponKey, m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 1);
-
-
+	m_pImg = CResourceManager::getInst()->LoadD2DImage(m_sKey, L"texture\\Item\\" + m_sKey + L".png");
+	GetAnimator()->CreateAnimation(m_sKey, m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 1);
 }
 
 CWeapon::~CWeapon()
@@ -108,10 +105,7 @@ CWeapon::~CWeapon()
 
 }
 
-void CWeapon::ItemAniPlay()
-{
-	this->GetAnimator()->Play(m_sAttackInfo.m_sWeaponKey, GetScale());
-}
+
 
 
 
@@ -132,8 +126,8 @@ void CWeapon::SetWeaponColScale(fPoint colScale)
 
 void CWeapon::SetWeaponKey(wstring swordkey)
 {
-	m_sAttackInfo.m_sWeaponKey = swordkey;
-	m_sAttackInfo.m_sEffKey = m_sAttackInfo.m_sWeaponKey + L"Eff";
+	m_sKey = swordkey;
+	m_sAttackInfo.m_sEffKey = m_sKey + L"Eff";
 
 }
 

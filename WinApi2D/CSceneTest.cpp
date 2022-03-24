@@ -61,34 +61,32 @@ void CSceneTest::Enter()
 	AddObject(pPlayer, GROUP_GAMEOBJ::PLAYER);
 
 
-	//CItem* pItem = new CCoin(GROUP_COIN::GOLD_BIG);
-	//pItem->SetPos(fPoint(200, 200));
-	//pItem->LoadItemResource();
-	//AddObject(pItem, GROUP_GAMEOBJ::ITEM);
-
 	// Player Ãß°¡
 	CGameObject* pMonster = new CMonster;
 	pMonster->SetPos(fPoint(200, 600));
 	AddObject(pMonster, GROUP_GAMEOBJ::MONSTER);
 
-	//CItem* pFariy = new CFairy(GROUP_FAIRY::FAIRY_SMALL);
-	//pFariy->SetPos(fPoint(220, 200));
-	//pFariy->LoadItemResource();
-	//AddObject(pFariy, GROUP_GAMEOBJ::ITEM);
-	//
-	//CItem* pFariy1 = new CFairy(GROUP_FAIRY::FAIRY_MIDDLE);
-	//pFariy1->SetPos(fPoint(150, 200));
-	//pFariy1->LoadItemResource();
-	//AddObject(pFariy1, GROUP_GAMEOBJ::ITEM);
 
-	//CItem* pFariy2 = new CFairy(GROUP_FAIRY::FAIRY_BIG);
-	//pFariy2->SetPos(fPoint(100, 200));
-	//pFariy2->LoadItemResource();
-	//AddObject(pFariy2, GROUP_GAMEOBJ::ITEM);
+
+	CItem* pItem = new CGameItem(GROUP_GAMEITEM::GOLD_BIG);
+	pItem->SetPos(fPoint(200, 200));
+	AddObject(pItem, GROUP_GAMEOBJ::ITEM);
+
+
+	CItem* pFariy = new CGameItem(GROUP_GAMEITEM::FAIRY_SMALL);
+	pFariy->SetPos(fPoint(220, 200));
+	AddObject(pFariy, GROUP_GAMEOBJ::ITEM);
+	
+	CItem* pFariy1 = new CGameItem(GROUP_GAMEITEM::FAIRY_MIDDLE);
+	pFariy1->SetPos(fPoint(150, 200));
+	AddObject(pFariy1, GROUP_GAMEOBJ::ITEM);
+
+	CItem* pFariy2 = new CGameItem(GROUP_GAMEITEM::FAIRY_BIG);
+	pFariy2->SetPos(fPoint(100, 200));
+	AddObject(pFariy2, GROUP_GAMEOBJ::ITEM);
 
 
 	CWeapon* pWeapon = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_SWORD , fPoint(100,100));
-	pWeapon->LoadItemResource();
 	AddObject(pWeapon, GROUP_GAMEOBJ::ITEM);
 
 
