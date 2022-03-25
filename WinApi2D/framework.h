@@ -92,9 +92,15 @@ enum class GROUP_TILE
 {
 	NONE,
 	GROUND,
+	WALL_LEFT,
+	WALL_RIGHT,
 	PLATFORM,
-	WALL,
 	SLOPE,
+	DOOR_LEFT,
+	DOOR_RIGHT,
+	DOOR_UP,
+	DOOR_DOWN,
+	DOOR_DUNGEON,
 	SIZE,
 };
 //========================================
@@ -209,6 +215,8 @@ static float WINSIZEY = 720;
 #define StatuGet(statu) CGameObject::GetStatu()->IsStatu((UINT)statu)
 #define StatuRemove(statu) CGameObject::GetStatu()->RemoveStatu((UINT)statu)
 
+#define ZOOM		   CCameraManager::getInst()->GetZoom()
+#define SetZOOM(zoom)		   CCameraManager::getInst()->SetZoom(zoom)
 
 //========================================
 //## 전역변수(인스턴스, 윈도우 핸들)	##

@@ -28,10 +28,10 @@ void CButtonUI::render()
 	{
 		CRenderManager::getInst()->RenderText(
 			m_strText,
-			GetFinalPos().x,
-			GetFinalPos().y,
-			GetFinalPos().x + GetScale().x,
-			GetFinalPos().y + GetScale().y
+			GetFinalPos().x*ZOOM,	
+			GetFinalPos().y * ZOOM,
+			GetFinalPos().x * ZOOM + GetScale().x * ZOOM,
+			GetFinalPos().y * ZOOM + GetScale().y * ZOOM
 		);
 	}
 

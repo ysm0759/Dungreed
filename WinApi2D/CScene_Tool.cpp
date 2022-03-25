@@ -9,6 +9,7 @@
 #include "CPanelUI.h"
 #include "CButtonUI.h"
 #include "CTileButton.h"
+#include "CBackGround.h"
 
 INT_PTR CALLBACK TileWinProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -19,7 +20,8 @@ CScene_Tool::CScene_Tool()
 	m_hWnd = 0;
 	m_iIdx = 0;
 	m_gTile = GROUP_TILE::NONE;
-	m_velocity = 500;
+	//TODO:TOOL
+	m_velocity = 1000;
 	m_iTileX = 0;
 	m_iTileY = 0;
 }
@@ -56,10 +58,12 @@ void CScene_Tool::update()
 
 	SetTileIdx();
 	SetTileGroup();
+
 }
 
 void CScene_Tool::render()
 {
+	CScene::render();
 	const vector<CGameObject*>& vecTile = GetGroupObject(GROUP_GAMEOBJ::TILE);
 	for (UINT i = 0; i < vecTile.size(); i++)
 	{
@@ -75,17 +79,65 @@ void CScene_Tool::render()
 	{
 		vecUI[i]->render();
 	}
+
 }
 
 void CScene_Tool::Enter()
 {
+	SetZOOM(3);
 	m_hWnd = CreateDialog(hInst, MAKEINTRESOURCE(IDD_TILEBOX), hWnd, TileWinProc);
 	ShowWindow(m_hWnd, SW_SHOW);
 
 	CreateTile(20, 20);
 	CreateTilePanel();
 
-	CCameraManager::getInst()->SetLookAt(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
+
+	//TODO:TOOL
+	CCameraManager::getInst()->SetLookAt(fPoint(WINSIZEX / 2.f /ZOOM, WINSIZEY / 2.f / ZOOM));
+
+
+	//TODO:TOOL
+	CBackGround* backGround1 = new CBackGround();
+	backGround1->OnFix();
+	backGround1->SetBackScale(1);
+	backGround1->Load(L"FixBackGround", L"texture\\Village\\FixBackGround.png");
+	backGround1->SetPos(fPoint(0,0));
+	AddObject(backGround1, GROUP_GAMEOBJ::BACK_GROUND);
+
+
+	CBackGround* backGround2 = new CBackGround();
+	backGround2->OnFix();
+	backGround2->OnDependOnObject(1);
+	backGround2->SetBackScale(1);
+	backGround2->SetPos(fPoint(0, 0));
+	backGround2->Load(L"MiddleBackGround", L"texture\\Village\\MiddleBackGround.png");
+	AddObject(backGround2, GROUP_GAMEOBJ::BACK_GROUND);
+
+	CBackGround* backGround3 = new CBackGround();
+	backGround3->OnFix();
+	backGround3->OnDependOnObject(1);
+	backGround3->SetBackScale(1);
+	backGround3->Load(L"FrontBackGround", L"texture\\Village\\FrontBackGround.png");
+	backGround3->SetPos(fPoint(0, 0));
+	AddObject(backGround3, GROUP_GAMEOBJ::BACK_GROUND);
+
+
+	CBackGround* backGround4 = new CBackGround();
+	backGround4->OnFix();
+	backGround4->OnDependOnObject(1);
+	backGround4->SetBackScale(100);
+	backGround4->Load(L"None", L"texture\\tile\\None.png");
+	backGround4->SetPos(fPoint(0, 640));
+	AddObject(backGround4, GROUP_GAMEOBJ::BACK_GROUND);
+
+	CBackGround* backFloor = new CBackGround();
+	backFloor->OnFix();
+	backFloor->OnDependOnObject(1);
+	backFloor->SetBackScale(1);
+	backFloor->Load(L"Floor", L"texture\\Village\\Floor.png");
+	backFloor->SetPos(fPoint(0, 0 ));
+	AddObject(backFloor, GROUP_GAMEOBJ::BACK_GROUND);
+
 }
 
 void CScene_Tool::Exit()
@@ -343,16 +395,55 @@ void CScene_Tool::ClickTileGroup(CButtonUI* button)
 	}
 	else if (m_gTile == GROUP_TILE::GROUND)
 	{
-		m_gTile = GROUP_TILE::WALL;
-		button->SetText(L"WALL");
+		m_gTile = GROUP_TILE::WALL_LEFT;
+		button->SetText(L"WALL_LEFT");
 	}
-	else if (m_gTile == GROUP_TILE::WALL)
+	else if (m_gTile == GROUP_TILE::WALL_LEFT)
+	{
+		m_gTile = GROUP_TILE::WALL_RIGHT;
+		button->SetText(L"WALL_RIGHT");
+	}
+	else if (m_gTile == GROUP_TILE::WALL_RIGHT)
+	{
+		m_gTile = GROUP_TILE::PLATFORM;
+		button->SetText(L"PLATFORM");
+	}
+	else if (m_gTile == GROUP_TILE::PLATFORM)
+	{
+		m_gTile = GROUP_TILE::SLOPE;
+		button->SetText(L"SLOPE");
+	}
+	else if (m_gTile == GROUP_TILE::SLOPE)
+	{
+		m_gTile = GROUP_TILE::DOOR_LEFT;
+		button->SetText(L"DOOR_LEFT");
+	}
+	else if (m_gTile == GROUP_TILE::DOOR_LEFT)
+	{
+		m_gTile = GROUP_TILE::DOOR_RIGHT;
+		button->SetText(L"DOOR_RIGHT");
+	}
+	else if (m_gTile == GROUP_TILE::DOOR_RIGHT)
+	{
+		m_gTile = GROUP_TILE::DOOR_UP;
+		button->SetText(L"DOOR_UP");
+	}
+	else if (m_gTile == GROUP_TILE::DOOR_UP)
+	{
+		m_gTile = GROUP_TILE::DOOR_DOWN;
+		button->SetText(L"DOOR_DOWN");
+	}
+	else if (m_gTile == GROUP_TILE::DOOR_DOWN)
+	{
+		m_gTile = GROUP_TILE::DOOR_DUNGEON;
+		button->SetText(L"DOOR_DUNGEON");
+	}
+	else if (m_gTile == GROUP_TILE::DOOR_DUNGEON)
 	{
 		m_gTile = GROUP_TILE::NONE;
 		button->SetText(L"NONE");
 	}
 }
-
 void ClickTileButton(DWORD_PTR param1, DWORD_PTR param2)
 {
 	// param1 : Scene_tool
@@ -371,8 +462,8 @@ void CScene_Tool::CreateTilePanel()
 {
 	CPanelUI* panelTile = new CPanelUI;
 	panelTile->SetName(L"panelTile");
-	panelTile->SetScale(fPoint(400.f, 600.f));
-	panelTile->SetPos(fPoint(WINSIZEX - 450.f, 50.f));
+	panelTile->SetScale(fPoint(200.f, 250.f));
+	panelTile->SetPos(fPoint(WINSIZEX / ZOOM - 450.f, 50.f / ZOOM) /ZOOM);
 
 	CD2DImage* pImg = CResourceManager::getInst()->LoadD2DImage(L"Tile", L"texture\\tile\\Tile.png");
 	for (UINT y = 0; y < 12; y++)
@@ -391,8 +482,8 @@ void CScene_Tool::CreateTilePanel()
 	}
 
 	CButtonUI* btnTileGroup = new CButtonUI;
-	btnTileGroup->SetScale(fPoint(100.f, 50.f));
-	btnTileGroup->SetPos(fPoint(50.f, 500.f));
+	btnTileGroup->SetScale(fPoint(50.f, 10.f));
+	btnTileGroup->SetPos(fPoint(50.f, 220.f));
 	btnTileGroup->SetText(L"NONE");
 	btnTileGroup->SetClickedCallBack(ClickTileGroupButton, (DWORD_PTR)this, (DWORD_PTR)btnTileGroup);
 	panelTile->AddChild(btnTileGroup);
@@ -406,7 +497,7 @@ void CScene_Tool::PrintMap()
 		return;
 
 	fPoint pos = CCameraManager::getInst()->GetLookAt();
-	pos = pos - fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f);
+	pos = pos - fPoint(WINSIZEX /ZOOM/ 2.f, WINSIZEY / ZOOM / 2.f);
 
 	CRenderManager::getInst()->RenderImage(
 		m_pMap,
@@ -420,14 +511,14 @@ void CScene_Tool::PrintMap()
 void CScene_Tool::PrintTileLine()
 {
 	fPoint pos = CCameraManager::getInst()->GetLookAt();
-	pos = pos - fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f);
+	pos = pos - fPoint(WINSIZEX / ZOOM / 2.f, WINSIZEY / ZOOM / 2.f);
 
 	// 가로줄 출력
 	for (UINT y = 0; y <= m_iTileY; y++)
 	{
 		CRenderManager::getInst()->RenderLine(
 			fPoint(0 - pos.x, y * CTile::SIZE_TILE - pos.y),
-			fPoint(CTile::SIZE_TILE * m_iTileX - pos.x, y * CTile::SIZE_TILE - pos.y)
+			fPoint(CTile::SIZE_TILE * m_iTileX - pos.x, y * CTile::SIZE_TILE  - pos.y)
 		);
 	}
 
@@ -436,7 +527,7 @@ void CScene_Tool::PrintTileLine()
 	{
 		CRenderManager::getInst()->RenderLine(
 			fPoint(x * CTile::SIZE_TILE - pos.x, 0 - pos.y),
-			fPoint(x * CTile::SIZE_TILE - pos.x, CTile::SIZE_TILE * m_iTileY - pos.y)
+			fPoint(x * CTile::SIZE_TILE - pos.x , CTile::SIZE_TILE * m_iTileY  - pos.y)
 		);
 	}
 }
@@ -444,7 +535,7 @@ void CScene_Tool::PrintTileLine()
 void CScene_Tool::PrintTileGroup()
 {
 	fPoint pos = CCameraManager::getInst()->GetLookAt();
-	pos = pos - fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f);
+	pos = pos - fPoint(WINSIZEX / 2.f/ZOOM , WINSIZEY / ZOOM / 2.f);
 
 	const vector<CGameObject*>& vecTile = GetGroupObject(GROUP_GAMEOBJ::TILE);
 	CTile* pTile;
@@ -463,14 +554,102 @@ void CScene_Tool::PrintTileGroup()
 				3.f
 			);
 		}
-		else if (GROUP_TILE::WALL == pTile->GetGroup())
+		else if (GROUP_TILE::WALL_LEFT == pTile->GetGroup())
 		{
 			CRenderManager::getInst()->RenderEllipse(
 				pTile->GetPos().x + CTile::SIZE_TILE / 2.f - pos.x,
 				pTile->GetPos().y + CTile::SIZE_TILE / 2.f - pos.y,
 				CTile::SIZE_TILE / 2.f,
 				CTile::SIZE_TILE / 2.f,
-				RGB(0, 255, 0),
+				RGB(100, 255, 100),
+				3.f
+			);
+		}
+		else if (GROUP_TILE::WALL_RIGHT == pTile->GetGroup())
+		{
+			CRenderManager::getInst()->RenderEllipse(
+				pTile->GetPos().x + CTile::SIZE_TILE / 2.f - pos.x,
+				pTile->GetPos().y + CTile::SIZE_TILE / 2.f - pos.y,
+				CTile::SIZE_TILE / 2.f,
+				CTile::SIZE_TILE / 2.f,
+				RGB(100, 255, 100),
+				3.f
+			);
+		}
+		else if (GROUP_TILE::PLATFORM == pTile->GetGroup())
+		{
+			CRenderManager::getInst()->RenderEllipse(
+				pTile->GetPos().x + CTile::SIZE_TILE / 2.f - pos.x,
+				pTile->GetPos().y + CTile::SIZE_TILE / 2.f - pos.y,
+				CTile::SIZE_TILE / 2.f,
+				CTile::SIZE_TILE / 2.f,
+				RGB(0, 0, 0),
+				3.f
+			);
+		}
+		else if (GROUP_TILE::SLOPE == pTile->GetGroup())
+		{
+			CRenderManager::getInst()->RenderEllipse(
+				pTile->GetPos().x + CTile::SIZE_TILE / 2.f - pos.x,
+				pTile->GetPos().y + CTile::SIZE_TILE / 2.f - pos.y,
+				CTile::SIZE_TILE / 2.f,
+				CTile::SIZE_TILE / 2.f,
+				RGB(100, 0, 100),
+				3.f
+			);
+		}
+		else if (GROUP_TILE::DOOR_LEFT == pTile->GetGroup())
+		{
+			CRenderManager::getInst()->RenderEllipse(
+				pTile->GetPos().x + CTile::SIZE_TILE / 2.f - pos.x,
+				pTile->GetPos().y + CTile::SIZE_TILE / 2.f - pos.y,
+				CTile::SIZE_TILE / 2.f,
+				CTile::SIZE_TILE / 2.f,
+				RGB(255, 255, 255),
+				3.f
+			);
+		}
+		else if (GROUP_TILE::DOOR_RIGHT == pTile->GetGroup())
+		{
+			CRenderManager::getInst()->RenderEllipse(
+				pTile->GetPos().x + CTile::SIZE_TILE / 2.f - pos.x,
+				pTile->GetPos().y + CTile::SIZE_TILE / 2.f - pos.y,
+				CTile::SIZE_TILE / 2.f,
+				CTile::SIZE_TILE / 2.f,
+				RGB(255, 255, 255),
+				3.f
+			);
+		}
+		else if (GROUP_TILE::DOOR_UP == pTile->GetGroup())
+		{
+			CRenderManager::getInst()->RenderEllipse(
+				pTile->GetPos().x + CTile::SIZE_TILE / 2.f - pos.x,
+				pTile->GetPos().y + CTile::SIZE_TILE / 2.f - pos.y,
+				CTile::SIZE_TILE / 2.f,
+				CTile::SIZE_TILE / 2.f,
+				RGB(255, 255, 255),
+				3.f
+			);
+		}
+		else if (GROUP_TILE::DOOR_DOWN == pTile->GetGroup())
+		{
+			CRenderManager::getInst()->RenderEllipse(
+				pTile->GetPos().x + CTile::SIZE_TILE / 2.f - pos.x,
+				pTile->GetPos().y + CTile::SIZE_TILE / 2.f - pos.y,
+				CTile::SIZE_TILE / 2.f,
+				CTile::SIZE_TILE / 2.f,
+				RGB(255, 255, 255),
+				3.f
+			);
+		}
+		else if (GROUP_TILE::DOOR_DUNGEON == pTile->GetGroup())
+		{
+			CRenderManager::getInst()->RenderEllipse(
+				pTile->GetPos().x + CTile::SIZE_TILE / 2.f - pos.x,
+				pTile->GetPos().y + CTile::SIZE_TILE / 2.f - pos.y,
+				CTile::SIZE_TILE / 2.f,
+				CTile::SIZE_TILE / 2.f,
+				RGB(255, 255, 255),
 				3.f
 			);
 		}

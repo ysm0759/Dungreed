@@ -33,14 +33,14 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind , fPoint pos)
 			m_sAttackInfo->m_fAniTime		= 0.05;														//애니메이션 속도
 			m_sAttackInfo->m_iAniCut		= 6;														//애니메이션 몇컷인지
 			m_sAttackInfo->m_fDestroyTime = m_sAttackInfo->m_fAniTime * m_sAttackInfo->m_iAniCut - 0.01f;		//임펙트 몇초 유지?
-			m_sAttackInfo->m_fAniScale		= fPoint(50, 50);											//애니메이션 스케일
-			m_sAttackInfo->m_fColScale		= fPoint(150, 150);											//공격 충돌체 크기
+			m_sAttackInfo->m_fAniScale		= fPoint(0, 0);											//애니메이션 스케일
+			m_sAttackInfo->m_fColScale		= fPoint(0, 0);											//공격 충돌체 크기
 			m_sAttackInfo->m_IsMultiple		= true;														//한 콜라이더가 다수를 때리는지 , 
 			m_sAttackInfo->m_eKind			= ITEM_KIND::SWORD;											//아이템 종류 창 , 검 , 총 , DEFAULT 맨손 
 			m_eItemType						= ITEM_TYPE::ONE_HAND_WEAPON;								//한손검 두손검 아이템 클릭할때 나오는 정보창
 			m_sEffect;																					//효과 아이템 클릭할때 나오는 정보창
 			m_sExplanation;																				//효과 아이템 클릭할때 나오는 설명창
-			SetScale(fPoint(20, 20));																	//무기 크기;
+			SetScale(fPoint(0, 0));																	//무기 크기;
 			//SetEquipmentItemStat();
 			break;
 		case WEAPON_KIND::DEFAULT_GUN:
@@ -52,14 +52,14 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind , fPoint pos)
 			m_sAttackInfo->m_fAniTime = 0.05;
 			m_sAttackInfo->m_iAniCut = 4;
 			m_sAttackInfo->m_fDestroyTime = m_sAttackInfo->m_fAniTime * m_sAttackInfo->m_iAniCut + 30.f;
-			m_sAttackInfo->m_fAniScale = fPoint(10, 10);
-			m_sAttackInfo->m_fColScale = fPoint(10, 20);
+			m_sAttackInfo->m_fAniScale = fPoint(0, 0);
+			m_sAttackInfo->m_fColScale = fPoint(0, 0);
 			m_sAttackInfo->m_IsMultiple = true;
 			m_sAttackInfo->m_eKind = ITEM_KIND::GUN;
 			m_eItemType = ITEM_TYPE::TWO_HAND_WEAPON;
 			m_sEffect;
 			m_sExplanation;
-			SetScale(fPoint(20, 0));
+			SetScale(fPoint(0, -10));
 			break;
 
 	}

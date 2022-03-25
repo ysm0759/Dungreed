@@ -105,7 +105,8 @@ void CBackGround::render()
         if (GetOption((UINT)BACK_OPTION::DEPEND_ON))
         {
             fPoint renderPos = CCameraManager::getInst()->GetRenderPos(pos);
-            renderPos = pos + (renderPos - pos) / m_fDependOnSpeed;    // 배경은 살짝 느리게 이동
+            
+            renderPos.y = pos.y + (renderPos.y - pos.y) / m_fDependOnSpeed;    // 배경은 살짝 느리게 이동
 
             CRenderManager::getInst()->RenderImage(
                 m_pImg,

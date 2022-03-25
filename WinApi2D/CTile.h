@@ -15,7 +15,7 @@ private:
 	GROUP_TILE m_eGroup;
 
 public:
-	const static int SIZE_TILE = 32;
+	const static int SIZE_TILE = 16;
 
 	CTile();
 	virtual ~CTile();

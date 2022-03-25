@@ -52,7 +52,7 @@ void CKeyManager::update()
 	// 모니터 좌상단 기준 마우스 좌표를 게임 윈도우 기준 마우스 위치로 계산
 	ScreenToClient(hWnd, &ptPos);
 
-	m_fptCurMousePos = fPoint((float)ptPos.x, (float)ptPos.y);
+	m_fptCurMousePos = fPoint((float)ptPos.x/ZOOM , (float)ptPos.y / ZOOM);
 }
 
 void CKeyManager::init()

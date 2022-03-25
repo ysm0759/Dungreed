@@ -16,7 +16,7 @@ void CTileButton::render()
 {
 	if (nullptr != m_pImg)
 	{
-		UINT iWidth = m_pImg->GetWidth();
+		UINT iWidth = m_pImg->GetWidth() ;
 		UINT iHeight = m_pImg->GetHeight();
 
 		UINT iMaxRow = iHeight / CTile::SIZE_TILE;

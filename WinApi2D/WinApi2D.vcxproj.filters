@@ -329,7 +329,7 @@
     <ClCompile Include="CRenderManager.cpp">
       <Filter>Engine\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="CSatu.cpp">
+    <ClCompile Include="CStatu.cpp">
       <Filter>Engine\Component\Statu</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">

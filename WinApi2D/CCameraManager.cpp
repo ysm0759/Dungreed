@@ -11,7 +11,7 @@ CCameraManager::CCameraManager()
 	m_pTargetObj = nullptr;
 	m_fAccTime = m_fTime;
 	m_fSpeed = 0;
-
+	m_fZoom =1.5f;
 }
 
 CCameraManager::~CCameraManager()
@@ -117,13 +117,13 @@ fPoint CCameraManager::GetLookAt()
 
 fPoint CCameraManager::GetRenderPos(fPoint objPos)
 {
-	return objPos - m_fptDiff;
+	return objPos  - m_fptDiff;
 }
 
 fPoint CCameraManager::GetRealPos(fPoint renderPos)
 {
 	// 렌더링 좌표에서 차이값만큼 더해주면 절대 좌표가 나옴.
-	return renderPos + m_fptDiff;
+	return renderPos  + m_fptDiff;
 }
 
 void CCameraManager::FadeIn(float duration)
@@ -162,7 +162,17 @@ void CCameraManager::Scroll(fVec2 vec, float velocity)
 	m_fptCurLookAt = m_fptCurLookAt + vec * velocity * fDT;
 
 	fPoint fptCenter = fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f);
-	m_fptDiff = m_fptCurLookAt - fptCenter;
+	m_fptDiff = m_fptCurLookAt - fptCenter / m_fZoom;
+}
+
+float CCameraManager::GetZoom()
+{
+	return m_fZoom;
+}
+
+void CCameraManager::SetZoom(float zoom)
+{
+	this->m_fZoom = zoom;
 }
 
 void CCameraManager::CalDiff()
@@ -178,7 +188,7 @@ void CCameraManager::CalDiff()
 		fPoint fptCenter = fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f);
 
 		m_fptCurLookAt = m_fptPrevLookAt + (m_fptLookAt - m_fptPrevLookAt).normalize() * m_fSpeed * fDT;
-		m_fptDiff = m_fptCurLookAt - fptCenter;
+		m_fptDiff = m_fptCurLookAt - fptCenter / m_fZoom;
 		m_fptPrevLookAt = m_fptCurLookAt;
 	}
 }

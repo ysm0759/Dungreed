@@ -227,7 +227,7 @@
     <ClCompile Include="CRenderManager.cpp" />
     <ClCompile Include="CResource.cpp" />
     <ClCompile Include="CResourceManager.cpp" />
-    <ClCompile Include="CSatu.cpp" />
+    <ClCompile Include="CStatu.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneMain.cpp" />
     <ClCompile Include="CSceneManager.cpp" />

@@ -52,16 +52,19 @@ void CSceneMain::Enter()
 void CSceneMain::Exit()
 {
 	DeleteAll();
+	SetZOOM(4.f);
 	CSoundManager::getInst()->Stop(L"MainBGM");
 	CCollisionManager::getInst()->Reset();
 }
 
 void CSceneMain::CreateBackGround()
 {
+
+	SetZOOM(1);
 	CBackGround* backGround1 = new CBackGround();
 	backGround1->OnFix();
 	backGround1->Load(L"BackGround1", L"texture\\Main\\BackGround1.png");
-	backGround1->SetPos(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
+	backGround1->SetPos(fPoint(WINSIZEX / 2.f/ZOOM, WINSIZEY / 2.f / ZOOM));
 	AddObject(backGround1, GROUP_GAMEOBJ::BACK_GROUND);
 
 
@@ -69,11 +72,11 @@ void CSceneMain::CreateBackGround()
 	backGround2->OnAuto(50);
 	backGround2->OnRepeat();
 	backGround2->Load(L"BackGround2", L"texture\\Main\\BackGround2.png");
-	backGround2->SetPos(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
+	backGround2->SetPos(fPoint(WINSIZEX / 2.f / ZOOM, WINSIZEY / 2.f / ZOOM));
 	AddObject(backGround2, GROUP_GAMEOBJ::BACK_GROUND);
 
 	CBackGround* backGround2Repeat = backGround2->Clone();
-	backGround2Repeat->SetPos(fPoint(backGround2Repeat->GetPos().x + backGround2Repeat->GetScale().x, WINSIZEY / 2.f));
+	backGround2Repeat->SetPos(fPoint(backGround2Repeat->GetPos().x / ZOOM + backGround2Repeat->GetScale().x, WINSIZEY / 2.f / ZOOM));
 	AddObject(backGround2Repeat, GROUP_GAMEOBJ::BACK_GROUND);
 
 
@@ -88,25 +91,25 @@ void CSceneMain::CreateBackGround()
 
 
 	CBackGround* backGround3Repeat = backGround3->Clone();
-	backGround3Repeat->SetPos(fPoint(backGround3Repeat->GetScale().x + backGround3Repeat->GetPos().x + 150, WINSIZEY / 2.f));
+	backGround3Repeat->SetPos(fPoint(backGround3Repeat->GetScale().x / ZOOM + backGround3Repeat->GetPos().x + 150, WINSIZEY / 2.f));
 	AddObject(backGround3Repeat, GROUP_GAMEOBJ::BACK_GROUND);
 
 
 	CBackGround* backGround4 = backGround3->Clone();
 	backGround4->OnAuto(300);
 	backGround4->SetAlpha(1.f);
-	backGround4->SetPos(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
+	backGround4->SetPos(fPoint(WINSIZEX / 2.f / ZOOM, WINSIZEY / 2.f / ZOOM));
 	AddObject(backGround4, GROUP_GAMEOBJ::BACK_GROUND);
 
 	CBackGround* backGround4Repeat1 = backGround4->Clone();
-	backGround4Repeat1->SetPos(fPoint(backGround4Repeat1->GetScale().x + backGround4Repeat1->GetPos().x + 150, WINSIZEY / 2.f));
+	backGround4Repeat1->SetPos(fPoint(backGround4Repeat1->GetScale().x / ZOOM + backGround4Repeat1->GetPos().x + 150, WINSIZEY / 2.f));
 	AddObject(backGround4Repeat1, GROUP_GAMEOBJ::BACK_GROUND);
 
 
 	CBackGround* mainLogo = new CBackGround();
 	mainLogo->OnFix();
 	mainLogo->Load(L"Logo", L"texture\\Main\\Logo.png");
-	mainLogo->SetPos(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f - 100));
+	mainLogo->SetPos(fPoint(WINSIZEX / 2.f / ZOOM, WINSIZEY / 2.f / ZOOM - 100));
 	AddObject(mainLogo, GROUP_GAMEOBJ::BACK_GROUND);
 
 
@@ -140,7 +143,7 @@ void CSceneMain::CreateButton()
 	CInOutButton* startButton = new CInOutButton;
 	startButton->ButtonInLoadImg(L"PlayOn", L"texture\\Main\\PlayOn.png");
 	startButton->ButtonOutLoadImg(L"PlayOff", L"texture\\Main\\PlayOff.png");
-	startButton->SetPos(fPoint(WINSIZEX / 2.f - startButton->GetScale().x / 2, 400.f));
+	startButton->SetPos(fPoint(WINSIZEX / ZOOM/2.f - startButton->GetScale().x / 2, 400.f/ ZOOM));
 	startButton->SetClickedCallBack(GoToVillage, 0, 0);
 	AddObject(startButton, GROUP_GAMEOBJ::UI);
 
@@ -148,7 +151,7 @@ void CSceneMain::CreateButton()
 	CInOutButton* settingButton = new CInOutButton;
 	settingButton->ButtonInLoadImg(L"OptionOn", L"texture\\Main\\OptionOn.png");
 	settingButton->ButtonOutLoadImg(L"OptionOff", L"texture\\Main\\OptionOff.png");
-	settingButton->SetPos(fPoint(WINSIZEX / 2.f - settingButton->GetScale().x / 2, 460.f));
+	settingButton->SetPos(fPoint(WINSIZEX / ZOOM/2.f - settingButton->GetScale().x / 2, 460.f/ ZOOM));
 	settingButton->SetClickedCallBack(GoToSetting, 0, 0);
 	AddObject(settingButton, GROUP_GAMEOBJ::UI);
 
@@ -156,7 +159,7 @@ void CSceneMain::CreateButton()
 	CInOutButton* exitButton = new CInOutButton;
 	exitButton->ButtonInLoadImg(L"ExitOn", L"texture\\Main\\ExitOn.png");
 	exitButton->ButtonOutLoadImg(L"ExitOff", L"texture\\Main\\ExitOff.png");
-	exitButton->SetPos(fPoint(WINSIZEX / 2.f - exitButton->GetScale().x / 2, 520.f));
+	exitButton->SetPos(fPoint(WINSIZEX / ZOOM/2.f - exitButton->GetScale().x / 2, 520.f/ ZOOM));
 	exitButton->SetClickedCallBack(GoToExit, 0, 0);
 	AddObject(exitButton, GROUP_GAMEOBJ::UI);
 

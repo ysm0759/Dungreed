@@ -33,7 +33,7 @@ private:
 	float m_fTime = 0.1f;		// 타겟을 따라가는 총시간
 	float m_fAccTime;			// 타겟을 따라간 소요시간
 	float m_fSpeed;				// 타겟을 따라가는 속도
-
+	float m_fZoom = 1.5F;
 	list<tCamEffect> m_listCamEffect;
 	CTexture* m_pImg;
 
@@ -53,7 +53,8 @@ public:
 	void FadeOut(float duration);
 
 	void Scroll(fVec2 vec, float velocity);
-
+	float GetZoom();
+	void SetZoom(float zoom);
 private:
 	void CalDiff();
 };

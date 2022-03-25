@@ -15,12 +15,12 @@
 
 
 #define DASHCREATETIME 1.2f
-#define DASHVELOCITY 1500.f
+#define DASHVELOCITY 500.f
 #define DASHTIME 0.125f
 
 CPlayer::CPlayer()
 {
-	m_fVelocity = 500;
+	m_fVelocity = 100;
 	m_cDashCount = 2;
 	m_cMaxDashCount = 2;
 	m_fDashTime = 0;
@@ -43,7 +43,7 @@ CPlayer::CPlayer()
 	}
 
 	CreateCollider();
-	GetCollider()->SetScale(fPoint(40.f, 60.f));
+	GetCollider()->SetScale(fPoint(10.f, 10.f));
 	GetCollider()->SetOffsetPos(fPoint(0.f, 10.f));
 
 
@@ -300,15 +300,15 @@ void CPlayer::StatuAnimator()
 {
 	if (!StatuGet(GROUP_OBJECT_STATU::MOVE) && StatuGet(GROUP_OBJECT_STATU::GROUND))
 	{
-		GetAnimator()->Play(L"PlayerStand", fPoint(50, 50), StatuGet(GROUP_OBJECT_STATU::LOOK));
+		GetAnimator()->Play(L"PlayerStand", fPoint(0, 0), StatuGet(GROUP_OBJECT_STATU::LOOK));
 	}
 	else if (StatuGet(GROUP_OBJECT_STATU::MOVE) && StatuGet(GROUP_OBJECT_STATU::GROUND))
 	{
-		GetAnimator()->Play(L"PlayerRun", fPoint(50, 50), StatuGet(GROUP_OBJECT_STATU::LOOK));
+		GetAnimator()->Play(L"PlayerRun", fPoint(0, 0), StatuGet(GROUP_OBJECT_STATU::LOOK));
 	}
 	else if (!StatuGet(GROUP_OBJECT_STATU::GROUND) || StatuGet(GROUP_OBJECT_STATU::JUMP) || StatuGet(GROUP_OBJECT_STATU::FORCE))
 	{
-		GetAnimator()->Play(L"PlayerJump", fPoint(50, 50), StatuGet(GROUP_OBJECT_STATU::LOOK));
+		GetAnimator()->Play(L"PlayerJump", fPoint(0, 0), StatuGet(GROUP_OBJECT_STATU::LOOK));
 	}
 	StatuRemove(GROUP_OBJECT_STATU::MOVE);
 }
