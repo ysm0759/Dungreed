@@ -10,6 +10,7 @@ CTile::CTile()
 	m_iIdx = 0;
 	m_eGroup = GROUP_TILE::NONE;
 	SetScale(fPoint(SIZE_TILE, SIZE_TILE));
+	SetName(L"Tile");
 }
 
 CTile::~CTile()

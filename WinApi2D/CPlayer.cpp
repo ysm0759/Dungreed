@@ -133,10 +133,10 @@ void CPlayer::update()
 
 		if (Key('S'))
 		{
-	
+			
 		}
 
-		if (KeyDown(VK_SPACE) || KeyDown('W')   // 점프
+		if (KeyDown(VK_SPACE)  || KeyDown('W')   // 점프
 			&& !StatuGet(GROUP_OBJECT_STATU::JUMP)
 			&& StatuGet(GROUP_OBJECT_STATU::GROUND))
 		{
@@ -161,7 +161,7 @@ void CPlayer::update()
 	}
 	SetPos(pos);
 
-	//	StatuSet(GROUP_OBJECT_STATU::GROUND);
+		//StatuSet(GROUP_OBJECT_STATU::GROUND);
 	// 캐릭터 상태에 따른 애니메이션
 	StatuAnimator();
 
@@ -190,7 +190,7 @@ void CPlayer::OnCollisionEnter(CCollider* pOther)
 	}
 
 	
-	if (pOtherObj->GetName() == L"Monster") //TODO: 나중에 타일로 바꿀것
+	if (pOtherObj->GetName() == L"Tile") //TODO: 나중에 타일로 바꿀것
 	{
 		StatuSet(GROUP_OBJECT_STATU::GROUND);
 		StatuRemove(GROUP_OBJECT_STATU::JUMP);

@@ -167,7 +167,7 @@ void CScene_Tool::CreateTile(UINT xSize, UINT ySize)
 	m_iTileX = xSize;
 	m_iTileY = ySize;
 
-	CD2DImage* pImg = CResourceManager::getInst()->LoadD2DImage(L"Tile", L"texture\\tile\\tilemap.bmp");
+	CD2DImage* pImg = CResourceManager::getInst()->LoadD2DImage(L"Tile", L"texture\\tile\\Tile.png");
 
 	for (UINT y = 0; y < ySize; y++)
 	{
@@ -237,7 +237,7 @@ void CScene_Tool::LoadTile(const wstring& strPath)
 	CreateTile(xCount, yCount);
 
 	const vector<CGameObject*>& vecTile = GetGroupObject(GROUP_GAMEOBJ::TILE);
-	CD2DImage* pImg = CResourceManager::getInst()->LoadD2DImage(L"Tile", L"texture\\tile\\tilemap.bmp");
+	CD2DImage* pImg = CResourceManager::getInst()->LoadD2DImage(L"Tile", L"texture\\tile\\Tile.png");
 	CTile* pTile = new CTile;
 
 	for (UINT i = 0; i < tileCount; i++)
@@ -374,7 +374,7 @@ void CScene_Tool::CreateTilePanel()
 	panelTile->SetScale(fPoint(400.f, 600.f));
 	panelTile->SetPos(fPoint(WINSIZEX - 450.f, 50.f));
 
-	CD2DImage* pImg = CResourceManager::getInst()->LoadD2DImage(L"Tile", L"texture\\tile\\tilemap.bmp");
+	CD2DImage* pImg = CResourceManager::getInst()->LoadD2DImage(L"Tile", L"texture\\tile\\Tile.png");
 	for (UINT y = 0; y < 12; y++)
 	{
 		for (UINT x = 0; x < 12; x++)

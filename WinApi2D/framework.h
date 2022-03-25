@@ -38,13 +38,13 @@ using namespace std;
 enum class GROUP_GAMEOBJ
 {
 	DEFAULT,
-	TILE,
 	MAP, //나중에 지우던지 하면 됨
 	BACK_GROUND,
 
+	TILE,
 
 	MONSTER,
-	MISSILE_MONSTER,
+	MONSTER_ATTACK,
 
 
 	PLAYER_ATTACK,
@@ -68,9 +68,6 @@ enum class GROUP_SCENE
 	BILLIZE_ESC,
 	VILLAGE,
 	STAGE,
-
-
-
 
 
 	TEST,
@@ -97,7 +94,6 @@ enum class GROUP_TILE
 	PLATFORM,
 	WALL,
 	SLOPE,
-
 	SIZE,
 };
 //========================================

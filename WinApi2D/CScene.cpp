@@ -140,7 +140,7 @@ void CScene::LoadTile(const wstring& strPath)
     fread(&yCount, sizeof(UINT), 1, pFile);
     fread(&tileCount, sizeof(UINT), 1, pFile);
 
-    CD2DImage* pImg = CResourceManager::getInst()->LoadD2DImage(L"Tile", L"texture\\tile\\tilemap.bmp");
+    CD2DImage* pImg = CResourceManager::getInst()->LoadD2DImage(L"Tile", L"texture\\tile\\Tile.png");
 
     for (UINT i = 0; i < tileCount; i++)
     {

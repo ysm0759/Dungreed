@@ -158,7 +158,7 @@ void CWeapon::OnCollisionEnter(CCollider* pOther)
 
 
 
-	if (pOtherObj->GetName() == L"Monster") //TODO: 나중에 타일로 바꿀것
+	if (pOtherObj->GetName() == L"Tile") //TODO: 나중에 타일로 바꿀것
 	{
 		SetStatu((UINT)ITEM_STATU::STAY);
 	}

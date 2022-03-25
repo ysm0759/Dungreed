@@ -120,7 +120,7 @@ void CItem::OnCollisionEnter(CCollider* pOther)
 		{
 			((CPlayer*)pOtherObj)->EatItem();
 		}
-		if (pOtherObj->GetName() == L"Monster") //TODO: 나중에 타일로 바꿀것
+		if (pOtherObj->GetName() == L"Tile") //TODO: 아이템 collider
 		{
 			SetStatu((UINT)ITEM_STATU::STAY);
 		}

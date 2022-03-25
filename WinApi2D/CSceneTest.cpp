@@ -53,7 +53,7 @@ void CSceneTest::Enter()
 	// 타일 로딩
 	wstring path = CPathManager::getInst()->GetContentPath();
 	path += L"tile\\Start.tile";
-	//LoadTile(path);
+	LoadTile(path);
 	// 
 		// Player 추가
 	CGameObject* pPlayer = new CPlayer;
@@ -63,43 +63,31 @@ void CSceneTest::Enter()
 
 	// Player 추가
 	CGameObject* pMonster = new CMonster;
-	pMonster->SetPos(fPoint(200, 600));
+	pMonster->SetPos(fPoint(200, 500));
 	AddObject(pMonster, GROUP_GAMEOBJ::MONSTER);
-
-	CGameObject* pMonsterClone = pMonster->Clone();
-	pMonsterClone->SetPos(fPoint(200, 500));
-	AddObject(pMonsterClone, GROUP_GAMEOBJ::MONSTER);
 
 
 	CGameObject* pItem = new CGameItem(GROUP_GAMEITEM::GOLD_BIG);
-	pItem->SetPos(fPoint(200, 200));
+	pItem->SetPos(fPoint(500, 500));
 	AddObject(pItem, GROUP_GAMEOBJ::ITEM);
 
 
 	CGameObject* pFariy = new CGameItem(GROUP_GAMEITEM::FAIRY_SMALL);
-	pFariy->SetPos(fPoint(220, 200));
+	pFariy->SetPos(fPoint(600, 500));
 	AddObject(pFariy, GROUP_GAMEOBJ::ITEM);
 	
 	CGameObject* pFariy1 = new CGameItem(GROUP_GAMEITEM::FAIRY_MIDDLE);
-	pFariy1->SetPos(fPoint(150, 200));
+	pFariy1->SetPos(fPoint(500, 500));
 	AddObject(pFariy1, GROUP_GAMEOBJ::ITEM);
 
 	CGameObject* pFariy2 = new CGameItem(GROUP_GAMEITEM::FAIRY_BIG);
-	pFariy2->SetPos(fPoint(100, 200));
+	pFariy2->SetPos(fPoint(550, 500));
 	AddObject(pFariy2, GROUP_GAMEOBJ::ITEM);
-	
-	
-	CGameObject* pFariyClone = pFariy2->Clone();
-	pFariyClone->SetPos(fPoint(100, 200));
-	AddObject(pFariyClone, GROUP_GAMEOBJ::ITEM);
 
-
-	CGameObject* pWeapon = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_SWORD , fPoint(100,100));
+	CGameObject* pWeapon = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_SWORD , fPoint(400,100));
 	AddObject(pWeapon, GROUP_GAMEOBJ::ITEM);
 
-
-	
-	CGameObject* pWeapon2 = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_GUN , fPoint(100,100));
+	CGameObject* pWeapon2 = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_GUN , fPoint(400,100));
 	AddObject(pWeapon2, GROUP_GAMEOBJ::ITEM);
 
 
@@ -108,11 +96,16 @@ void CSceneTest::Enter()
 
 
 	CCameraManager::getInst()->SetTargetObj(pPlayer);
-	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::MONSTER);
-	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::MONSTER, GROUP_GAMEOBJ::ITEM);
-	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::ITEM);
-	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::MONSTER, GROUP_GAMEOBJ::PLAYER_ATTACK);
 
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::MONSTER);
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::MONSTER_ATTACK);
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::ITEM);
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::PLAYER, GROUP_GAMEOBJ::TILE);
+
+
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::ITEM, GROUP_GAMEOBJ::TILE);
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::MONSTER, GROUP_GAMEOBJ::TILE);
+	CCollisionManager::getInst()->CheckGroup(GROUP_GAMEOBJ::MONSTER, GROUP_GAMEOBJ::PLAYER_ATTACK);
 
 }
 

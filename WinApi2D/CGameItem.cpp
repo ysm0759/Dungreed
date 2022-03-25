@@ -17,6 +17,7 @@ CGameItem::CGameItem(GROUP_GAMEITEM type)
 	CreateCollider();
 	CreateAnimator();
 	this->m_eGameItem = type;
+	this->SetName(L"GameItem");
 	switch (type)
 	{
 	case GROUP_GAMEITEM::GOLD_SMALL:
