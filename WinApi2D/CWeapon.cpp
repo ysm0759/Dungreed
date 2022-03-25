@@ -32,7 +32,7 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind , fPoint pos)
 			m_sAttackInfo->m_fVelocity		= 0.f;														//원거리라면 탄환 이동속도
 			m_sAttackInfo->m_fAniTime		= 0.05;														//애니메이션 속도
 			m_sAttackInfo->m_iAniCut		= 6;														//애니메이션 몇컷인지
-			m_sAttackInfo->m_fDestroyTime = m_sAttackInfo->m_fAniTime * m_sAttackInfo->m_iAniCut;		//임펙트 몇초 유지?
+			m_sAttackInfo->m_fDestroyTime = m_sAttackInfo->m_fAniTime * m_sAttackInfo->m_iAniCut - 0.01f;		//임펙트 몇초 유지?
 			m_sAttackInfo->m_fAniScale		= fPoint(50, 50);											//애니메이션 스케일
 			m_sAttackInfo->m_fColScale		= fPoint(150, 150);											//공격 충돌체 크기
 			m_sAttackInfo->m_IsMultiple		= true;														//한 콜라이더가 다수를 때리는지 , 

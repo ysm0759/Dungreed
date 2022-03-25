@@ -85,6 +85,7 @@ enum class GROUP_OBJECT_STATU
 	FLY,   // 중력을 받지 않고 계속 날라다니는 객체
 	LOOK,  // 값이 차있으면 왼쪽 값이 비어있으면 오른쪽 
 	ATTACK,// 공격중인 상태
+	DOWN,  // 하강상태
 
 };
 enum class GROUP_TILE
@@ -121,6 +122,46 @@ enum class BACK_OPTION
 	RIGHT,		// 오른쪽으로 이동
 	UP,			// 위로이동
 	DOWN,		// 아래로이동
+};
+
+
+#define eBRUSH	TYPE_BRUSH
+enum class TYPE_BRUSH
+{
+	HOLLOW,
+
+	SIZE
+};
+
+#define ePEN		TYPE_PEN
+enum class TYPE_PEN
+{
+	RED,
+	GREEN,
+	BLUE,
+	WHITE,
+
+	SIZE
+};
+
+#define eFONT	TYPE_FONT
+enum class TYPE_FONT
+{
+	COMIC24,		// 개발자 mode 정보 출력용 폰트
+	COMIC28,			// state 출력용 폰트
+	COMIC18,
+
+	SIZE
+};
+
+#define eSHAPE	COLL_SHAPE
+enum class COLL_SHAPE
+{
+	CIRCLE,
+	RECT,
+	POINT,
+
+	END
 };
 
 // Core & Manager

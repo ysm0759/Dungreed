@@ -160,5 +160,6 @@ void CSceneMain::CreateButton()
 	exitButton->SetClickedCallBack(GoToExit, 0, 0);
 	AddObject(exitButton, GROUP_GAMEOBJ::UI);
 
+
 }
 

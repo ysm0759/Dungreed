@@ -48,6 +48,8 @@ void CCore::render()
 
 void CCore::init()
 {
+	CreateBrushPenFont();
+	m_hDC = GetDC(hWnd);
 
 	CPathManager::getInst()->init();
 	CTimeManager::getInst()->init();
@@ -62,3 +64,33 @@ void CCore::init()
 	srand((unsigned int)time(NULL));
 }
 
+
+void CCore::CreateBrushPenFont()
+{
+	// brush
+	m_arrBrush[(UINT)TYPE_BRUSH::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);	// 자주 쓰는 거 모아놓은 stock이 있음
+	// font
+	m_arrFont[(UINT)TYPE_FONT::COMIC24] = CreateFont(24, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, _T("Comic Sans MS"));
+	m_arrFont[(UINT)TYPE_FONT::COMIC28] = CreateFont(28, 10, 0, 0, 1000, 0, 0, 0, 0, 0, 0, 0, 0, _T("Comic Sans MS"));
+	m_arrFont[(UINT)TYPE_FONT::COMIC18] = CreateFont(18, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, _T("Comic Sans MS"));
+	// pen
+	m_arrPen[(UINT)TYPE_PEN::RED] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+	m_arrPen[(UINT)TYPE_PEN::GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
+	m_arrPen[(UINT)TYPE_PEN::BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
+	m_arrPen[(UINT)TYPE_PEN::WHITE] = (HPEN)GetStockObject(WHITE_PEN);
+}
+
+HBRUSH CCore::getBrush(eBRUSH type)
+{
+	return m_arrBrush[(UINT)type];
+}
+
+HPEN CCore::getPen(ePEN type)
+{
+	return m_arrPen[(UINT)type];
+}
+
+HFONT CCore::getFont(eFONT type)
+{
+	return m_arrFont[(UINT)type];
+}

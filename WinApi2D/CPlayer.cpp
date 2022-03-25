@@ -10,6 +10,8 @@
 #include "CGameItem.h"
 #include "CPlayerAttack.h"
 #include "CWeapon.h"
+#include "CTile.h"
+#include "CButtonUI.h"
 
 
 #define DASHCREATETIME 1.2f
@@ -31,11 +33,10 @@ CPlayer::CPlayer()
 	m_cPlayerInfo.Gold = 0;
 	m_cPlayerInfo.HP = 0;
 	m_cPlayerInfo.Satiety = 0;
-
+	m_iBottomCount = 0;
 	//m_cCurItem.Accessories = nullptr;
 	m_pCurWeapon = nullptr;
 	m_pPlayerAttack = nullptr;
-
 	for (int i = 0; i < (UINT)ITEM_PART::SIZE; i++)
 	{
 		m_cCurItem[i] = nullptr;
@@ -60,7 +61,7 @@ CPlayer::CPlayer()
 	GetAnimator()->CreateAnimation(L"PlayerJump", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 1);
 
 	CreateStatu();
-
+	PrintInfo();
 }
 
 CPlayer::~CPlayer()
@@ -90,9 +91,24 @@ void CPlayer::update()
 	//else
 	//	m_inventory.push_back()
 
+
+
+
 	if (nullptr != m_pCurWeapon)
 		m_pCurWeapon->SetPos(GetPos());
-	
+
+
+	if (0 == m_iBottomCount)
+	{
+		StatuRemove(GROUP_OBJECT_STATU::GROUND);
+	}
+	else
+	{
+		StatuRemove(GROUP_OBJECT_STATU::JUMP);
+		StatuSet(GROUP_OBJECT_STATU::GROUND);
+	}
+
+
 
 	// 캐릭터 키입력에 따른 상태 변경
 	if (KeyDown(VK_RBUTTON) && !StatuGet(GROUP_OBJECT_STATU::FORCE) && m_cDashCount < 100) // 대쉬 진입 //TODO: 대쉬 삭제 m_cDashCount > 0해야함
@@ -136,13 +152,14 @@ void CPlayer::update()
 			
 		}
 
-		if (KeyDown(VK_SPACE)  || KeyDown('W')   // 점프
-			&& !StatuGet(GROUP_OBJECT_STATU::JUMP)
+		if ((KeyDown(VK_SPACE)  || KeyDown('W')) && StatuGet(GROUP_OBJECT_STATU::GROUND)  // 점프
+			//&& !StatuGet(GROUP_OBJECT_STATU::JUMP)
 			&& StatuGet(GROUP_OBJECT_STATU::GROUND))
 		{
-			StatuSet(GROUP_OBJECT_STATU::JUMP);
+ 			StatuSet(GROUP_OBJECT_STATU::JUMP);
 			StatuRemove(GROUP_OBJECT_STATU::GROUND);
 		}
+
 		if (KeyDown(VK_LBUTTON)) //공격
 		{
 			if (nullptr != m_pCurWeapon)
@@ -159,20 +176,74 @@ void CPlayer::update()
 			ItemSwap();
 		}
 	}
+
+
 	SetPos(pos);
 
-		//StatuSet(GROUP_OBJECT_STATU::GROUND);
+	GetStatu()->update();
+
+
 	// 캐릭터 상태에 따른 애니메이션
 	StatuAnimator();
 
 	//Statu 업데이트 중력, 대쉬 연산
-	GetStatu()->update();
 
 	GetAnimator()->update();
 }
 
 void CPlayer::render()
 {
+	CRenderManager::getInst()->RenderText(to_wstring(m_iBottomCount),
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +200,
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
+										  10 ,
+										  50,
+										  12,
+										  RGB(0, 0, 0));
+
+	CRenderManager::getInst()->RenderText(to_wstring(StatuGet(GROUP_OBJECT_STATU::JUMP)),
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +300 ,
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
+										  10 ,
+										  50,
+										  12,
+										  RGB(0, 0, 0));
+	
+	CRenderManager::getInst()->RenderText(to_wstring(StatuGet(GROUP_OBJECT_STATU::GROUND)),
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +400 ,
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
+										  10 ,
+										  50,
+										  12,
+										  RGB(0, 0, 0));
+
+	
+	CRenderManager::getInst()->RenderText(to_wstring(StatuGet(GROUP_OBJECT_STATU::FORCE)),
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +500 ,
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
+										  10 ,
+										  50,
+										  12,
+										  RGB(0, 0, 0));
+
+	
+	CRenderManager::getInst()->RenderText(to_wstring(m_cDashCount),
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +600 ,
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
+										  10 ,
+										  50,
+										  12,
+										  RGB(0, 0, 0));
+	
+	CRenderManager::getInst()->RenderText(to_wstring(GetStatu()->GetUpDown()),
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +1000 ,
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
+										  10 ,
+										  50,
+										  12,
+										  RGB(0, 0, 0));
+
+
 	component_render();
 }
 
@@ -192,8 +263,24 @@ void CPlayer::OnCollisionEnter(CCollider* pOther)
 	
 	if (pOtherObj->GetName() == L"Tile") //TODO: 나중에 타일로 바꿀것
 	{
-		StatuSet(GROUP_OBJECT_STATU::GROUND);
-		StatuRemove(GROUP_OBJECT_STATU::JUMP);
+		if (GROUP_TILE::GROUND == ((CTile*)pOtherObj)->GetGroup())
+		{
+			m_iBottomCount++;
+		}
+
+	}
+}
+
+void CPlayer::OnCollisionExit(CCollider* pOther)
+{
+
+	CGameObject* pOtherObj = pOther->GetObj();
+
+	
+	if (pOtherObj->GetName() == L"Tile") //TODO: 나중에 타일로 바꿀것
+	{
+		if (GROUP_TILE::GROUND == ((CTile*)pOtherObj)->GetGroup())
+			m_iBottomCount--;
 	}
 }
 
@@ -213,7 +300,6 @@ void CPlayer::StatuAnimator()
 		GetAnimator()->Play(L"PlayerJump", fPoint(50, 50), StatuGet(GROUP_OBJECT_STATU::LOOK));
 	}
 	StatuRemove(GROUP_OBJECT_STATU::MOVE);
-
 }
 
 void CPlayer::PlayerAttack(fPoint dir)
@@ -265,4 +351,11 @@ void CPlayer::ItemSwap()
 	{
 		m_pCurWeapon = m_cCurItem[(UINT)ITEM_PART::LeftWeapon];
 	}
+}
+
+
+void CPlayer::PrintInfo()
+{
+
+
 }

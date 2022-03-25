@@ -44,6 +44,7 @@ private:
 	char m_cMaxDashCount;
 	float m_fCreateDashTime;
 	float m_fDashTime;
+	int m_iBottomCount;
 
 	PlayerInfo m_cPlayerInfo;
 	CItem* m_cCurItem[(UINT)ITEM_PART::SIZE];
@@ -62,11 +63,13 @@ public:
 	virtual void update();
 	virtual void render();
 	virtual void OnCollisionEnter(CCollider* pOther);
+	virtual void OnCollisionExit(CCollider* pOther);
 	void StatuAnimator();
 	void EatItem();
 
 
 	list<CItem*> GetInvetroy();
 	CItem* GetCurItem(ITEM_PART type);
+	void PrintInfo();
 };
 

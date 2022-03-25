@@ -13,6 +13,7 @@ CStatu::CStatu()
 	m_iObjectStatu = 0;
 	m_fGravity = 0;
 	m_fLook = {};
+	m_fUpDown = 0;
 }
 
 CStatu::CStatu (const CStatu& other)
@@ -21,6 +22,7 @@ CStatu::CStatu (const CStatu& other)
 	m_iObjectStatu = other.m_iObjectStatu;
 	m_fGravity = 0;
 	m_fLook = other.m_fLook;
+	m_fUpDown = 0;
 }
 
 CStatu::~CStatu()
@@ -46,9 +48,15 @@ void CStatu::SetLook(fVec2 look)
 void CStatu::update()
 {
 	Look();
-	Jump();
 	Gravity();
 	Fouce(); 
+	Jump();
+	UpDown();
+}
+
+float CStatu::GetUpDown()
+{
+	return m_fUpDown;
 }
 
 void CStatu::Jump()
@@ -57,6 +65,7 @@ void CStatu::Jump()
 	{
 		fPoint objectPos = m_pOwner->GetPos();
 		objectPos.y -= JUMPSPEED * fDT;
+		m_fUpDown -= JUMPSPEED * fDT;
 		m_pOwner->SetPos(objectPos);
 	}
 }
@@ -66,11 +75,13 @@ void CStatu::Gravity()
 	if (IsStatu((UINT)GROUP_OBJECT_STATU::GROUND)) //	GROUND상태이면 중력을 받지 않음
 	{
 		m_fGravity = 0;
+		m_fUpDown = 0.f;
 	}
 	else // 그게 아니면 중력을 받게 됨
 	{
 		fPoint objectPos = m_pOwner->GetPos();
 		objectPos.y += m_fGravity * fDT;
+		m_fUpDown += m_fGravity * fDT;
 		m_pOwner->SetPos(objectPos);
 
 		if (m_fGravity <= GRAVITY_MAX)
@@ -99,6 +110,14 @@ void CStatu::Look()
 		SetStatu((UINT)GROUP_OBJECT_STATU::LOOK);
 	else
 		RemoveStatu((UINT)GROUP_OBJECT_STATU::LOOK);
+}
+
+void CStatu::UpDown()
+{
+	if (m_fUpDown > 0)
+		SetStatu((UINT)GROUP_OBJECT_STATU::DOWN);
+	else
+		RemoveStatu((UINT)GROUP_OBJECT_STATU::DOWN);
 }
 
 
