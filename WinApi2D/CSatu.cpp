@@ -56,7 +56,7 @@ void CStatu::update()
 
 float CStatu::GetUpDown()
 {
-	return m_fUpDown;
+	return m_fGravity;
 }
 
 void CStatu::Jump()
@@ -114,10 +114,17 @@ void CStatu::Look()
 
 void CStatu::UpDown()
 {
-	if (m_fUpDown > 0)
-		SetStatu((UINT)GROUP_OBJECT_STATU::DOWN);
+	if (IsStatu((UINT)GROUP_OBJECT_STATU::JUMP))
+	{
+		if (m_fGravity > JUMPSPEED)
+			SetStatu((UINT)GROUP_OBJECT_STATU::DOWN);
+		else
+			RemoveStatu((UINT)GROUP_OBJECT_STATU::DOWN);
+	}
 	else
-		RemoveStatu((UINT)GROUP_OBJECT_STATU::DOWN);
+	{
+		SetStatu((UINT)GROUP_OBJECT_STATU::DOWN);
+	}
 }
 
 

@@ -52,14 +52,14 @@ CWeapon::CWeapon(ITEM_STATU itemStatu , WEAPON_KIND weaponKind , fPoint pos)
 			m_sAttackInfo->m_fAniTime = 0.05;
 			m_sAttackInfo->m_iAniCut = 4;
 			m_sAttackInfo->m_fDestroyTime = m_sAttackInfo->m_fAniTime * m_sAttackInfo->m_iAniCut + 30.f;
-			m_sAttackInfo->m_fAniScale = fPoint(10, 20);
+			m_sAttackInfo->m_fAniScale = fPoint(10, 10);
 			m_sAttackInfo->m_fColScale = fPoint(10, 20);
 			m_sAttackInfo->m_IsMultiple = true;
 			m_sAttackInfo->m_eKind = ITEM_KIND::GUN;
 			m_eItemType = ITEM_TYPE::TWO_HAND_WEAPON;
 			m_sEffect;
 			m_sExplanation;
-			SetScale(fPoint(20, 20));
+			SetScale(fPoint(20, 0));
 			break;
 
 	}

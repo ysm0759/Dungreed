@@ -29,6 +29,7 @@ public:
 	void SetLook(fVec2 look);
 	void update();
 	
+	
 	float GetUpDown();
 
 	CStatu* GetStatu();

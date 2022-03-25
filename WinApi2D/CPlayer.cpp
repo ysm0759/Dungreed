@@ -104,6 +104,7 @@ void CPlayer::update()
 	}
 	else
 	{
+		wstring a = to_wstring(GetStatu()->GetUpDown());
 		StatuRemove(GROUP_OBJECT_STATU::JUMP);
 		StatuSet(GROUP_OBJECT_STATU::GROUND);
 	}
@@ -231,10 +232,20 @@ void CPlayer::render()
 										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +600 ,
 										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
 										  10 ,
+										  50,	
+										  12,
+										  RGB(0, 0, 0));
+
+	CRenderManager::getInst()->RenderText(to_wstring(StatuGet(GROUP_OBJECT_STATU::DOWN)),
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).x + 700,
+										  CCameraManager::getInst()->GetRenderPos(GetPos()).y,
+										  10,
 										  50,
 										  12,
 										  RGB(0, 0, 0));
-	
+
+
+
 	CRenderManager::getInst()->RenderText(to_wstring(GetStatu()->GetUpDown()),
 										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +1000 ,
 										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
@@ -243,7 +254,7 @@ void CPlayer::render()
 										  12,
 										  RGB(0, 0, 0));
 
-
+	
 	component_render();
 }
 
