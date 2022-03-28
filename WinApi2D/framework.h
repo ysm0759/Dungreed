@@ -92,15 +92,26 @@ enum class GROUP_TILE
 {
 	NONE,
 	GROUND,
+
 	WALL_LEFT,
 	WALL_RIGHT,
-	PLATFORM,
+
+
+	PLATFORM, 
+	PLATFORM_BOTTOM,
+
 	SLOPE,
+	SLOPE_PLATFORM,
+
 	DOOR_LEFT,
 	DOOR_RIGHT,
 	DOOR_UP,
 	DOOR_DOWN,
 	DOOR_DUNGEON,
+
+	CAMERA_POS_LEFT_BOTTOM,
+	CAMERA_POS_RIGHT_TOP,
+
 	SIZE,
 };
 //========================================

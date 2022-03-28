@@ -43,6 +43,7 @@ struct WeaponAttackInfo
 	
 	int m_iAniCut;
 	float m_fAniTime;
+	fPoint m_fAniSize;
 	fPoint m_fAniScale;   //애니메이션 스케일
 	fPoint m_fColScale;  //공격 충돌체 크기
 

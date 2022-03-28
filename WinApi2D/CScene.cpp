@@ -162,6 +162,12 @@ void CScene::LoadTile(const wstring& strPath)
             newTile->GetCollider()->SetScale(fPoint(CTile::SIZE_TILE, CTile::SIZE_TILE/4));
             newTile->GetCollider()->SetOffsetPos(fPoint(CTile::SIZE_TILE / 2.f, CTile::SIZE_TILE - 14 ));
         }
+        else if (GROUP_TILE::PLATFORM_BOTTOM == newTile->GetGroup())
+        {
+            newTile->CreateCollider();
+            newTile->GetCollider()->SetScale(fPoint(CTile::SIZE_TILE, CTile::SIZE_TILE/4));
+            newTile->GetCollider()->SetOffsetPos(fPoint(CTile::SIZE_TILE / 2.f, CTile::SIZE_TILE - 6));
+        }
         else if (GROUP_TILE::NONE != newTile->GetGroup())
         {
             newTile->CreateCollider();

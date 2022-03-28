@@ -40,7 +40,7 @@ void CSceneVillage::Enter()
 	CreateBackGround();
 
 	wstring path = CPathManager::getInst()->GetContentPath();
-	path += L"tile\\Village1.tile";
+	path += L"tile\\Village3.tile";
 	LoadTile(path);
 	// Player Ãß°¡
 	CGameObject* pPlayer = new CPlayer;
@@ -80,6 +80,7 @@ void CSceneVillage::Exit()
 void CSceneVillage::CreateBackGround()
 {
 
+	int BackY = 352;
 
 	CBackGround* backGround1 = new CBackGround();
 	backGround1->OnFix();
@@ -87,9 +88,6 @@ void CSceneVillage::CreateBackGround()
 	backGround1->Load(L"FixBackGround", L"texture\\Village\\FixBackGround.png");
 	backGround1->SetPos(fPoint(WINSIZEX /ZOOM/ 2.f, WINSIZEY / ZOOM / 2.f));
 	AddObject(backGround1, GROUP_GAMEOBJ::BACK_GROUND);
-
-
-	float BackY = 320;
 
 	CBackGround* backGround2 = new CBackGround();
 	backGround2->OnFix();
@@ -116,22 +114,14 @@ void CSceneVillage::CreateBackGround()
 	backGround4->SetPos(fPoint(0, BackY + 160));
 	AddObject(backGround4, GROUP_GAMEOBJ::BACK_GROUND);
 
-	int FloorX = -163;
-	CBackGround* backFloor = new CBackGround();
-	backFloor->OnFix();
-	backFloor->OnDependOnObject(fPoint(1, 1));
-	backFloor->SetBackScale(1);
-	backFloor->Load(L"Floor", L"texture\\Village\\Floor.png");
-	backFloor->SetPos(fPoint(FloorX, BackY));
-	AddObject(backFloor, GROUP_GAMEOBJ::BACK_GROUND);
 
-	CBackGround* backFloorClone1 = backFloor->Clone();
-	backFloorClone1->SetPos(fPoint(FloorX + 752, BackY));
-	AddObject(backFloorClone1, GROUP_GAMEOBJ::BACK_GROUND);
-
-	CBackGround* backFloorClone2 = backFloor->Clone();
-	backFloorClone2->SetPos(fPoint(FloorX + 752 + 752, BackY));
-	AddObject(backFloorClone2, GROUP_GAMEOBJ::BACK_GROUND);
+	CBackGround* back = new CBackGround();
+	back->OnFix();
+	back->OnDependOnObject(fPoint(1, 1));
+	back->SetBackScale(1);
+	back->Load(L"Floor", L"texture\\Village\\Town.png");
+	back->SetPos(fPoint(0, 160));
+	AddObject(back, GROUP_GAMEOBJ::BACK_GROUND);
 
 }
 

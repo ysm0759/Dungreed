@@ -66,6 +66,8 @@ public:
 	virtual void OnCollisionExit(CCollider* pOther);
 	virtual void OnCollision(CCollider* pOther);
 
+	void CameraPos(fPoint pos);
+
 	void StatuAnimator();
 	void EatItem();
 

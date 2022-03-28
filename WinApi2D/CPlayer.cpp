@@ -177,8 +177,7 @@ void CPlayer::update()
 		}
 	}
 
-	if (m_iBottomCount <= 0)
-		m_iBottomCount = 0;
+
 	SetPos(pos);
 
 	GetStatu()->update();
@@ -281,17 +280,14 @@ void CPlayer::OnCollisionEnter(CCollider* pOther)
 
 	if (pOtherObj->GetName() == L"Tile") //TODO: 나중에 타일로 바꿀것
 	{
-		if (GROUP_TILE::GROUND == ((CTile*)pOtherObj)->GetGroup())
+		if (GROUP_TILE::GROUND == ((CTile*)pOtherObj)->GetGroup()|| GROUP_TILE::SLOPE_PLATFORM == ((CTile*)pOtherObj)->GetGroup())
 		{
 			m_iBottomCount++;
 		}
-		else if (GROUP_TILE::PLATFORM == ((CTile*)pOtherObj)->GetGroup())
+		else if (GROUP_TILE::PLATFORM == ((CTile*)pOtherObj)->GetGroup() || GROUP_TILE::PLATFORM_BOTTOM == ((CTile*)pOtherObj)->GetGroup())
 		{
-			if (StatuGet(GROUP_OBJECT_STATU::FORCE))
-			{
 
-			}
-			else if (pOther->GetFinalPos().y > this->GetCollider()->GetFinalPos().y + GetCollider()->GetScale().y / 2 && StatuGet(GROUP_OBJECT_STATU::DOWN))
+			if (pOther->GetFinalPos().y > this->GetCollider()->GetFinalPos().y + GetCollider()->GetScale().y / 2 && StatuGet(GROUP_OBJECT_STATU::DOWN))
 			{
 				m_iBottomCount++;
 			}
@@ -301,7 +297,17 @@ void CPlayer::OnCollisionEnter(CCollider* pOther)
 
 void CPlayer::OnCollision(CCollider* pOther)
 {
+	CGameObject* pOtherObj = pOther->GetObj();
 
+
+	if (pOtherObj->GetName() == L"Tile") //TODO: 나중에 타일로 바꿀것
+	{
+		if (GROUP_TILE::SLOPE_PLATFORM == ((CTile*)pOtherObj)->GetGroup())
+		{
+
+
+		}
+	}
 
 }
 
@@ -313,26 +319,24 @@ void CPlayer::OnCollisionExit(CCollider* pOther)
 
 	if (pOtherObj->GetName() == L"Tile") //TODO: 나중에 타일로 바꿀것
 	{
-		if (GROUP_TILE::GROUND == ((CTile*)pOtherObj)->GetGroup())
+		if (GROUP_TILE::GROUND == ((CTile*)pOtherObj)->GetGroup() || GROUP_TILE::SLOPE_PLATFORM == ((CTile*)pOtherObj)->GetGroup())
 			m_iBottomCount--;
-		if (GROUP_TILE::PLATFORM == ((CTile*)pOtherObj)->GetGroup())
+		if (GROUP_TILE::PLATFORM == ((CTile*)pOtherObj)->GetGroup() || GROUP_TILE::PLATFORM_BOTTOM == ((CTile*)pOtherObj)->GetGroup())
 		{
-			if (StatuGet(GROUP_OBJECT_STATU::FORCE))
+			if (StatuGet(GROUP_OBJECT_STATU::FORCE) ||
+				StatuGet(GROUP_OBJECT_STATU::GROUND) ||
+				StatuGet(GROUP_OBJECT_STATU::JUMP) && !StatuGet(GROUP_OBJECT_STATU::DOWN))
 			{
 				m_iBottomCount--;
 			}
-			else if (StatuGet(GROUP_OBJECT_STATU::GROUND))
-			{
-				m_iBottomCount--;
-			}
-			
-			else if (StatuGet(GROUP_OBJECT_STATU::JUMP))
-			{
-				m_iBottomCount--;
-			}
-
+			//else if (StatuGet(GROUP_OBJECT_STATU::JUMP) && StatuGet(GROUP_OBJECT_STATU::DOWN))
+			//{
+			//	m_iBottomCount--;
+			//}
 
 		}
+		if (m_iBottomCount <= 0)
+			m_iBottomCount = 0;
 	}
 
 }
@@ -351,11 +355,12 @@ void CPlayer::StatuAnimator()
 	{
 		GetAnimator()->Play(L"PlayerJump", fPoint(0, 0), StatuGet(GROUP_OBJECT_STATU::LOOK));
 	}
-	StatuRemove(GROUP_OBJECT_STATU::MOVE);
+	//StatuRemove(GROUP_OBJECT_STATU::MOVE);
 }
 
 void CPlayer::PlayerAttack(fPoint dir)
 {
+
 	if (nullptr == m_pPlayerAttack)
 	{
 		m_pPlayerAttack = new CPlayerAttack((CWeapon*)m_pCurWeapon);
@@ -387,6 +392,11 @@ CItem* CPlayer::GetCurItem(ITEM_PART type)
 	return m_cCurItem[(UINT)type];
 }
 
+void CPlayer::CameraPos(fPoint pos)
+{
+
+
+}
 
 void CPlayer::ItemSwap()
 {

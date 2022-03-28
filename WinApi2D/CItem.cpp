@@ -24,7 +24,7 @@ CItem::CItem()
 	else
 		m_fDir = fPoint((float)rand(), (float)-rand());
 	
-	m_fForce = (float)(rand() % 200 + 400);
+	m_fForce = (float)(rand() % 100 + 100);
 	
 	CreateStatu();
 	GetStatu()->SetForceDir(m_fDir);
