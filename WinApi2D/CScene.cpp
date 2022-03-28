@@ -14,11 +14,15 @@ CScene::~CScene()
     // 씬이 가진 모든 게임오브젝트 삭제
     for (int i = 0; i < (int)GROUP_GAMEOBJ::SIZE; i++)
     {
+
         for (int j = 0; j < m_arrObj[i].size(); j++)
         {
             delete m_arrObj[i][j];
         }
     }
+
+    
+
 }
 
 void CScene::update()

@@ -74,6 +74,7 @@ void CSceneTest::Enter()
 	pFariy2->SetPos(fPoint(550, 500));
 	AddObject(pFariy2, GROUP_GAMEOBJ::ITEM);
 
+
 	CGameObject* pWeapon = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_SWORD , fPoint(400,100));
 	AddObject(pWeapon, GROUP_GAMEOBJ::ITEM);
 

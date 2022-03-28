@@ -54,7 +54,9 @@ enum class GROUP_GAMEOBJ
 	PLAYER_WEAPON_FRONT,
 	ITEM, //TODO 나중에 옮길것
 
+
 	UI,		// UI는 모든 게임오브젝트 중 최상단 Layer에 위치
+	CURSOR,
 	SIZE,
 };
 

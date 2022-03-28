@@ -109,6 +109,9 @@
     <Filter Include="Object\Character\Player\item\Equipment\Accessories">
       <UniqueIdentifier>{35c43299-5e5f-404a-85be-4cd0bd69dcce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\UI\HUD">
+      <UniqueIdentifier>{e95719c7-c79d-4678-984f-7a6ac290987c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -258,6 +261,9 @@
     <ClInclude Include="CPlayerAttack.h">
       <Filter>Object\Character\Player</Filter>
     </ClInclude>
+    <ClInclude Include="CCursor.h">
+      <Filter>Object\UI\HUD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi2D.cpp">
@@ -388,6 +394,9 @@
     </ClCompile>
     <ClCompile Include="CPlayerAttack.cpp">
       <Filter>Object\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CCursor.cpp">
+      <Filter>Object\UI\HUD</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

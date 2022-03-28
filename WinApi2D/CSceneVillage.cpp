@@ -52,7 +52,6 @@ void CSceneVillage::Enter()
 
 
 
-
 	//CSoundManager::getInst()->AddSound(L"VillageBGM", L"sound\\VillageBGM.mp3", true);
 	//CSoundManager::getInst()->Play(L"VillageBGM");
 

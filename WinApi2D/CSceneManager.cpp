@@ -33,6 +33,11 @@ void CSceneManager::ChangeScene(GROUP_SCENE scene)
 	m_pCurScene->Exit();
 	m_pCurScene = m_arrScene[(UINT)scene];
 	m_pCurScene->Enter();
+	// 게임 매니저에 배열로 저장해놨다가 
+	// 그러면 깊은 복사해야하지않음 ?
+	// 그거 하려면
+	// 개 노가다아님 ?
+	// 잠깐만 .. 
 }
 
 void CSceneManager::update()

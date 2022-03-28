@@ -161,6 +161,7 @@
     <ClInclude Include="CCollisionManager.h" />
     <ClInclude Include="CCollider.h" />
     <ClInclude Include="CCore.h" />
+    <ClInclude Include="CCursor.h" />
     <ClInclude Include="CD2DImage.h" />
     <ClInclude Include="CEquipment.h" />
     <ClInclude Include="CEventManager.h" />
@@ -212,6 +213,7 @@
     <ClCompile Include="CCollisionManager.cpp" />
     <ClCompile Include="CCollider.cpp" />
     <ClCompile Include="CCore.cpp" />
+    <ClCompile Include="CCursor.cpp" />
     <ClCompile Include="CD2DImage.cpp" />
     <ClCompile Include="CEquipment.cpp" />
     <ClCompile Include="CEventManager.cpp" />

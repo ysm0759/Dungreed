@@ -13,6 +13,7 @@
 #define IDC_WINAPI2D                    109
 #define IDR_MAINFRAME                   128
 #define IDD_TILEBOX                     129
+#define IDC_CURSOR2                     130
 #define IDC_BUTTON_SIZE                 1000
 #define IDC_EDIT_SIZEY                  1001
 #define IDC_EDIT_SIZEX                  1002

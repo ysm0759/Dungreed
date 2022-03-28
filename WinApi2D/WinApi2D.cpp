@@ -39,9 +39,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     //_CrtSetBreakAlloc(648);
     //_CrtSetBreakAlloc(647);
     //_CrtSetBreakAlloc(646);
-
-    
-
+    ShowCursor(FALSE);
     // 사용되지 않은 매개변수 정의
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
@@ -123,7 +121,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hInstance      = hInstance;                // 윈도우 클래스를 등록한 인스턴스의 핸들
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WINAPI2D));   // 프로그램 아이콘
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL)); // 타이틀바 좌상단과 윈도우가 최소화 되었을 때 보여주는 아이콘을 지정
-    wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);   // 커서 지정
+    wcex.hCursor        = LoadCursor(hInstance, MAKEINTRESOURCE(IDC_CURSOR2));   // 커서 지정
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW);         // 윈도우 작업영역에 칠한 배경 브러시
     wcex.lpszMenuName   = nullptr;                          // 윈도우에서 사용할 메뉴 지정, nullptr로 없앰
     wcex.lpszClassName  = szWindowClass;                    // 윈도우 클래스의 이름

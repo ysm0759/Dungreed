@@ -8,7 +8,7 @@
 #include "CBackGround.h"
 #include "CInOutButton.h"
 #include "CD2DImage.h"
-
+#include "CCursor.h"
 
 
 CSceneMain::CSceneMain()
@@ -44,6 +44,10 @@ void CSceneMain::Enter()
 	//CSoundManager::getInst()->AddSound(L"VillageBGM", L"sound\\VillageBGM.mp3", true);
 	//CSoundManager::getInst()->Play(L"VillageBGM");
 
+	// Player Ãß°¡
+	CGameObject* pCursor = new CCursor;
+	pCursor->SetPos(MousePos());
+	AddObject(pCursor, GROUP_GAMEOBJ::CURSOR);
 
 	CCameraManager::getInst()->SetLookAt(fPoint(WINSIZEX / 2.f, WINSIZEY / 2.f));
 
