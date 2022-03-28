@@ -39,9 +39,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     //_CrtSetBreakAlloc(648);
     //_CrtSetBreakAlloc(647);
     //_CrtSetBreakAlloc(646);
-
-    
-
+  //  ShowCursor(FALSE);
     // 사용되지 않은 매개변수 정의
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);

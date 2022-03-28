@@ -33,7 +33,7 @@ void CSceneTest::update()
 
 	if (KeyDown(VK_TAB))
 	{
-		ChangeScn(GROUP_SCENE::TOOL);
+		ChangeScn(GROUP_SCENE::VILLAGE);
 	}
 
 	if (KeyDown('Z'))
@@ -85,10 +85,10 @@ void CSceneTest::Enter()
 	AddObject(pFariy2, GROUP_GAMEOBJ::ITEM);
 
 	CGameObject* pWeapon = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_SWORD , fPoint(400,100));
-	AddObject(pWeapon, GROUP_GAMEOBJ::ITEM);
+	AddObject(pWeapon, GROUP_GAMEOBJ::ITEM,1);
 
 	CGameObject* pWeapon2 = new CWeapon(ITEM_STATU::DROP , WEAPON_KIND::DEFAULT_GUN , fPoint(400,100));
-	AddObject(pWeapon2, GROUP_GAMEOBJ::ITEM);
+	AddObject(pWeapon2, GROUP_GAMEOBJ::ITEM,1);
 
 
 

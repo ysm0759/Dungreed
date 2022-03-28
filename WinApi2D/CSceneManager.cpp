@@ -5,7 +5,7 @@
 #include "CScene_Tool.h"
 #include "CSceneMain.h"
 #include "CSceneVillage.h"
-
+#include "CGameObject.h"
 CSceneManager::CSceneManager()
 {
 	// 씬 목록 초기화
@@ -18,7 +18,9 @@ CSceneManager::CSceneManager()
 
 CSceneManager::~CSceneManager()
 {
-	// 씬 목록 삭제
+	
+	DeleteAll();
+
 	for (int i = 0; i < (int)GROUP_SCENE::SIZE; i++)
 	{
 		if (nullptr != m_arrScene[i])
@@ -26,6 +28,8 @@ CSceneManager::~CSceneManager()
 			delete m_arrScene[i];
 		}
 	}
+
+
 }
 
 void CSceneManager::ChangeScene(GROUP_SCENE scene)
@@ -33,6 +37,11 @@ void CSceneManager::ChangeScene(GROUP_SCENE scene)
 	m_pCurScene->Exit();
 	m_pCurScene = m_arrScene[(UINT)scene];
 	m_pCurScene->Enter();
+
+	// 그러면 깊은 복사해야하지않음 ?
+	// 그거 하려면
+	// 개 노가다아님 ?
+	// 잠깐만 .. 
 }
 
 void CSceneManager::update()
@@ -71,7 +80,38 @@ void CSceneManager::init()
 	m_pCurScene->Enter();
 }
 
+bool CSceneManager::IsRemain(GROUP_GAMEOBJ who)
+{
+	if (0 == m_arrRemain[(UINT)who].size())
+		return false;
+
+	return true;
+}
+
+vector<CGameObject*>& CSceneManager::GetRemain(GROUP_GAMEOBJ who)
+{
+	return m_arrRemain[(UINT)who];
+}
+
 CScene* CSceneManager::GetCurScene()
 {
 	return m_pCurScene;
+}
+
+
+void CSceneManager::DeleteGroup(GROUP_GAMEOBJ group)
+{
+	for (int i = 0; i < m_arrRemain[(UINT)group].size(); i++)
+	{
+		delete m_arrRemain[(UINT)group][i];
+	}
+	m_arrRemain[(UINT)group].clear();
+}
+
+void CSceneManager::DeleteAll()
+{
+	for (int i = 0; i < (UINT)GROUP_GAMEOBJ::SIZE; i++)
+	{
+		DeleteGroup((GROUP_GAMEOBJ)i);
+	}
 }

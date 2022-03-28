@@ -26,6 +26,17 @@ void CScene::update()
     // 씬이 가진 모든 오브젝트 업데이트
     for (int i = 0; i < (int)GROUP_GAMEOBJ::SIZE; i++)
     {
+
+        if (CSceneManager::getInst()->IsRemain((GROUP_GAMEOBJ)i))
+        {
+            for (int j = 0; j < CSceneManager::getInst()->GetRemain((GROUP_GAMEOBJ)i).size(); j++)
+            {
+                if (!CSceneManager::getInst()->GetRemain((GROUP_GAMEOBJ)i)[j]->isDead())
+                    CSceneManager::getInst()->GetRemain((GROUP_GAMEOBJ)i)[j]->update();
+            }
+            continue;
+        }
+
         for (int j = 0; j < m_arrObj[i].size(); j++)
         {
             if (!m_arrObj[i][j]->isDead())
@@ -39,6 +50,15 @@ void CScene::finalupdate()
     // 씬이 가진 모든 오브젝트 finalupdate
     for (int i = 0; i < (int)GROUP_GAMEOBJ::SIZE; i++)
     {
+        if (CSceneManager::getInst()->IsRemain((GROUP_GAMEOBJ)i))
+        {
+            for (int j = 0; j < CSceneManager::getInst()->GetRemain((GROUP_GAMEOBJ)i).size(); j++)
+            {
+                CSceneManager::getInst()->GetRemain((GROUP_GAMEOBJ)i)[j]->finalupdate();
+            }
+            continue;
+        }
+
         for (int j = 0; j < m_arrObj[i].size(); j++)
         {
             m_arrObj[i][j]->finalupdate();
@@ -56,6 +76,24 @@ void CScene::render()
             render_tile();
             continue;
         }
+        if (true ==CSceneManager::getInst()->IsRemain((GROUP_GAMEOBJ)i))
+        {
+            for (vector<CGameObject*>::iterator iter = CSceneManager::getInst()->GetRemain((GROUP_GAMEOBJ)i).begin();
+                iter != CSceneManager::getInst()->GetRemain((GROUP_GAMEOBJ)i).end(); )
+            {
+                if (!(*iter)->isDead())
+                {
+                    (*iter)->render();
+                    iter++;
+                }
+                else
+                {
+                    iter = CSceneManager::getInst()->GetRemain((GROUP_GAMEOBJ)i).erase(iter);
+                }
+            }
+            continue;
+        }
+
         for (vector<CGameObject*>::iterator iter = m_arrObj[i].begin();
             iter != m_arrObj[i].end(); )
         {
@@ -83,6 +121,9 @@ void CScene::render_tile()
 
 const vector<CGameObject*>& CScene::GetGroupObject(GROUP_GAMEOBJ group)
 {
+    if (CSceneManager::getInst()->IsRemain(group))
+        return CSceneManager::getInst()->GetRemain(group);
+
     return m_arrObj[(UINT)group];
 }
 
@@ -101,13 +142,23 @@ wstring CScene::GetName()
     return m_strName;
 }
 
-void CScene::AddObject(CGameObject* pObj, GROUP_GAMEOBJ type)
+void CScene::AddObject(CGameObject* pObj, GROUP_GAMEOBJ type , bool remain)
 {
-    m_arrObj[(int)type].push_back(pObj);
+    if (true == remain)
+    {
+        CSceneManager::getInst()->GetRemain(type).push_back(pObj);
+    }
+    else
+    {
+        m_arrObj[(int)type].push_back(pObj);
+    }
 }
 
 void CScene::DeleteGroup(GROUP_GAMEOBJ group)
 {
+    if (CSceneManager::getInst()->IsRemain(group))
+        return;
+
     for (int i = 0; i < m_arrObj[(UINT)group].size(); i++)
     {
         delete m_arrObj[(UINT)group][i];

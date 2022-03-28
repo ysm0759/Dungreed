@@ -47,6 +47,7 @@ private:
 	int m_iBottomCount;
 
 	PlayerInfo m_cPlayerInfo;
+
 	CItem* m_cCurItem[(UINT)ITEM_PART::SIZE];
 	CGameObject* m_pCurWeapon;
 	list<CItem*> m_inventory;

@@ -29,7 +29,7 @@ public:
 
 	const vector<CGameObject*>& GetGroupObject(GROUP_GAMEOBJ group);
 	vector<CGameObject*>& GetUIGroup();		// UI는 렌더링 순서를 변경해야 하기 때문에 원본을 참조 / 주의 필요!
-	void AddObject(CGameObject* pObj, GROUP_GAMEOBJ group);
+	void AddObject(CGameObject* pObj, GROUP_GAMEOBJ group, bool remain = false);
 	void DeleteGroup(GROUP_GAMEOBJ group);
 	void DeleteAll();
 

@@ -34,13 +34,14 @@ CPlayerAttack* CPlayerAttack::Clone()
 	newAttack->m_pImg = CResourceManager::getInst()->LoadD2DImage(m_pWeaponAttackInfo->m_sEffKey,
 																	L"texture\\Item\\" + m_pWeaponAttackInfo->m_sEffKey + L".png");
 	
-	newAttack->GetAnimator()->CreateAnimation(m_pWeaponAttackInfo->m_sEffKey,
-											m_pImg,
-											fPoint(0, 0),
-											fPoint(32.f, 32.f),
-											fPoint(32.f, 0),
-											m_pWeaponAttackInfo->m_fAniTime,
-											m_pWeaponAttackInfo->m_iAniCut);
+
+
+	newAttack->GetAnimator()->CreateAnimation(m_pWeaponAttackInfo->m_sEffKey, m_pImg,
+									fPoint(0, 0),
+									fPoint(m_pWeaponAttackInfo->m_fAniSize.x, m_pWeaponAttackInfo->m_fAniSize.y),
+									fPoint(m_pWeaponAttackInfo->m_fAniSize.x, 0),
+									m_pWeaponAttackInfo->m_fAniTime,
+									m_pWeaponAttackInfo->m_iAniCut);
 
 	newAttack->GetAnimator()->Play(m_pWeaponAttackInfo->m_sEffKey);
 	return newAttack;
