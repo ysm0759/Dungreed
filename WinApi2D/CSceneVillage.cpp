@@ -40,7 +40,7 @@ void CSceneVillage::Enter()
 	CreateBackGround();
 
 	wstring path = CPathManager::getInst()->GetContentPath();
-	path += L"tile\\Village.tile";
+	path += L"tile\\Village1.tile";
 	LoadTile(path);
 	// Player Ãß°¡
 	CGameObject* pPlayer = new CPlayer;

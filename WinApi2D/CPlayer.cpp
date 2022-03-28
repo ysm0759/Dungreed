@@ -52,11 +52,11 @@ CPlayer::CPlayer()
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerStand", L"texture\\Player\\PlayerStand.png");
 	GetAnimator()->CreateAnimation(L"PlayerStand", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 5);
 
-	
+
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerRun", L"texture\\Player\\PlayerRun.png");
 	GetAnimator()->CreateAnimation(L"PlayerRun", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 7);
 
-	
+
 	m_pImg = CResourceManager::getInst()->LoadD2DImage(L"PlayerJump", L"texture\\Player\\PlayerJump.png");
 	GetAnimator()->CreateAnimation(L"PlayerJump", m_pImg, fPoint(0, 0), fPoint(32.f, 32.f), fPoint(32.f, 0), 0.1f, 1);
 
@@ -83,7 +83,7 @@ void CPlayer::update()
 	fPoint objectRenderPos = CCameraManager::getInst()->GetRenderPos(GetPos()); //캐릭터 랜더 위치랑 계산을 해서 
 	fVec2 playDir = fVec2(mousePos.x - objectRenderPos.x, mousePos.y - objectRenderPos.y); // 마우스와 캐릭터의 방향
 	GetStatu()->SetLook(playDir);
-	
+
 	//나중에 지울것
 	if (nullptr != m_cCurItem[(UINT)ITEM_PART::LeftWeapon])
 		m_pCurWeapon = m_cCurItem[(UINT)ITEM_PART::LeftWeapon];
@@ -100,9 +100,7 @@ void CPlayer::update()
 
 
 	if (0 == m_iBottomCount)
-	{
 		StatuRemove(GROUP_OBJECT_STATU::GROUND);
-	}
 	else
 	{
 		wstring a = to_wstring(GetStatu()->GetUpDown());
@@ -128,7 +126,7 @@ void CPlayer::update()
 		{
 			StatuRemove(GROUP_OBJECT_STATU::JUMP); //점프를 제거 안해주면 RigidBody에 점프함수를 계속 실행하여 이상하게 진행됨
 		}
-		if (m_fDashTime > DASHTIME) 
+		if (m_fDashTime > DASHTIME)
 		{
 			m_fDashTime = 0;
 			StatuRemove(GROUP_OBJECT_STATU::FORCE);
@@ -151,14 +149,14 @@ void CPlayer::update()
 
 		if (Key('S'))
 		{
-			
+
 		}
 
-		if ((KeyDown(VK_SPACE)  || KeyDown('W')) && StatuGet(GROUP_OBJECT_STATU::GROUND)  // 점프
+		if ((KeyDown(VK_SPACE) || KeyDown('W')) && StatuGet(GROUP_OBJECT_STATU::GROUND)  // 점프
 			//&& !StatuGet(GROUP_OBJECT_STATU::JUMP)
 			&& StatuGet(GROUP_OBJECT_STATU::GROUND))
 		{
- 			StatuSet(GROUP_OBJECT_STATU::JUMP);
+			StatuSet(GROUP_OBJECT_STATU::JUMP);
 			StatuRemove(GROUP_OBJECT_STATU::GROUND);
 		}
 
@@ -179,7 +177,8 @@ void CPlayer::update()
 		}
 	}
 
-
+	if (m_iBottomCount <= 0)
+		m_iBottomCount = 0;
 	SetPos(pos);
 
 	GetStatu()->update();
@@ -196,66 +195,74 @@ void CPlayer::update()
 void CPlayer::render()
 {
 	CRenderManager::getInst()->RenderText(to_wstring(m_iBottomCount),
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +200,
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
-										  10 ,
-										  50,
-										  12,
-										  RGB(0, 0, 0));
+		CCameraManager::getInst()->GetRenderPos(GetPos()).x + 200,
+		CCameraManager::getInst()->GetRenderPos(GetPos()).y,
+		10,
+		50,
+		12,
+		RGB(0, 0, 0));
 
 	CRenderManager::getInst()->RenderText(to_wstring(StatuGet(GROUP_OBJECT_STATU::JUMP)),
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +300 ,
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
-										  10 ,
-										  50,
-										  12,
-										  RGB(0, 0, 0));
-	
+		CCameraManager::getInst()->GetRenderPos(GetPos()).x + 300,
+		CCameraManager::getInst()->GetRenderPos(GetPos()).y,
+		10,
+		50,
+		12,
+		RGB(0, 0, 0));
+
 	CRenderManager::getInst()->RenderText(to_wstring(StatuGet(GROUP_OBJECT_STATU::GROUND)),
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +400 ,
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
-										  10 ,
-										  50,
-										  12,
-										  RGB(0, 0, 0));
+		CCameraManager::getInst()->GetRenderPos(GetPos()).x + 400,
+		CCameraManager::getInst()->GetRenderPos(GetPos()).y,
+		10,
+		50,
+		12,
+		RGB(0, 0, 0));
 
-	
+
 	CRenderManager::getInst()->RenderText(to_wstring(StatuGet(GROUP_OBJECT_STATU::FORCE)),
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +500 ,
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
-										  10 ,
-										  50,
-										  12,
-										  RGB(0, 0, 0));
+		CCameraManager::getInst()->GetRenderPos(GetPos()).x + 500,
+		CCameraManager::getInst()->GetRenderPos(GetPos()).y,
+		10,
+		50,
+		12,
+		RGB(0, 0, 0));
 
-	
+
 	CRenderManager::getInst()->RenderText(to_wstring(m_cDashCount),
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +600 ,
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
-										  10 ,
-										  50,	
-										  12,
-										  RGB(0, 0, 0));
+		CCameraManager::getInst()->GetRenderPos(GetPos()).x + 600,
+		CCameraManager::getInst()->GetRenderPos(GetPos()).y,
+		10,
+		50,
+		12,
+		RGB(0, 0, 0));
 
 	CRenderManager::getInst()->RenderText(to_wstring(StatuGet(GROUP_OBJECT_STATU::DOWN)),
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).x + 700,
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).y,
-										  10,
-										  50,
-										  12,
-										  RGB(0, 0, 0));
+		CCameraManager::getInst()->GetRenderPos(GetPos()).x + 700,
+		CCameraManager::getInst()->GetRenderPos(GetPos()).y,
+		10,
+		50,
+		12,
+		RGB(0, 0, 0));
 
 
 
 	CRenderManager::getInst()->RenderText(to_wstring(GetStatu()->GetUpDown()),
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).x +1000 ,
-										  CCameraManager::getInst()->GetRenderPos(GetPos()).y ,
-										  10 ,
-										  50,
-										  12,
-										  RGB(0, 0, 0));
+		CCameraManager::getInst()->GetRenderPos(GetPos()).x + 1000,
+		CCameraManager::getInst()->GetRenderPos(GetPos()).y,
+		10,
+		50,
+		12,
+		RGB(0, 0, 0));
 
-	
+	CRenderManager::getInst()->RenderText(to_wstring(GetPos().y),
+		CCameraManager::getInst()->GetRenderPos(GetPos()).x + 800,
+		CCameraManager::getInst()->GetRenderPos(GetPos()).y,
+		10,
+		50,
+		12,
+		RGB(0, 0, 0));
+
+
 	component_render();
 }
 
@@ -280,17 +287,21 @@ void CPlayer::OnCollisionEnter(CCollider* pOther)
 		}
 		else if (GROUP_TILE::PLATFORM == ((CTile*)pOtherObj)->GetGroup())
 		{
-			if (pOtherObj->GetPos().y > GetPos().y+4)
+			if (StatuGet(GROUP_OBJECT_STATU::FORCE))
+			{
+
+			}
+			else if (pOther->GetFinalPos().y > this->GetCollider()->GetFinalPos().y + GetCollider()->GetScale().y / 2 && StatuGet(GROUP_OBJECT_STATU::DOWN))
 			{
 				m_iBottomCount++;
 			}
-
 		}
 	}
 }
 
 void CPlayer::OnCollision(CCollider* pOther)
 {
+
 
 }
 
@@ -299,22 +310,28 @@ void CPlayer::OnCollisionExit(CCollider* pOther)
 
 	CGameObject* pOtherObj = pOther->GetObj();
 
-	
+
 	if (pOtherObj->GetName() == L"Tile") //TODO: 나중에 타일로 바꿀것
 	{
 		if (GROUP_TILE::GROUND == ((CTile*)pOtherObj)->GetGroup())
 			m_iBottomCount--;
 		if (GROUP_TILE::PLATFORM == ((CTile*)pOtherObj)->GetGroup())
 		{
-
-			if (StatuGet(GROUP_OBJECT_STATU::DOWN))
+			if (StatuGet(GROUP_OBJECT_STATU::FORCE))
 			{
 				m_iBottomCount--;
 			}
-			else if (!StatuGet(GROUP_OBJECT_STATU::DOWN))
+			else if (StatuGet(GROUP_OBJECT_STATU::GROUND))
 			{
-				m_iBottomCount = 0;
+				m_iBottomCount--;
 			}
+			
+			else if (StatuGet(GROUP_OBJECT_STATU::JUMP))
+			{
+				m_iBottomCount--;
+			}
+
+
 		}
 	}
 

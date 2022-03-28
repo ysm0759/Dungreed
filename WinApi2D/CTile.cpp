@@ -60,23 +60,32 @@ void CTile::render()
 		);
 	}
 
-	
-	CRenderManager::getInst()->RenderText(to_wstring(GetPos().x),
-		CCameraManager::getInst()->GetRenderPos(GetPos()).x,
-		CCameraManager::getInst()->GetRenderPos(GetPos()).y,
-		10,
-		50,
-		12,
-		RGB(0, 0, 0));
-	CRenderManager::getInst()->RenderText(to_wstring(GetPos().y),
-		CCameraManager::getInst()->GetRenderPos(GetPos()).x,
-		CCameraManager::getInst()->GetRenderPos(GetPos()).y,
-		10,
-		50,
-		12,
-		RGB(0, 0, 0));
 
 
+	/*CRenderManager::getInst()->RenderImage(
+		m_pImg,
+		pos.x,
+		pos.y,
+		pos.x + scale.x,
+		pos.y + scale.y);*/
+
+	fPoint pos = CCameraManager::getInst()->GetRenderPos(GetPos());
+
+	//CRenderManager::getInst()->RenderText(to_wstring((int)GetPos().x),
+	//	pos.x * ZOOM*2,
+	//	pos.y * ZOOM*2,
+	//	10,
+	//	10,
+	//	12,
+	//	RGB(0, 0, 0));
+
+	//CRenderManager::getInst()->RenderText(to_wstring((int)GetPos().y),
+	//	pos.x * ZOOM*2,
+	//	pos.y * ZOOM*2,
+	//	70,
+	//	10,
+	//	12,
+	//	RGB(0, 0, 0));
 	component_render();
 }
 

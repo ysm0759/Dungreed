@@ -124,7 +124,7 @@ void CScene_Tool::Enter()
 	backGround4->SetPos(fPoint(0, BackY+160));
 	AddObject(backGround4, GROUP_GAMEOBJ::BACK_GROUND);
 
-	int FloorX = -163;
+	int FloorX = -160;
 	CBackGround* backFloor = new CBackGround();
 	backFloor->OnFix();
 	backFloor->OnDependOnObject(fPoint(1,1));
@@ -267,7 +267,8 @@ void CScene_Tool::SaveTile(const wstring& strPath)
 	for (UINT i = 0; i < vecTile.size(); i++)
 	{
 		CTile* pTile = (CTile*)vecTile[i];
-		if (0 != pTile->GetIdx() || GROUP_TILE::NONE != pTile->GetGroup())
+		if (0  != pTile->GetIdx() ||
+			GROUP_TILE::NONE != pTile->GetGroup())
 			((CTile*)vecTile[i])->Save(pFile);
 	}
 
