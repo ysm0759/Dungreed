@@ -91,52 +91,57 @@ void CScene_Tool::Enter()
 	CreateTile(20, 20);
 	CreateTilePanel();
 
-
+	float BackY = 320;
 	//TODO:TOOL
 	CCameraManager::getInst()->SetLookAt(fPoint(WINSIZEX / 2.f /ZOOM, WINSIZEY / 2.f / ZOOM));
 
 
-	//TODO:TOOL
-	CBackGround* backGround1 = new CBackGround();
-	backGround1->OnFix();
-	backGround1->SetBackScale(1);
-	backGround1->Load(L"FixBackGround", L"texture\\Village\\FixBackGround.png");
-	backGround1->SetPos(fPoint(0,0));
-	AddObject(backGround1, GROUP_GAMEOBJ::BACK_GROUND);
+	
 
 
 	CBackGround* backGround2 = new CBackGround();
 	backGround2->OnFix();
-	backGround2->OnDependOnObject(1);
+	backGround2->OnDependOnObject(fPoint(1.1f, 1.5f));
 	backGround2->SetBackScale(1);
-	backGround2->SetPos(fPoint(0, 0));
+	backGround2->SetPos(fPoint(0, BackY-80));
 	backGround2->Load(L"MiddleBackGround", L"texture\\Village\\MiddleBackGround.png");
 	AddObject(backGround2, GROUP_GAMEOBJ::BACK_GROUND);
 
 	CBackGround* backGround3 = new CBackGround();
 	backGround3->OnFix();
-	backGround3->OnDependOnObject(1);
+	backGround3->OnDependOnObject(fPoint(1.5f, 1.f));
 	backGround3->SetBackScale(1);
 	backGround3->Load(L"FrontBackGround", L"texture\\Village\\FrontBackGround.png");
-	backGround3->SetPos(fPoint(0, 0));
+	backGround3->SetPos(fPoint(0, BackY+48));
 	AddObject(backGround3, GROUP_GAMEOBJ::BACK_GROUND);
 
 
 	CBackGround* backGround4 = new CBackGround();
 	backGround4->OnFix();
-	backGround4->OnDependOnObject(1);
+	backGround4->OnDependOnObject(fPoint(1, 1));
 	backGround4->SetBackScale(100);
 	backGround4->Load(L"None", L"texture\\tile\\None.png");
-	backGround4->SetPos(fPoint(0, 640));
+	backGround4->SetPos(fPoint(0, BackY+160));
 	AddObject(backGround4, GROUP_GAMEOBJ::BACK_GROUND);
 
+	int FloorX = -163;
 	CBackGround* backFloor = new CBackGround();
 	backFloor->OnFix();
-	backFloor->OnDependOnObject(1);
+	backFloor->OnDependOnObject(fPoint(1,1));
 	backFloor->SetBackScale(1);
 	backFloor->Load(L"Floor", L"texture\\Village\\Floor.png");
-	backFloor->SetPos(fPoint(0, 0 ));
+	backFloor->SetPos(fPoint(FloorX, BackY));
 	AddObject(backFloor, GROUP_GAMEOBJ::BACK_GROUND);
+	
+	CBackGround* backFloorClone1 = backFloor->Clone();
+	backFloorClone1->SetPos(fPoint(FloorX + 752, BackY));
+	AddObject(backFloorClone1, GROUP_GAMEOBJ::BACK_GROUND);
+	
+	CBackGround* backFloorClone2 = backFloor->Clone();
+	backFloorClone2->SetPos(fPoint(FloorX + 752+ 752, BackY));
+	AddObject(backFloorClone2, GROUP_GAMEOBJ::BACK_GROUND);
+	
+
 
 }
 
@@ -290,7 +295,7 @@ void CScene_Tool::LoadTile(const wstring& strPath)
 
 	const vector<CGameObject*>& vecTile = GetGroupObject(GROUP_GAMEOBJ::TILE);
 	CD2DImage* pImg = CResourceManager::getInst()->LoadD2DImage(L"Tile", L"texture\\tile\\Tile.png");
-	CTile* pTile = new CTile;
+	CTile* pTile = new CTile; 
 
 	for (UINT i = 0; i < tileCount; i++)
 	{
@@ -497,7 +502,7 @@ void CScene_Tool::PrintMap()
 		return;
 
 	fPoint pos = CCameraManager::getInst()->GetLookAt();
-	pos = pos - fPoint(WINSIZEX /ZOOM/ 2.f, WINSIZEY / ZOOM / 2.f);
+	pos = pos - fPoint(WINSIZEX /ZOOM/ 2.f, WINSIZEY / ZOOM / 2.f-320);
 
 	CRenderManager::getInst()->RenderImage(
 		m_pMap,
@@ -521,7 +526,7 @@ void CScene_Tool::PrintTileLine()
 			fPoint(CTile::SIZE_TILE * m_iTileX - pos.x, y * CTile::SIZE_TILE  - pos.y)
 		);
 	}
-
+	
 	// 세로줄 출력
 	for (UINT x = 0; x <= m_iTileX; x++)
 	{

@@ -148,10 +148,19 @@ void CScene::LoadTile(const wstring& strPath)
         newTile->Load(pFile);
         newTile->SetD2DImage(pImg);
         newTile->SetPos(fPoint((float)(newTile->GetX() * CTile::SIZE_TILE), (float)(newTile->GetY() * CTile::SIZE_TILE)));
-
-        if (GROUP_TILE::SLOPE == newTile->GetGroup())
+        //TODO: 
+        //if (GROUP_TILE::SLOPE == newTile->GetGroup())
+        //{
+        //    //
+        //    // 
+        //    // TODO : OBB 충돌체 추가
+        //}
+        //else /
+        if (GROUP_TILE::PLATFORM == newTile->GetGroup())
         {
-            // TODO : OBB 충돌체 추가
+            newTile->CreateCollider();
+            newTile->GetCollider()->SetScale(fPoint(CTile::SIZE_TILE, CTile::SIZE_TILE/4));
+            newTile->GetCollider()->SetOffsetPos(fPoint(CTile::SIZE_TILE / 2.f, CTile::SIZE_TILE - 14 ));
         }
         else if (GROUP_TILE::NONE != newTile->GetGroup())
         {

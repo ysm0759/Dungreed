@@ -44,7 +44,7 @@ CPlayer::CPlayer()
 
 	CreateCollider();
 	GetCollider()->SetScale(fPoint(10.f, 10.f));
-	GetCollider()->SetOffsetPos(fPoint(0.f, 10.f));
+	GetCollider()->SetOffsetPos(fPoint(0.f, 5));
 
 
 
@@ -62,6 +62,7 @@ CPlayer::CPlayer()
 
 	CreateStatu();
 	PrintInfo();
+
 }
 
 CPlayer::~CPlayer()
@@ -169,7 +170,7 @@ void CPlayer::update()
 		}
 		if (KeyDown('Q'))
 		{
-
+			m_iBottomCount = 0;
 
 		}
 		if (KeyDown('R'))
@@ -271,15 +272,26 @@ void CPlayer::OnCollisionEnter(CCollider* pOther)
 
 	}
 
-	
 	if (pOtherObj->GetName() == L"Tile") //TODO: 나중에 타일로 바꿀것
 	{
 		if (GROUP_TILE::GROUND == ((CTile*)pOtherObj)->GetGroup())
 		{
 			m_iBottomCount++;
 		}
+		else if (GROUP_TILE::PLATFORM == ((CTile*)pOtherObj)->GetGroup())
+		{
+			if (pOtherObj->GetPos().y > GetPos().y+4)
+			{
+				m_iBottomCount++;
+			}
 
+		}
 	}
+}
+
+void CPlayer::OnCollision(CCollider* pOther)
+{
+
 }
 
 void CPlayer::OnCollisionExit(CCollider* pOther)
@@ -292,9 +304,21 @@ void CPlayer::OnCollisionExit(CCollider* pOther)
 	{
 		if (GROUP_TILE::GROUND == ((CTile*)pOtherObj)->GetGroup())
 			m_iBottomCount--;
-	}
-}
+		if (GROUP_TILE::PLATFORM == ((CTile*)pOtherObj)->GetGroup())
+		{
 
+			if (StatuGet(GROUP_OBJECT_STATU::DOWN))
+			{
+				m_iBottomCount--;
+			}
+			else if (!StatuGet(GROUP_OBJECT_STATU::DOWN))
+			{
+				m_iBottomCount = 0;
+			}
+		}
+	}
+
+}
 
 void CPlayer::StatuAnimator()
 {

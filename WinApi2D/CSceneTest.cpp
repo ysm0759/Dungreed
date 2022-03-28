@@ -36,16 +36,6 @@ void CSceneTest::update()
 		ChangeScn(GROUP_SCENE::TOOL);
 	}
 
-	if (KeyDown('Z'))
-	{
-		CSoundManager::getInst()->AddSound(L"bgm", L"sound\\drumloop.wav", true);
-		CSoundManager::getInst()->Play(L"bgm");
-	}
-
-	if (KeyDown('X'))
-	{
-		CSoundManager::getInst()->Stop(L"bgm");
-	}
 }
 
 void CSceneTest::Enter()

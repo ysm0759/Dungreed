@@ -64,6 +64,8 @@ public:
 	virtual void render();
 	virtual void OnCollisionEnter(CCollider* pOther);
 	virtual void OnCollisionExit(CCollider* pOther);
+	virtual void OnCollision(CCollider* pOther);
+
 	void StatuAnimator();
 	void EatItem();
 

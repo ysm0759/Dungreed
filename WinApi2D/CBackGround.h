@@ -9,7 +9,7 @@ class CBackGround : public CGameObject
 private:
 	CD2DImage* m_pImg;
 	float m_fAutoSpeed;			// 배경움직이는 속도
-	float m_fDependOnSpeed;     // 플레이어에 따라 움직이는 배경 속도
+	fPoint m_fDependOnSpeed;     // 플레이어에 따라 움직이는 배경 속도
 	float m_fScale;				// 원본사진의 배율									default = 4
 	float m_fRepeatGap;			// 배경이 무한 반복될때 다음 장면과 Gap				default = 0;
 	float m_fAlpha;				// 배경의 투명도										default = 1;
@@ -30,7 +30,7 @@ public:
 
 	void OnFix();
 	void OnAuto(float autoSpeed ,bool m_fRepeat = true);
-	void OnDependOnObject(float dependOnSpeed);
+	void OnDependOnObject(fPoint dependOnSpeed);
 	void OnRepeat(float repeatGap = 0);
 	
 

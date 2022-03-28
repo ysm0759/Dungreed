@@ -60,8 +60,28 @@ void CTile::render()
 		);
 	}
 
+	
+	CRenderManager::getInst()->RenderText(to_wstring(GetPos().x),
+		CCameraManager::getInst()->GetRenderPos(GetPos()).x,
+		CCameraManager::getInst()->GetRenderPos(GetPos()).y,
+		10,
+		50,
+		12,
+		RGB(0, 0, 0));
+	CRenderManager::getInst()->RenderText(to_wstring(GetPos().y),
+		CCameraManager::getInst()->GetRenderPos(GetPos()).x,
+		CCameraManager::getInst()->GetRenderPos(GetPos()).y,
+		10,
+		50,
+		12,
+		RGB(0, 0, 0));
+
+
 	component_render();
 }
+
+
+
 
 void CTile::SetD2DImage(CD2DImage* pImg)
 {

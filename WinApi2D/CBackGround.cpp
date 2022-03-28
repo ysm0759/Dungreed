@@ -7,7 +7,7 @@ CBackGround::CBackGround()
 {
    m_pImg               = nullptr;
    m_fAutoSpeed         = 0;	    
-   m_fDependOnSpeed     = 0;        
+   m_fDependOnSpeed     = {};
    m_fScale             = 4.f;
    m_fRepeatGap         = 0.f;
    m_fAlpha             = 1.f;
@@ -105,8 +105,11 @@ void CBackGround::render()
         if (GetOption((UINT)BACK_OPTION::DEPEND_ON))
         {
             fPoint renderPos = CCameraManager::getInst()->GetRenderPos(pos);
-            
-            renderPos.y = pos.y + (renderPos.y - pos.y) / m_fDependOnSpeed;    // 배경은 살짝 느리게 이동
+            if (0.f != m_fDependOnSpeed.x )
+                 renderPos.x = pos.x + (renderPos.x - pos.x) / m_fDependOnSpeed.x;    // 배경은 살짝 느리게 이동
+
+            if (0.f != m_fDependOnSpeed.y)
+                renderPos.y = pos.y + (renderPos.y - pos.y) / m_fDependOnSpeed.y;    // 배경은 살짝 느리게 이동
 
             CRenderManager::getInst()->RenderImage(
                 m_pImg,
@@ -139,7 +142,7 @@ void CBackGround::OnAuto(float autoSpeed, bool m_fRepeat)
     SetLeft();
 }
 
-void CBackGround::OnDependOnObject(float dependOnSpeed)
+void CBackGround::OnDependOnObject(fPoint dependOnSpeed)
 {
     RemoveOption((UINT)BACK_OPTION::FIX);
     SetOption((UINT)BACK_OPTION::DEPEND_ON);
